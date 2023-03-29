@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqjfiswkpnpu"]
+
+[ext_resource type="Texture2D" uid="uid://ccisirdv5c684" path="res://Assets/foundation.png" id="1_4ejx4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_67ftt"]
+size = Vector2(1000, 1410)
+
+[node name="Foundation" type="Area2D"]
+
+[node name="DragHitbox" type="CollisionShape2D" parent="."]
+scale = Vector2(0.25, 0.25)
+shape = SubResource("RectangleShape2D_67ftt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_4ejx4")

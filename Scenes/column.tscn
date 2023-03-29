@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcfvtshla67dh"]
+
+[ext_resource type="Texture2D" uid="uid://b3ook1tg6nwh0" path="res://Assets/freecell.png" id="1_ac1yk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61xrf"]
+size = Vector2(262, 1800)
+
+[node name="Column" type="Area2D"]
+
+[node name="DragHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 729)
+shape = SubResource("RectangleShape2D_61xrf")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_ac1yk")
