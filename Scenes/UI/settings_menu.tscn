@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxb7ghjo2y75q"]
+
+[ext_resource type="Script" path="res://Scenes/UI/settings_menu.gd" id="1_fy850"]
+[ext_resource type="Texture2D" uid="uid://ddlflgjasobuj" path="res://Assets/UI/settings_menu_background.png" id="1_jh4ki"]
+[ext_resource type="Texture2D" uid="uid://bjxme0f4fpinx" path="res://Assets/UI/settings_button_background_light.png" id="2_g3dsl"]
+[ext_resource type="Script" path="res://Scenes/UI/DarkOverlay.gd" id="2_uibky"]
+[ext_resource type="Texture2D" uid="uid://r5kcnyvl57dw" path="res://Assets/UI/settings_button_background_dark.png" id="3_oqet2"]
+[ext_resource type="FontFile" uid="uid://csh6y5qo6krcu" path="res://Assets/Fonts/SymtextFix.ttf" id="4_4ifl8"]
+
+[node name="SettingsMenu" type="Node2D"]
+script = ExtResource("1_fy850")
+
+[node name="DarkOverlay" type="Area2D" parent="."]
+script = ExtResource("2_uibky")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DarkOverlay"]
+polygon = PackedVector2Array(-1520, -480, 2320, -480, 2320, 1680, 800, 1680, 800, 0, 0, 0, 0, 1200, 800, 1200, 800, 1680, -1520, 1680)
+
+[node name="ColorRect" type="ColorRect" parent="DarkOverlay"]
+offset_left = -1520.0
+offset_top = -480.0
+offset_right = 2320.0
+offset_bottom = 1680.0
+color = Color(0, 0, 0, 0.215686)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.870588)
+offset_right = 300.0
+offset_bottom = 400.0
+texture = ExtResource("1_jh4ki")
+
+[node name="NewGame" type="TextureButton" parent="."]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 750.0
+offset_bottom = 250.0
+texture_normal = ExtResource("2_g3dsl")
+texture_pressed = ExtResource("3_oqet2")
+texture_hover = ExtResource("3_oqet2")
+
+[node name="Label" type="Label" parent="NewGame"]
+layout_mode = 0
+offset_right = 700.0
+offset_bottom = 200.0
+theme_override_fonts/font = ExtResource("4_4ifl8")
+theme_override_font_sizes/font_size = 80
+text = "new game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Fullscreen" type="TextureButton" parent="."]
+offset_left = 50.0
+offset_top = 300.0
+offset_right = 750.0
+offset_bottom = 500.0
+texture_normal = ExtResource("2_g3dsl")
+texture_pressed = ExtResource("3_oqet2")
+texture_hover = ExtResource("3_oqet2")
+
+[node name="Label" type="Label" parent="Fullscreen"]
+layout_mode = 0
+offset_top = -12.0
+offset_right = 700.0
+offset_bottom = 212.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -25
+theme_override_fonts/font = ExtResource("4_4ifl8")
+theme_override_font_sizes/font_size = 80
+text = "Fullscreen:
+ "
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Quit" type="TextureButton" parent="."]
+offset_left = 50.0
+offset_top = 550.0
+offset_right = 750.0
+offset_bottom = 750.0
+texture_normal = ExtResource("2_g3dsl")
+texture_pressed = ExtResource("3_oqet2")
+texture_hover = ExtResource("3_oqet2")
+
+[node name="Label" type="Label" parent="Quit"]
+layout_mode = 0
+offset_right = 700.0
+offset_bottom = 200.0
+theme_override_fonts/font = ExtResource("4_4ifl8")
+theme_override_font_sizes/font_size = 80
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="input_event" from="DarkOverlay" to="DarkOverlay" method="_on_input_event"]
+[connection signal="pressed" from="Fullscreen" to="." method="_on_fullscreen_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

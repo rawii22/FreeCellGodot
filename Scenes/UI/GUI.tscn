@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw5qgkpt1x8rv"]
+
+[ext_resource type="Script" path="res://Scenes/UI/GUI.gd" id="1_x71gi"]
+[ext_resource type="PackedScene" uid="uid://bv5f355kufr5q" path="res://Scenes/UI/settings_button.tscn" id="2_1j64k"]
+[ext_resource type="PackedScene" uid="uid://dxb7ghjo2y75q" path="res://Scenes/UI/settings_menu.tscn" id="3_beqox"]
+
+[node name="GUI" type="Node2D"]
+script = ExtResource("1_x71gi")
+
+[node name="SettingsMenu" parent="." instance=ExtResource("3_beqox")]
+position = Vector2(1520, 480)
+
+[node name="SettingsButton" parent="." instance=ExtResource("2_1j64k")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3696.0
+offset_top = 2016.0
+offset_right = 4296.0
+offset_bottom = 2616.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)

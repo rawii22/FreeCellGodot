@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bv5f355kufr5q"]
+
+[ext_resource type="Texture2D" uid="uid://d0tf2ilh4ifes" path="res://Assets/UI/gear(60percentopacity).png" id="1_mtajr"]
+[ext_resource type="Texture2D" uid="uid://fbbmf71rfh4" path="res://Assets/UI/gear.png" id="2_puxtb"]
+[ext_resource type="Script" path="res://Scenes/UI/settings_button.gd" id="3_l4xfw"]
+
+[node name="SettingsButton" type="TextureButton"]
+offset_right = 440.0
+offset_bottom = 440.0
+texture_normal = ExtResource("1_mtajr")
+texture_pressed = ExtResource("1_mtajr")
+texture_hover = ExtResource("2_puxtb")
+stretch_mode = 3
+script = ExtResource("3_l4xfw")
