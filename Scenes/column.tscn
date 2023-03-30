@@ -8,6 +8,7 @@ size = Vector2(262, 1800)
 [node name="Column" type="Area2D"]
 
 [node name="DragHitbox" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 725)
 shape = SubResource("RectangleShape2D_61xrf")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)

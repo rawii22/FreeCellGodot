@@ -8,6 +8,7 @@
 script = ExtResource("1_x71gi")
 
 [node name="SettingsMenu" parent="." instance=ExtResource("3_beqox")]
+visible = false
 position = Vector2(1520, 480)
 
 [node name="SettingsButton" parent="." instance=ExtResource("2_1j64k")]
