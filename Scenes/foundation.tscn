@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqjfiswkpnpu"]
+[gd_scene load_steps=4 format=3 uid="uid://cqjfiswkpnpu"]
 
 [ext_resource type="Texture2D" uid="uid://ccisirdv5c684" path="res://Assets/foundation.png" id="1_4ejx4"]
+[ext_resource type="Script" path="res://Scenes/foundation.gd" id="1_pnnus"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_67ftt"]
 size = Vector2(1000, 1410)
 
 [node name="Foundation" type="Area2D"]
+script = ExtResource("1_pnnus")
 
 [node name="DragHitbox" type="CollisionShape2D" parent="."]
 visible = false

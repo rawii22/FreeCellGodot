@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dxb7ghjo2y75q"]
 
 [ext_resource type="Script" path="res://Scenes/UI/settings_menu.gd" id="1_fy850"]
-[ext_resource type="Texture2D" uid="uid://ddlflgjasobuj" path="res://Assets/UI/settings_menu_background.png" id="1_jh4ki"]
+[ext_resource type="Texture2D" uid="uid://ddya3ycq3oy8k" path="res://Assets/UI/settings_menu_background.png" id="1_jh4ki"]
 [ext_resource type="Texture2D" uid="uid://bjxme0f4fpinx" path="res://Assets/UI/settings_button_background_light.png" id="2_g3dsl"]
 [ext_resource type="Script" path="res://Scenes/UI/DarkOverlay.gd" id="2_uibky"]
 [ext_resource type="Texture2D" uid="uid://r5kcnyvl57dw" path="res://Assets/UI/settings_button_background_dark.png" id="3_oqet2"]
@@ -15,7 +15,6 @@ script = ExtResource("1_fy850")
 script = ExtResource("2_uibky")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DarkOverlay"]
-visible = false
 polygon = PackedVector2Array(-1520, -480, 2320, -480, 2320, 1680, 800, 1680, 800, 0, 0, 0, 0, 1200, 800, 1200, 800, 1680, -1520, 1680)
 
 [node name="ColorRect" type="Sprite2D" parent="DarkOverlay"]
@@ -29,13 +28,32 @@ offset_right = 300.0
 offset_bottom = 400.0
 texture = ExtResource("1_jh4ki")
 
-[node name="NewGame" type="TextureButton" parent="."]
+[node name="Resume" type="TextureButton" parent="."]
 offset_left = 50.0
 offset_top = 50.0
 offset_right = 750.0
 offset_bottom = 250.0
 texture_normal = ExtResource("2_g3dsl")
-texture_pressed = ExtResource("3_oqet2")
+texture_pressed = ExtResource("2_g3dsl")
+texture_hover = ExtResource("3_oqet2")
+
+[node name="Label" type="Label" parent="Resume"]
+layout_mode = 0
+offset_right = 700.0
+offset_bottom = 200.0
+theme_override_fonts/font = ExtResource("4_4ifl8")
+theme_override_font_sizes/font_size = 80
+text = "Resume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NewGame" type="TextureButton" parent="."]
+offset_left = 50.0
+offset_top = 300.0
+offset_right = 750.0
+offset_bottom = 500.0
+texture_normal = ExtResource("2_g3dsl")
+texture_pressed = ExtResource("2_g3dsl")
 texture_hover = ExtResource("3_oqet2")
 
 [node name="Label" type="Label" parent="NewGame"]
@@ -50,11 +68,11 @@ vertical_alignment = 1
 
 [node name="Fullscreen" type="TextureButton" parent="."]
 offset_left = 50.0
-offset_top = 300.0
+offset_top = 550.0
 offset_right = 750.0
-offset_bottom = 500.0
+offset_bottom = 750.0
 texture_normal = ExtResource("2_g3dsl")
-texture_pressed = ExtResource("3_oqet2")
+texture_pressed = ExtResource("2_g3dsl")
 texture_hover = ExtResource("3_oqet2")
 
 [node name="Label" type="Label" parent="Fullscreen"]
@@ -72,13 +90,32 @@ horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 50.0
+offset_top = 800.0
+offset_right = 750.0
+offset_bottom = 1000.0
+texture_normal = ExtResource("2_g3dsl")
+texture_pressed = ExtResource("2_g3dsl")
+texture_hover = ExtResource("3_oqet2")
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 0
+offset_right = 700.0
+offset_bottom = 200.0
+theme_override_fonts/font = ExtResource("4_4ifl8")
+theme_override_font_sizes/font_size = 80
+text = "View Stats"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Quit" type="TextureButton" parent="."]
 offset_left = 50.0
-offset_top = 550.0
+offset_top = 1050.0
 offset_right = 750.0
-offset_bottom = 750.0
+offset_bottom = 1250.0
 texture_normal = ExtResource("2_g3dsl")
-texture_pressed = ExtResource("3_oqet2")
+texture_pressed = ExtResource("2_g3dsl")
 texture_hover = ExtResource("3_oqet2")
 
 [node name="Label" type="Label" parent="Quit"]
@@ -92,5 +129,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="input_event" from="DarkOverlay" to="DarkOverlay" method="_on_input_event"]
+[connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="Fullscreen" to="." method="_on_fullscreen_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

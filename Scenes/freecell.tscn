@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8opcxd758irl"]
+[gd_scene load_steps=4 format=3 uid="uid://c8opcxd758irl"]
 
 [ext_resource type="Texture2D" uid="uid://b3ook1tg6nwh0" path="res://Assets/freecell.png" id="1_040ym"]
+[ext_resource type="Script" path="res://Scenes/freecell.gd" id="1_eqay7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6s3g"]
 size = Vector2(1000, 1410)
 
 [node name="FreeCell" type="Area2D"]
+script = ExtResource("1_eqay7")
 
 [node name="DragHitbox" type="CollisionShape2D" parent="."]
 visible = false

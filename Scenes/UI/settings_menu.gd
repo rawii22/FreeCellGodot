@@ -46,3 +46,11 @@ func toggle_fullscreen():
 func _on_quit_pressed():
 	get_tree().quit()
 
+
+func _on_resume_pressed():
+	hide()
+
+
+func _on_new_game_pressed():
+	get_parent().get_parent().new_game()
+	hide()
