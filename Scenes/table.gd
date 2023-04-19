@@ -2,6 +2,9 @@ extends Node2D
 
 @export var card_scene: PackedScene
 
+var movement_occuring = false #TODO: fix this in all other classes that need to touch this
+var card_spacing = 92
+
 class Move:
 	var card
 	var first_position
@@ -71,4 +74,11 @@ func deal_cards():
 		card_to_deal = cards.pop_front()
 		get_node("Column" + str(i + 1)).add_card(card_to_deal)
 		card_to_deal.show()
-	
+
+
+func toggle_action_happening():
+	movement_occuring = !movement_occuring
+
+
+func is_action_happening():
+	return movement_occuring
