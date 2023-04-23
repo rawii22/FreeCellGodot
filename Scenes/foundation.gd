@@ -36,10 +36,13 @@ func can_place_card(stack):
 		return false
 	
 	if cards.size() == 0:
-		return true
+		if stack.front().value == 1:
+			return true
+		else:
+			return false
 	
-	if cards.back().color == stack.back().color:
-		if cards.back().value == stack.back().value - 1:
+	if cards.back().suit == stack.front().suit:
+		if cards.back().value == stack.front().value - 1:
 			return true
 	
 	return false

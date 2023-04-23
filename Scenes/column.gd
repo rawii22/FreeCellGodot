@@ -54,6 +54,9 @@ func get_card_stack(card):
 
 
 func can_place_card(stack):
+	if cards.size() == 0:
+		return true
+		
 	if cards.back().color != stack.front().color:
 		if cards.back().value == stack.front().value + 1:
 			return true

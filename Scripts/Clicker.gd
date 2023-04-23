@@ -10,8 +10,10 @@ func _ready():
 	params.set_collision_mask(2)
 
 
+#TODO: handle touch events like right clicks, and keep mouse events like before
+
 func _input(event):
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT: # Left mouse click
+	if event is InputEventMouseButton and event.pressed and (event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT): # Left mouse click
 		params.position = event.position
 		var shapes = get_world_2d().direct_space_state.intersect_point(params)
 		var top_card
@@ -24,4 +26,7 @@ func _input(event):
 					top_card_pos = shape["collider"].column_position
 		
 		if top_card_pos > -1:
-			top_card.on_click()
+			if event.button_index == MOUSE_BUTTON_LEFT:
+				top_card.on_click(false)
+			if event.button_index == MOUSE_BUTTON_RIGHT:
+				top_card.on_click(true)

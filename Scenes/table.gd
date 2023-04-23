@@ -26,8 +26,8 @@ func clear_board():
 		get_node("Column" + str(i + 1)).cards.clear()
 		
 	for i in range(4):
-		get_node("FreeCell" + str(i + 1))
-		get_node("Foundation" + str(i + 1))
+		get_node("FreeCell" + str(i + 1)).has_card = false
+		get_node("Foundation" + str(i + 1)).cards.clear()
 		
 	get_tree().call_group("card", "queue_free")
 	

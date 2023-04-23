@@ -36,7 +36,7 @@ func _process(delta):
 			get_tree().get_root().get_node("Main/Table").toggle_action_happening()
 
 
-func on_click():
+func on_click(is_auto):
 	if !get_tree().get_root().get_node("Main/Table").is_action_happening():
 		get_tree().get_root().get_node("Main/Table").toggle_action_happening()
 		parent_area = get_parent()
@@ -47,18 +47,54 @@ func on_click():
 			offset = get_viewport().get_mouse_position() - (parent_area.position + position)
 			for card in dragged_stack:
 				card.reparent(get_parent().get_parent())
-			is_being_dragged = true
+			if is_auto:
+				if !auto_click():
+					#TODO: call fail animation here
+					pass
+			else:
+				is_being_dragged = true
 		else:
 			get_tree().get_root().get_node("Main/Table").toggle_action_happening()
 			#TODO: Fail to click animation here
 
 
+func auto_click():
+	var move_occured = false
+	for i in range(4):
+		if !move_occured:
+			detected_area = get_tree().get_root().get_node("Main/Table/Foundation" + str(i + 1))
+			if detected_area.can_place_card(dragged_stack):
+				move_occured = true
+	
+	for i in range(8):
+		if !move_occured:
+			detected_area = get_tree().get_root().get_node("Main/Table/Column" + str(i + 1))
+			if detected_area != parent_area:
+				if detected_area.can_place_card(dragged_stack):
+					move_occured = true
+
+	for i in range(4):
+		if !move_occured:
+			detected_area = get_tree().get_root().get_node("Main/Table/FreeCell" + str(i + 1))
+			if detected_area.can_place_card(dragged_stack):
+				move_occured = true
+	
+	place_stack()
+	$DragArea.set_deferred("disabled", true)
+	$CardArea.set_deferred("disabled", false)
+	get_tree().get_root().get_node("Main/Table").toggle_action_happening()
+	return move_occured
+
+
 #This checks if a stack of cards can be dragged by the player.
 func can_drag_stack(stack):
-	var can_move = true
-	if stack.size() == 1 and !stack.front().get_parent().name.contains("Foundation"):
-		return can_move
+	if stack.size() == 1:
+		if stack.front().get_parent().name.contains("Foundation"):
+			return false
+		else:
+			return true
 	
+	var can_move = true
 	for i in range(0, stack.size() - 1):
 		if stack[i].color != stack[i+1].color: #opposite color
 			if stack[i].value == stack[i+1].value + 1: #decreasing in value
@@ -71,11 +107,15 @@ func can_drag_stack(stack):
 func place_stack():
 	for card in dragged_stack:
 		card.get_parent().remove_child(card)
-		
+	
+	var move_occured = false
 	if detected_area != null and detected_area.can_place_card(dragged_stack):
 		detected_area.add_card(dragged_stack)
+		move_occured = true
 	else:
 		parent_area.add_card(dragged_stack)
+	
+	return move_occured
 
 
 func _on_area_entered(area):

@@ -17,6 +17,7 @@ func add_card(card_list):
 	has_card = true
 	add_child(card)
 	card.position = Vector2(0, 0)
+	card.column_position = 1
 
 
 #Cards here must be returned as an array to allow cards.gd to run generically on "stacks" of cards
