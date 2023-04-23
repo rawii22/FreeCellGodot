@@ -4,14 +4,14 @@
 [ext_resource type="Script" path="res://Scenes/column.gd" id="1_l7xbe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_61xrf"]
-size = Vector2(262, 1800)
+size = Vector2(260, 1775)
 
 [node name="Column" type="Area2D"]
 script = ExtResource("1_l7xbe")
 
 [node name="DragHitbox" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(0, 725)
+position = Vector2(0, 737.5)
 shape = SubResource("RectangleShape2D_61xrf")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 

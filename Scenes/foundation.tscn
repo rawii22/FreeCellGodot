@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scenes/foundation.gd" id="1_pnnus"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_67ftt"]
-size = Vector2(1000, 1410)
+size = Vector2(970, 1300)
 
 [node name="Foundation" type="Area2D"]
 script = ExtResource("1_pnnus")

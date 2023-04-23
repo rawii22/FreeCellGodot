@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scenes/freecell.gd" id="1_eqay7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6s3g"]
-size = Vector2(1000, 1410)
+size = Vector2(970, 1300)
 
 [node name="FreeCell" type="Area2D"]
 script = ExtResource("1_eqay7")
