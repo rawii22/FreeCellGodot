@@ -29,7 +29,6 @@ func add_card_single(card):
 	add_child(card)
 	card.column_position = cards.size()
 	card.position = Vector2(0, cards.size() * card_spacing)
-	card.column_position = cards.size()
 	cards.append(card)
 
 
@@ -54,9 +53,8 @@ func get_card_stack(card):
 	return stack
 
 
-func get_top_card():
-	return cards.back() if cards.size() > 0 else null
-	
-
-func _on_area_entered(area):
-	print(str("detector: ", self.name, "\tdetected: ", area))
+func can_place_card(stack):
+	if cards.back().color != stack.front().color:
+		if cards.back().value == stack.front().value + 1:
+			return true
+	return false

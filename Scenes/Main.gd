@@ -18,5 +18,6 @@ func _input(event):
 
 
 func new_game():
+	#TODO: if they have made at least one move, ask if they are sure they want to lose progress on the game?
 	$Table.clear_board()
 	$Table.deal_cards()
