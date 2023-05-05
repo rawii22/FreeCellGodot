@@ -21,11 +21,10 @@ func _process(delta):
 	pass
 
 
-#TODO: On right click outside of a card, auto move all cards that can be moved to the foundation to the foundation
-
 #This is supposed to be like an auto-move for cards that can go to the foundation. It only moves one card at a time.
-func _on_table_area_input_event(viewport, event, shape_idx):
-	if !movement_occuring and event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
+#If you want to move more than one card at a time to the foundation, try removing the checks for move_occured as a start.
+func auto_move():
+	if !movement_occuring:
 		var current_area
 		var current_card
 		var move_occured = false

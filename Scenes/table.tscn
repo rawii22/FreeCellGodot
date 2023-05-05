@@ -21,6 +21,7 @@ texture = ExtResource("1_f1yuq")
 
 [node name="TableArea" type="Area2D" parent="."]
 position = Vector2(1920, 1080)
+collision_layer = 2
 
 [node name="TableHitbox" type="CollisionShape2D" parent="TableArea"]
 visible = false
@@ -73,5 +74,3 @@ position = Vector2(2590, 245)
 
 [node name="Foundation4" parent="." instance=ExtResource("5_23w33")]
 position = Vector2(2840, 245)
-
-[connection signal="input_event" from="TableArea" to="." method="_on_table_area_input_event"]
