@@ -1,5 +1,11 @@
 extends Node2D
 
+#===================================================
+#TODO: Change the menu to work with a parent control node instead. This will make it infinitely easier
+# to add new menu options. It will also stop you from having to manually change the click area of the
+# DarkOverlay every time the menu size changes. With a control node you should be able to just block
+# clicks from the mouse, and that's exactly what we want.
+#===================================================
 
 var FSenabled = "Fullscreen:\nEnabled"
 var FSdisabled = "Fullscreen:\nDisabled"

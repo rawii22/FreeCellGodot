@@ -32,11 +32,30 @@ func _process(delta):
 			is_being_dragged = false
 			$DragArea.set_deferred("disabled", true)
 			$CardArea.set_deferred("disabled", false)
-			place_stack()
+			
+			for card in dragged_stack:
+				card.get_parent().remove_child(card)
+			
+			if detected_area != null and detected_area.can_place_card(dragged_stack):
+				detected_area.add_card(dragged_stack)
+			else:
+				parent_area.add_card(dragged_stack)
+			
 			get_tree().get_root().get_node("Main/Table").toggle_action_happening()
 
 
-func on_click(is_auto):
+func _on_area_entered(area):
+	if area.name.contains("Column") or area.name.contains("FreeCell") or area.name.contains("Foundation"):
+		detected_area = area
+
+
+func _on_area_exited(area):
+	if is_being_dragged and (area.name.contains("Column") or area.name.contains("FreeCell") or area.name.contains("Foundation")):
+		detected_area = null
+		#TODO: change this to parent_area?
+
+
+func on_click(is_auto = false):
 	if !get_tree().get_root().get_node("Main/Table").is_action_happening():
 		get_tree().get_root().get_node("Main/Table").toggle_action_happening()
 		parent_area = get_parent()
@@ -50,7 +69,10 @@ func on_click(is_auto):
 			if is_auto:
 				if !auto_click():
 					#TODO: call fail animation here
+					return false
 					pass
+				else:
+					return true
 			else:
 				is_being_dragged = true
 		else:
@@ -66,7 +88,14 @@ func auto_click():
 			if detected_area.can_place_card(dragged_stack):
 				move_occured = true
 	
-	for i in range(8):
+	for i in range(8): #Auto move card to a column that already has cards on it
+		if !move_occured:
+			detected_area = get_tree().get_root().get_node("Main/Table/Column" + str(i + 1))
+			if detected_area != parent_area:
+				if detected_area.can_place_card(dragged_stack) and !detected_area.is_empty():
+					move_occured = true
+	
+	for i in range(8): #If no occupied column was found, then look for an empty one
 		if !move_occured:
 			detected_area = get_tree().get_root().get_node("Main/Table/Column" + str(i + 1))
 			if detected_area != parent_area:
@@ -79,7 +108,14 @@ func auto_click():
 			if detected_area.can_place_card(dragged_stack):
 				move_occured = true
 	
-	place_stack()
+	for card in dragged_stack:
+		card.get_parent().remove_child(card)
+	
+	if detected_area != null and detected_area.can_place_card(dragged_stack):
+		detected_area.add_card(dragged_stack)
+	else:
+		parent_area.add_card(dragged_stack)
+		
 	$DragArea.set_deferred("disabled", true)
 	$CardArea.set_deferred("disabled", false)
 	get_tree().get_root().get_node("Main/Table").toggle_action_happening()
@@ -89,10 +125,7 @@ func auto_click():
 #This checks if a stack of cards can be dragged by the player.
 func can_drag_stack(stack):
 	if stack.size() == 1:
-		if stack.front().get_parent().name.contains("Foundation"):
-			return false
-		else:
-			return true
+		return !stack.front().get_parent().name.contains("Foundation") #Prevent cards from being moved out of the foundation
 	
 	var can_move = true
 	for i in range(0, stack.size() - 1):
@@ -101,28 +134,3 @@ func can_drag_stack(stack):
 				continue
 		can_move = false
 	return can_move
-
-
-#This will place the card(s) in a new spot, or default to the original spot if the new spot is invalid.
-func place_stack():
-	for card in dragged_stack:
-		card.get_parent().remove_child(card)
-	
-	var move_occured = false
-	if detected_area != null and detected_area.can_place_card(dragged_stack):
-		detected_area.add_card(dragged_stack)
-		move_occured = true
-	else:
-		parent_area.add_card(dragged_stack)
-	
-	return move_occured
-
-
-func _on_area_entered(area):
-	if area.name.contains("Column") or area.name.contains("FreeCell") or area.name.contains("Foundation"):
-		detected_area = area
-
-
-func _on_area_exited(area):
-	if is_being_dragged and (area.name.contains("Column") or area.name.contains("FreeCell") or area.name.contains("Foundation")):
-		detected_area = null

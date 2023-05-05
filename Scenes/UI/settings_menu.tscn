@@ -15,14 +15,14 @@ script = ExtResource("1_fy850")
 script = ExtResource("2_uibky")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DarkOverlay"]
-polygon = PackedVector2Array(-1520, -480, 2320, -480, 2320, 1680, 800, 1680, 800, 0, 0, 0, 0, 1200, 800, 1200, 800, 1680, -1520, 1680)
+polygon = PackedVector2Array(-1520, -480, 2320, -480, 2320, 1680, 800, 1680, 800, 0, 0, 0, 0, 1300, 800, 1300, 800, 1680, -1520, 1680)
 
 [node name="ColorRect" type="Sprite2D" parent="DarkOverlay"]
 modulate = Color(1, 1, 1, 0.509804)
 position = Vector2(400, 600)
 texture = ExtResource("3_xwn5d")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="MenuBackground" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.870588)
 offset_right = 300.0
 offset_bottom = 400.0

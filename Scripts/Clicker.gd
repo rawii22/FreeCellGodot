@@ -25,8 +25,9 @@ func _input(event):
 					top_card = shape["collider"]
 					top_card_pos = shape["collider"].column_position
 		
+		#TODO: maybe only call auto click if the button is released and call regular drag if pressed
 		if top_card_pos > -1:
 			if event.button_index == MOUSE_BUTTON_LEFT:
-				top_card.on_click(false)
+				top_card.on_click()
 			if event.button_index == MOUSE_BUTTON_RIGHT:
 				top_card.on_click(true)

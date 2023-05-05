@@ -19,7 +19,6 @@ script = ExtResource("1_b5413")
 shape = SubResource("RectangleShape2D_wohtn")
 
 [node name="DragArea" type="CollisionShape2D" parent="."]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_e8hxa")
 disabled = true
 

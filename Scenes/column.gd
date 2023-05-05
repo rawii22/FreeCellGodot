@@ -61,3 +61,7 @@ func can_place_card(stack):
 		if cards.back().value == stack.front().value + 1:
 			return true
 	return false
+
+
+func is_empty():
+	return cards.size() == 0
