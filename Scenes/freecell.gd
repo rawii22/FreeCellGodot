@@ -20,6 +20,7 @@ func add_card(card_list):
 	held_card = card
 	card.position = Vector2(0, 0)
 	card.column_position = 1
+	get_tree().get_root().get_node("Main/Table").update_free_cells(-1)
 
 
 #Cards here must be returned as an array to allow cards.gd to run generically on "stacks" of cards
@@ -28,6 +29,7 @@ func remove_card(card):
 	has_card = false
 	var card_array = []
 	card_array.push_back(card)
+	get_tree().get_root().get_node("Main/Table").update_free_cells(1)
 	return card_array;
 
 

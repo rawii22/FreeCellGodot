@@ -52,7 +52,6 @@ func _on_area_entered(area):
 func _on_area_exited(area):
 	if is_being_dragged and (area.name.contains("Column") or area.name.contains("FreeCell") or area.name.contains("Foundation")):
 		detected_area = null
-		#TODO: change this to parent_area?
 
 
 func on_click(is_auto = false):
@@ -124,6 +123,7 @@ func auto_click():
 
 #This checks if a stack of cards can be dragged by the player.
 func can_drag_stack(stack):
+	#This check might not be needed since the card's click area is disabled once it enters the foundation.
 	if stack.size() == 1:
 		return !stack.front().get_parent().name.contains("Foundation") #Prevent cards from being moved out of the foundation
 	
@@ -132,5 +132,7 @@ func can_drag_stack(stack):
 		if stack[i].color != stack[i+1].color: #opposite color
 			if stack[i].value == stack[i+1].value + 1: #decreasing in value
 				continue
+		can_move = false
+	if stack.size() > get_tree().get_root().get_node("Main/Table").max_stack_size:
 		can_move = false
 	return can_move
