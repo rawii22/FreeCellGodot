@@ -8,6 +8,7 @@ var max_stack_size
 var move_count = 0
 var time_elapsed = 0
 var time_paused = true
+var current_hand = []
 
 #These initializations are here to make sure the game has something to alter while creating a new game
 var free_columns = 0
@@ -17,6 +18,8 @@ class Move:
 	var card
 	var first_position
 	var second_position
+	
+var move_history = []
 
 
 # Called when the node enters the scene tree for the first time.
@@ -30,6 +33,23 @@ func _process(delta):
 		time_elapsed += delta
 		$TimerText.text = "Time: " + "%d:%02d" % [floor(time_elapsed / 60), int(time_elapsed) % 60]
 	pass
+
+
+func _input(event):
+	if event.is_action_pressed("Undo"):
+		undo()
+	elif event.is_action_pressed("Redo"):
+		redo()
+	elif event.is_action_pressed("Replay"):
+		replay()
+
+
+func toggle_action_happening():
+	movement_occuring = !movement_occuring
+
+
+func is_action_happening():
+	return movement_occuring
 
 
 #This is supposed to be like an auto-move for cards that can go to the foundation. It only moves one card at a time.
@@ -72,15 +92,27 @@ func clear_board():
 	for i in range(4):
 		get_node("FreeCell" + str(i + 1)).has_card = false
 		get_node("Foundation" + str(i + 1)).cards.clear()
-		
+
 	get_tree().call_group("card", "queue_free")
 	
+	move_history.clear()
+	move_count = 0
+	time_paused = true
+	time_elapsed = 0
+	$TimerText.text = "Time: " + "%d:%02d" % [floor(time_elapsed / 60), int(time_elapsed) % 60]
+	$MoveCounter.text = "Moves: " + str(move_count)
+	
 
 
-func deal_cards():
+func deal_cards(replay_hand = false):
 	var cards = []
 	
-	for i in range(52):
+	if !replay_hand:
+		for i in range(52):
+			current_hand.append(i)
+		current_hand.shuffle()
+	
+	for i in current_hand:
 		var card = card_scene.instantiate()
 		
 		match i / 13:
@@ -104,8 +136,6 @@ func deal_cards():
 		
 		cards.append(card)
 	
-	cards.shuffle()
-	
 	var card_to_deal
 	
 	#TODO: Dealing animation?
@@ -113,21 +143,17 @@ func deal_cards():
 	for i in range(8):
 		for j in range(6):
 			card_to_deal = cards.pop_front()
-			get_node("Column" + str(i + 1)).add_card(card_to_deal)
+			get_node("Column" + str(i + 1)).add_card(card_to_deal, false)
 			card_to_deal.show()
 	
 	for i in range(4):
 		card_to_deal = cards.pop_front()
-		get_node("Column" + str(i + 1)).add_card(card_to_deal)
+		get_node("Column" + str(i + 1)).add_card(card_to_deal, false)
 		card_to_deal.show()
 	
 	free_columns = 0
 	free_cells = 4
 	calculate_max_stack_size()
-	
-	move_count = 0
-	time_elapsed = 0
-	$MoveCounter.text = "Moves: " + str(move_count)
 
 
 func calculate_max_stack_size():
@@ -142,16 +168,27 @@ func update_free_cells(delta, is_column = false):
 	calculate_max_stack_size()
 
 
-func move_made():
+func move_made(move = null):
 	move_count += 1
 	if move_count == 1:
 		time_paused = false
 	$MoveCounter.text = "Moves: " + str(move_count)
+	
+	if move != null:
+		move_history.push_back(move)
 
 
-func toggle_action_happening():
-	movement_occuring = !movement_occuring
+func undo():
+	if move_history.size() > 0:
+		var previous_move = move_history.pop_back()
+		previous_move.card.make_move(previous_move.first_position, false)
+		move_made()
 
 
-func is_action_happening():
-	return movement_occuring
+func redo():
+	pass
+
+
+func replay():
+	clear_board()
+	deal_cards(true)

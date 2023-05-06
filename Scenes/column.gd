@@ -18,27 +18,37 @@ func _process(delta):
 
 #This is function makes it easier in other places when you don't know if your card is a single or a stack.
 #It prevents me from having to write for-loops everywhere
-func add_card(data):
+func add_card(data, do_animation = true):
 	if cards.size() == 0:
 		table.update_free_cells(-1, true)
 	match typeof(data):
 		TYPE_ARRAY:
-			add_cards(data)
+			add_cards(data, do_animation)
 		TYPE_OBJECT:
-			add_card_single(data)
+			add_card_single(data, do_animation)
 
 
 # This function is expecting the specified card to have no parent before use
-func add_card_single(card):
+func add_card_single(card, do_animation):
 	add_child(card)
-	card.column_position = cards.size()
+	
+	#This code can animate single cards moving from once column to another column. It breaks for some stacks and other scenarios.
+#	if do_animation:
+#		card.position = Vector2((int(str(card.parent_area.name).right(1))-int(str(self.name).right(1)))*262, card_spacing * card.column_position)
+#		var tween = get_tree().create_tween()
+#		tween.tween_property(card, "position", Vector2(0, cards.size() * card_spacing), 0.3)
+#		tween.play()
+#	else:
+
 	card.position = Vector2(0, cards.size() * card_spacing)
+	card.column_position = cards.size()
+	
 	cards.append(card)
 
 
-func add_cards(cards):
+func add_cards(cards, do_animation):
 	for card in cards:
-		add_card_single(card)
+		add_card_single(card, do_animation)
 
 
 #Returns an array, in order from the clicked card to the topmost card, holding the stack of cards that was just grabbed

@@ -23,6 +23,9 @@ func add_card(card_list):
 
 func remove_card(card):
 	card.get_node("CardArea").set_deferred("disabled", false)
+	var stack = []
+	stack.push_back(cards.pop_back())
+	return stack
 
 
 #Cards are not allowed to be moved from this area. It is the card's responsibility to make sure it

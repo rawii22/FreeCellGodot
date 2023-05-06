@@ -34,9 +34,7 @@ func _process(delta):
 			is_being_dragged = false
 			$DragArea.set_deferred("disabled", true)
 			$CardArea.set_deferred("disabled", false)
-			
-			make_move()
-			
+			make_move(detected_area)
 			table.toggle_action_happening()
 
 
@@ -105,7 +103,7 @@ func auto_click():
 			if detected_area.can_place_card(dragged_stack):
 				move_occured = true
 	
-	make_move()
+	make_move(detected_area)
 	
 	$DragArea.set_deferred("disabled", true)
 	$CardArea.set_deferred("disabled", false)
@@ -135,24 +133,34 @@ func can_drag_stack(stack):
 
 
 #This function mainly exists to keep track of moves
-func make_move(check_move = true):
+func make_move(destination, check_move = true):
+	if !check_move: #An assumption is being made here that the only time check_move will be false is when a move is being undone.
+		parent_area = get_parent()
+		dragged_stack = parent_area.remove_card(self)
+	
 	for card in dragged_stack:
 		card.get_parent().remove_child(card)
 	
-	if detected_area != null and check_move and detected_area.can_place_card(dragged_stack):
+	if !check_move:
+		destination.add_card(dragged_stack)
+	elif destination != null and destination.can_place_card(dragged_stack):
 		var add_move = true
 		if parent_area.name.contains("FreeCell"):
-			if detected_area.name.contains("FreeCell"):
+			if destination.name.contains("FreeCell"):
 				add_move = false
-			if detected_area.name.contains("Column"):
-				if detected_area.is_empty():
+			if destination.name.contains("Column"):
+				if destination.is_empty():
 					add_move = false
 		elif parent_area.name.contains("Column") and parent_area.is_empty():
-			if detected_area.name.contains("FreeCell"):
+			if destination.name.contains("FreeCell"):
 				add_move = false
-		detected_area.add_card(dragged_stack)
+		destination.add_card(dragged_stack)
+		var move = table.Move.new()
+		move.card = self
+		move.first_position = parent_area
+		move.second_position = destination
 		
 		if add_move:
-			table.move_made()
+			table.move_made(move)
 	else:
 		parent_area.add_card(dragged_stack)
