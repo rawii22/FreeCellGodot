@@ -134,11 +134,12 @@ func can_drag_stack(stack):
 	return can_move
 
 
-func make_move():
+#This function mainly exists to keep track of moves
+func make_move(check_move = true):
 	for card in dragged_stack:
 		card.get_parent().remove_child(card)
 	
-	if detected_area != null and detected_area.can_place_card(dragged_stack):
+	if detected_area != null and check_move and detected_area.can_place_card(dragged_stack):
 		var add_move = true
 		if parent_area.name.contains("FreeCell"):
 			if detected_area.name.contains("FreeCell"):

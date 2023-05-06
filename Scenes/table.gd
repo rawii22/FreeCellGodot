@@ -6,6 +6,8 @@ var movement_occuring = false
 var card_spacing = 92
 var max_stack_size
 var move_count = 0
+var time_elapsed = 0
+var time_paused = true
 
 #These initializations are here to make sure the game has something to alter while creating a new game
 var free_columns = 0
@@ -24,6 +26,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if !time_paused:
+		time_elapsed += delta
+		$TimerText.text = "Time: " + "%d:%02d" % [floor(time_elapsed / 60), int(time_elapsed) % 60]
 	pass
 
 
@@ -121,6 +126,7 @@ func deal_cards():
 	calculate_max_stack_size()
 	
 	move_count = 0
+	time_elapsed = 0
 	$MoveCounter.text = "Moves: " + str(move_count)
 
 
@@ -138,6 +144,8 @@ func update_free_cells(delta, is_column = false):
 
 func move_made():
 	move_count += 1
+	if move_count == 1:
+		time_paused = false
 	$MoveCounter.text = "Moves: " + str(move_count)
 
 

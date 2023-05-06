@@ -7,11 +7,14 @@ extends Node2D
 # clicks from the mouse, and that's exactly what we want.
 #===================================================
 
+var table
+
 var FSenabled = "Fullscreen:\nEnabled"
 var FSdisabled = "Fullscreen:\nDisabled"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	table = get_tree().get_root().get_node("Main/Table")
 	if is_fullscreen():
 		$Fullscreen.get_node("Label").text = FSenabled
 	else:
@@ -60,3 +63,8 @@ func _on_resume_pressed():
 func _on_new_game_pressed():
 	get_parent().get_parent().new_game()
 	hide()
+
+
+func _on_visibility_changed():
+	if table != null and table.move_count > 0:
+		table.time_paused = visible
