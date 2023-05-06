@@ -74,3 +74,11 @@ position = Vector2(2590, 245)
 
 [node name="Foundation4" parent="." instance=ExtResource("5_23w33")]
 position = Vector2(2840, 245)
+
+[node name="MoveCounter" type="Label" parent="."]
+offset_left = 2548.0
+offset_right = 2939.0
+offset_bottom = 99.0
+theme_override_font_sizes/font_size = 70
+text = "Moves: ###"
+vertical_alignment = 1

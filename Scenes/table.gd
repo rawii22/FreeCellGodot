@@ -5,6 +5,7 @@ extends Node2D
 var movement_occuring = false
 var card_spacing = 92
 var max_stack_size
+var move_count = 0
 
 #These initializations are here to make sure the game has something to alter while creating a new game
 var free_columns = 0
@@ -118,6 +119,9 @@ func deal_cards():
 	free_columns = 0
 	free_cells = 4
 	calculate_max_stack_size()
+	
+	move_count = 0
+	$MoveCounter.text = "Moves: " + str(move_count)
 
 
 func calculate_max_stack_size():
@@ -130,6 +134,11 @@ func update_free_cells(delta, is_column = false):
 	else:
 		free_cells += delta
 	calculate_max_stack_size()
+
+
+func move_made():
+	move_count += 1
+	$MoveCounter.text = "Moves: " + str(move_count)
 
 
 func toggle_action_happening():

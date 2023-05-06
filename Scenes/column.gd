@@ -3,10 +3,12 @@ extends Area2D
 var cards = []
 
 var card_spacing
+var table
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	card_spacing = get_tree().get_root().get_node("Main/Table").card_spacing
+	table = get_tree().get_root().get_node("Main/Table")
+	card_spacing = table.card_spacing
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,7 +20,7 @@ func _process(delta):
 #It prevents me from having to write for-loops everywhere
 func add_card(data):
 	if cards.size() == 0:
-		get_tree().get_root().get_node("Main/Table").update_free_cells(-1, true)
+		table.update_free_cells(-1, true)
 	match typeof(data):
 		TYPE_ARRAY:
 			add_cards(data)
@@ -49,7 +51,7 @@ func remove_card(card):
 	
 	#If all the cards are being removed
 	if stack.size() == original_card_count:
-		get_tree().get_root().get_node("Main/Table").update_free_cells(1, true)
+		table.update_free_cells(1, true)
 	
 	return stack
 
@@ -62,7 +64,7 @@ func get_card_stack(card):
 
 
 func can_place_card(stack):
-	if cards.size() == 0 and stack.size() > get_tree().get_root().get_node("Main/Table").max_stack_size / 2:
+	if cards.size() == 0 and stack.size() > table.max_stack_size / 2:
 		return false
 	
 	if cards.size() == 0:

@@ -1,6 +1,7 @@
 extends Area2D
 
 var card_spacing
+var table
 
 var value
 var suit
@@ -18,7 +19,8 @@ var column_position
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hide()
-	card_spacing = get_tree().get_root().get_node("Main/Table").card_spacing
+	table = get_tree().get_root().get_node("Main/Table")
+	card_spacing = table.card_spacing
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,15 +35,9 @@ func _process(delta):
 			$DragArea.set_deferred("disabled", true)
 			$CardArea.set_deferred("disabled", false)
 			
-			for card in dragged_stack:
-				card.get_parent().remove_child(card)
+			make_move()
 			
-			if detected_area != null and detected_area.can_place_card(dragged_stack):
-				detected_area.add_card(dragged_stack)
-			else:
-				parent_area.add_card(dragged_stack)
-			
-			get_tree().get_root().get_node("Main/Table").toggle_action_happening()
+			table.toggle_action_happening()
 
 
 func _on_area_entered(area):
@@ -55,10 +51,10 @@ func _on_area_exited(area):
 
 
 func on_click(is_auto = false):
-	if !get_tree().get_root().get_node("Main/Table").is_action_happening():
-		get_tree().get_root().get_node("Main/Table").toggle_action_happening()
-		parent_area = get_parent()
-		if can_drag_stack(parent_area.get_card_stack(self)):
+	if !table.is_action_happening():
+		table.toggle_action_happening() #First block other things from happening
+		parent_area = get_parent()	#Remember the parent in case the card does not move
+		if can_drag_stack(parent_area.get_card_stack(self)): #Is the card/stack moveable?
 			$CardArea.set_deferred("disabled", true)
 			$DragArea.set_deferred("disabled", false)
 			dragged_stack = parent_area.remove_card(self)
@@ -67,7 +63,6 @@ func on_click(is_auto = false):
 				card.reparent(get_parent().get_parent())
 			if is_auto:
 				if !auto_click():
-					#TODO: call fail animation here
 					for card in dragged_stack:
 						card.get_node("ShakeAnimation").play("shake")
 					return false
@@ -77,8 +72,7 @@ func on_click(is_auto = false):
 			else:
 				is_being_dragged = true
 		else:
-			get_tree().get_root().get_node("Main/Table").toggle_action_happening()
-			#TODO: Fail to click animation here
+			table.toggle_action_happening()
 			for card in parent_area.get_card_stack(self):
 				card.get_node("ShakeAnimation").play("shake")
 
@@ -111,17 +105,11 @@ func auto_click():
 			if detected_area.can_place_card(dragged_stack):
 				move_occured = true
 	
-	for card in dragged_stack:
-		card.get_parent().remove_child(card)
+	make_move()
 	
-	if detected_area != null and detected_area.can_place_card(dragged_stack):
-		detected_area.add_card(dragged_stack)
-	else:
-		parent_area.add_card(dragged_stack)
-		
 	$DragArea.set_deferred("disabled", true)
 	$CardArea.set_deferred("disabled", false)
-	get_tree().get_root().get_node("Main/Table").toggle_action_happening()
+	table.toggle_action_happening()
 	
 	if detected_area == parent_area:
 		return false
@@ -141,6 +129,29 @@ func can_drag_stack(stack):
 			if stack[i].value == stack[i+1].value + 1: #decreasing in value
 				continue
 		can_move = false
-	if stack.size() > get_tree().get_root().get_node("Main/Table").max_stack_size:
+	if stack.size() > table.max_stack_size:
 		can_move = false
 	return can_move
+
+
+func make_move():
+	for card in dragged_stack:
+		card.get_parent().remove_child(card)
+	
+	if detected_area != null and detected_area.can_place_card(dragged_stack):
+		var add_move = true
+		if parent_area.name.contains("FreeCell"):
+			if detected_area.name.contains("FreeCell"):
+				add_move = false
+			if detected_area.name.contains("Column"):
+				if detected_area.is_empty():
+					add_move = false
+		elif parent_area.name.contains("Column") and parent_area.is_empty():
+			if detected_area.name.contains("FreeCell"):
+				add_move = false
+		detected_area.add_card(dragged_stack)
+		
+		if add_move:
+			table.move_made()
+	else:
+		parent_area.add_card(dragged_stack)
