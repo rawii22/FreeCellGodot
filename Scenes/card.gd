@@ -68,6 +68,8 @@ func on_click(is_auto = false):
 			if is_auto:
 				if !auto_click():
 					#TODO: call fail animation here
+					for card in dragged_stack:
+						card.get_node("ShakeAnimation").play("shake")
 					return false
 					pass
 				else:
@@ -77,6 +79,8 @@ func on_click(is_auto = false):
 		else:
 			get_tree().get_root().get_node("Main/Table").toggle_action_happening()
 			#TODO: Fail to click animation here
+			for card in parent_area.get_card_stack(self):
+				card.get_node("ShakeAnimation").play("shake")
 
 
 func auto_click():
@@ -118,7 +122,11 @@ func auto_click():
 	$DragArea.set_deferred("disabled", true)
 	$CardArea.set_deferred("disabled", false)
 	get_tree().get_root().get_node("Main/Table").toggle_action_happening()
-	return move_occured
+	
+	if detected_area == parent_area:
+		return false
+	else:
+		return move_occured
 
 
 #This checks if a stack of cards can be dragged by the player.

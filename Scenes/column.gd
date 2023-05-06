@@ -64,6 +64,9 @@ func get_card_stack(card):
 func can_place_card(stack):
 	if cards.size() == 0 and stack.size() > get_tree().get_root().get_node("Main/Table").max_stack_size / 2:
 		return false
+	
+	if cards.size() == 0:
+		return true
 		
 	if cards.back().color != stack.front().color:
 		if cards.back().value == stack.front().value + 1:
