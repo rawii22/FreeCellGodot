@@ -18,8 +18,10 @@ class Move:
 	var card
 	var first_position
 	var second_position
+	var increment_moves
 	
 var move_history = []
+var redo_stack = []
 
 
 # Called when the node enters the scene tree for the first time.
@@ -96,6 +98,7 @@ func clear_board():
 	get_tree().call_group("card", "queue_free")
 	
 	move_history.clear()
+	redo_stack.clear()
 	move_count = 0
 	time_paused = true
 	time_elapsed = 0
@@ -168,25 +171,32 @@ func update_free_cells(delta, is_column = false):
 	calculate_max_stack_size()
 
 
-func move_made(move = null):
-	move_count += 1
-	if move_count == 1:
-		time_paused = false
-	$MoveCounter.text = "Moves: " + str(move_count)
-	
-	if move != null:
+func move_made(move, record_move = true):
+	if record_move:
 		move_history.push_back(move)
+		redo_stack.clear()
+		
+	if move.increment_moves:
+		move_count += 1
+		if move_count == 1:
+			time_paused = false
+		$MoveCounter.text = "Moves: " + str(move_count)
 
 
 func undo():
 	if move_history.size() > 0:
 		var previous_move = move_history.pop_back()
+		redo_stack.push_front(previous_move)
 		previous_move.card.make_move(previous_move.first_position, false)
-		move_made()
+		move_made(previous_move, false)
 
 
 func redo():
-	pass
+	if redo_stack.size() > 0:
+		var next_move = redo_stack.pop_front()
+		move_history.push_back(next_move)
+		next_move.card.make_move(next_move.second_position, false)
+		move_made(next_move, false)
 
 
 func replay():

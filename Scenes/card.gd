@@ -159,8 +159,9 @@ func make_move(destination, check_move = true):
 		move.card = self
 		move.first_position = parent_area
 		move.second_position = destination
+		move.increment_moves = add_move
 		
-		if add_move:
+		if parent_area != destination:
 			table.move_made(move)
 	else:
 		parent_area.add_card(dragged_stack)

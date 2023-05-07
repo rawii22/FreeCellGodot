@@ -77,7 +77,7 @@ position = Vector2(2840, 245)
 
 [node name="MoveCounter" type="Label" parent="."]
 offset_left = 2548.0
-offset_right = 2939.0
+offset_right = 3027.0
 offset_bottom = 99.0
 theme_override_font_sizes/font_size = 70
 text = "Moves: ###"

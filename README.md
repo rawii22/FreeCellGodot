@@ -19,3 +19,9 @@ For the sake of keeping things as generic as possible, each area (columns, free 
 
 - Right clicking on a card will automatically move it to another location. It will attempt to move to another location in this order: foundation, occupied columns, open columns, free cells. If none of these locations are available, it will not move.
 - By right clicking anywhere on the table, the game will look for any card that can be moved to the foundation and, if possible, move it to the foundation automatically.
+- Ctrl+Z will undo moves. Making a move after undoing will clear out the redo stack.
+- Ctrl+Y will redo moves.
+- Ctrl+R will replay the current hand.
+- F2 will start a new game.
+- Esc or S will open the settings menu.
+- F will toggle full screen.
