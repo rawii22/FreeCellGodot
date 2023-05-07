@@ -15,7 +15,7 @@ func _ready():
 #TODO: handle touch events like right clicks, and keep mouse events like before
 
 func _input(event):
-	if !get_tree().get_root().get_node("Main/GUI/SettingsMenu").visible and event is InputEventMouseButton and event.pressed and (event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT): # Left mouse click
+	if !get_tree().get_root().get_node("Main/GUI/SettingsMenu").visible and ((event is InputEventMouseButton and event.pressed and (event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT)) or (event is InputEventScreenTouch)):
 		params.position = event.position
 		var shapes = get_world_2d().direct_space_state.intersect_point(params)
 		var top_card
@@ -27,11 +27,10 @@ func _input(event):
 					top_card = shape["collider"]
 					top_card_pos = shape["collider"].column_position
 		
-		#TODO: maybe only call on_click(true) if the button is released and call regular on_click() if pressed
 		if top_card_pos > -1:
-			if event.button_index == MOUSE_BUTTON_LEFT:
+			if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 				top_card.on_click()
-			if event.button_index == MOUSE_BUTTON_RIGHT:
+			if (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT) or (event is InputEventScreenTouch and !event.pressed):
 				top_card.on_click(true)
-		elif event.button_index == MOUSE_BUTTON_RIGHT:
+		elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
 			table.auto_move()

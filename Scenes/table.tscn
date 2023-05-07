@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://halilhmrnwbj"]
+[gd_scene load_steps=14 format=3 uid="uid://halilhmrnwbj"]
 
 [ext_resource type="Script" path="res://Scenes/table.gd" id="1_6ejq1"]
 [ext_resource type="Texture2D" uid="uid://yftiyvg4uvt1" path="res://Assets/Backgrounds/greenFeltBackground2.jpeg" id="1_f1yuq"]
@@ -6,6 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://bcfvtshla67dh" path="res://Scenes/column.tscn" id="3_aykv7"]
 [ext_resource type="PackedScene" uid="uid://c8opcxd758irl" path="res://Scenes/freecell.tscn" id="4_qcfbx"]
 [ext_resource type="PackedScene" uid="uid://cqjfiswkpnpu" path="res://Scenes/foundation.tscn" id="5_23w33"]
+[ext_resource type="Texture2D" uid="uid://b3l22q2xagwhc" path="res://Assets/UI/UndoLight.png" id="7_mf1ni"]
+[ext_resource type="Texture2D" uid="uid://b5ywcermrgmdt" path="res://Assets/UI/Undo.png" id="8_7g4qh"]
+[ext_resource type="Texture2D" uid="uid://b7b71jrylh62l" path="res://Assets/UI/RedoLight.png" id="9_6lwso"]
+[ext_resource type="Texture2D" uid="uid://dnbshwnljpwn4" path="res://Assets/UI/Redo.png" id="10_73r41"]
+[ext_resource type="Texture2D" uid="uid://v1jp4pcggkyi" path="res://Assets/UI/ReplayLight.png" id="11_drxdg"]
+[ext_resource type="Texture2D" uid="uid://bae14culfbdp1" path="res://Assets/UI/Replay.png" id="12_t5dhq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uctxs"]
 size = Vector2(3840, 2160)
@@ -98,3 +104,37 @@ theme_override_font_sizes/font_size = 70
 text = "Deal: #"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="UndoButton" type="TextureButton" parent="."]
+offset_left = 3008.0
+offset_top = 104.0
+offset_right = 3988.0
+offset_bottom = 1084.0
+scale = Vector2(0.14, 0.14)
+texture_normal = ExtResource("7_mf1ni")
+texture_pressed = ExtResource("7_mf1ni")
+texture_hover = ExtResource("8_7g4qh")
+
+[node name="RedoButton" type="TextureButton" parent="."]
+offset_left = 3008.0
+offset_top = 304.0
+offset_right = 3988.0
+offset_bottom = 1284.0
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("9_6lwso")
+texture_pressed = ExtResource("9_6lwso")
+texture_hover = ExtResource("10_73r41")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 696.0
+offset_top = 104.0
+offset_right = 1596.0
+offset_bottom = 1004.0
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("11_drxdg")
+texture_pressed = ExtResource("11_drxdg")
+texture_hover = ExtResource("12_t5dhq")
+
+[connection signal="pressed" from="UndoButton" to="." method="_on_undo_button_pressed"]
+[connection signal="pressed" from="RedoButton" to="." method="_on_redo_button_pressed"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

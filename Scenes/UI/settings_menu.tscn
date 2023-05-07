@@ -99,6 +99,7 @@ theme_override_font_sizes/font_size = 60
 placeholder_text = "0-999999999"
 alignment = 1
 max_length = 9
+context_menu_enabled = false
 caret_blink = true
 
 [node name="Fullscreen" type="TextureButton" parent="."]
@@ -159,6 +160,17 @@ offset_bottom = 200.0
 theme_override_fonts/font = ExtResource("4_4ifl8")
 theme_override_font_sizes/font_size = 80
 text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Signature" type="Label" parent="."]
+offset_left = -200.0
+offset_top = 1688.0
+offset_right = 1000.0
+offset_bottom = 1787.0
+theme_override_fonts/font = ExtResource("4_4ifl8")
+theme_override_font_sizes/font_size = 40
+text = "R I C A R D O   R O M A N A C H  2023"
 horizontal_alignment = 1
 vertical_alignment = 1
 

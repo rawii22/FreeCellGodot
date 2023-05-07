@@ -1,6 +1,9 @@
 # FreeCellGodot
 The game FreeCell implemented with Godot!
 
+GitHub: [FreeCellGodot](https://github.com/rawii22/FreeCellGodot)
+
+Ricardo Romanach 2023
 
 ## Implementation
 
@@ -20,6 +23,7 @@ For the sake of keeping things as generic as possible, each area (columns, free 
 - By **right clicking anywhere on the table**, the game will look for any card that can be moved to the foundation and, if possible, move it to the foundation automatically.
 - **Numbered Deals**: By opening the menu, you can specify the desired deal number in the "New Game" button. Hit enter or click on the button after typing in the number (0-999999999) and the respective deal will be drawn.
 	- The limit for an integer in Godot is -9223372036854775808 to 9223372036854775807. I chose 999999999 arbitrarily, but partially because it looked pretty and it fit in the text box.
+- **Touch Screen Compatible**: This game should work on touch screen devices. When a card is tapped, it will do the same thing as a right-click. Dragging works the same as dragging with the mouse. Buttons are visible on the screen to make Undo, Redo, and Replay easy to access.
 
 ## Shortcuts
 
@@ -29,3 +33,11 @@ For the sake of keeping things as generic as possible, each area (columns, free 
 - **`F2`**: Start a new game.
 - **`Esc`** or **`S`**: Open the settings menu.
 - **`F`**: Toggle full screen.
+
+## Credits
+
+[rawii22](https://github.com/rawii22/FreeCellGodot)
+
+## Very Special Thanks
+
+[MiniMage7](https://github.com/MiniMage7)

@@ -51,6 +51,18 @@ func _input(event):
 			replay()
 
 
+func _on_undo_button_pressed():
+	undo()
+
+
+func _on_redo_button_pressed():
+	redo()
+
+
+func _on_texture_button_pressed():
+	replay()
+
+
 func toggle_action_happening():
 	movement_occuring = !movement_occuring
 
