@@ -16,5 +16,5 @@ func _button_pressed():
 
 
 func _input(event):
-	if event.is_action_pressed("Settings"):
+	if !get_tree().get_root().get_node("Main/GUI/SettingsMenu").lineedit_focused and event.is_action_pressed("Settings"):
 		_button_pressed()

@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxb7ghjo2y75q"]
+[gd_scene load_steps=7 format=3 uid="uid://dxb7ghjo2y75q"]
 
 [ext_resource type="Script" path="res://Scenes/UI/settings_menu.gd" id="1_fy850"]
-[ext_resource type="Texture2D" uid="uid://ddya3ycq3oy8k" path="res://Assets/UI/settings_menu_background.png" id="1_jh4ki"]
 [ext_resource type="Texture2D" uid="uid://bjxme0f4fpinx" path="res://Assets/UI/settings_button_background_light.png" id="2_g3dsl"]
 [ext_resource type="Script" path="res://Scenes/UI/DarkOverlay.gd" id="2_uibky"]
 [ext_resource type="Texture2D" uid="uid://r5kcnyvl57dw" path="res://Assets/UI/settings_button_background_dark.png" id="3_oqet2"]
@@ -12,22 +11,22 @@
 script = ExtResource("1_fy850")
 
 [node name="DarkOverlay" type="Area2D" parent="."]
+position = Vector2(0, 125)
 script = ExtResource("2_uibky")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DarkOverlay"]
-polygon = PackedVector2Array(-1520, -480, 2320, -480, 2320, 1680, 800, 1680, 800, 0, 0, 0, 0, 1300, 800, 1300, 800, 1680, -1520, 1680)
+polygon = PackedVector2Array(-1520, -480, 2320, -480, 2320, 1680, 800, 1680, 800, -125, 0, -125, 0, 1425, 800, 1425, 800, 1680, -1520, 1680)
 
 [node name="ColorRect" type="Sprite2D" parent="DarkOverlay"]
 modulate = Color(1, 1, 1, 0.509804)
 position = Vector2(400, 600)
 texture = ExtResource("3_xwn5d")
 
-[node name="MenuBackground" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.870588)
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(800, 1550)
 offset_right = 800.0
-offset_bottom = 1300.0
-mouse_filter = 0
-texture = ExtResource("1_jh4ki")
+offset_bottom = 1550.0
+color = Color(0.262745, 0.262745, 0.262745, 1)
 
 [node name="Resume" type="TextureButton" parent="."]
 offset_left = 50.0
@@ -48,7 +47,7 @@ text = "Resume"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NewGame" type="TextureButton" parent="."]
+[node name="Replay" type="TextureButton" parent="."]
 offset_left = 50.0
 offset_top = 300.0
 offset_right = 750.0
@@ -57,21 +56,56 @@ texture_normal = ExtResource("2_g3dsl")
 texture_pressed = ExtResource("2_g3dsl")
 texture_hover = ExtResource("3_oqet2")
 
-[node name="Label" type="Label" parent="NewGame"]
+[node name="Label" type="Label" parent="Replay"]
 layout_mode = 0
 offset_right = 700.0
 offset_bottom = 200.0
 theme_override_fonts/font = ExtResource("4_4ifl8")
 theme_override_font_sizes/font_size = 80
-text = "new game"
+text = "Replay"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Fullscreen" type="TextureButton" parent="."]
+[node name="NewGame" type="TextureButton" parent="."]
 offset_left = 50.0
 offset_top = 550.0
 offset_right = 750.0
 offset_bottom = 750.0
+texture_normal = ExtResource("2_g3dsl")
+texture_pressed = ExtResource("2_g3dsl")
+texture_hover = ExtResource("3_oqet2")
+
+[node name="Label" type="Label" parent="NewGame"]
+layout_mode = 0
+offset_top = -14.0
+offset_right = 700.0
+offset_bottom = 104.0
+theme_override_constants/line_spacing = -25
+theme_override_fonts/font = ExtResource("4_4ifl8")
+theme_override_font_sizes/font_size = 75
+text = "new game"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="LineEdit" type="LineEdit" parent="NewGame"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 95.0
+offset_right = 690.0
+offset_bottom = 192.0
+theme_override_fonts/font = ExtResource("4_4ifl8")
+theme_override_font_sizes/font_size = 60
+placeholder_text = "0-999999999"
+alignment = 1
+max_length = 9
+caret_blink = true
+
+[node name="Fullscreen" type="TextureButton" parent="."]
+offset_left = 50.0
+offset_top = 800.0
+offset_right = 750.0
+offset_bottom = 1000.0
 texture_normal = ExtResource("2_g3dsl")
 texture_pressed = ExtResource("2_g3dsl")
 texture_hover = ExtResource("3_oqet2")
@@ -81,7 +115,6 @@ layout_mode = 0
 offset_top = -12.0
 offset_right = 700.0
 offset_bottom = 212.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/line_spacing = -25
 theme_override_fonts/font = ExtResource("4_4ifl8")
 theme_override_font_sizes/font_size = 80
@@ -93,9 +126,9 @@ clip_text = true
 
 [node name="ViewStats" type="TextureButton" parent="."]
 offset_left = 50.0
-offset_top = 800.0
+offset_top = 1050.0
 offset_right = 750.0
-offset_bottom = 1000.0
+offset_bottom = 1250.0
 texture_normal = ExtResource("2_g3dsl")
 texture_pressed = ExtResource("2_g3dsl")
 texture_hover = ExtResource("3_oqet2")
@@ -112,9 +145,9 @@ vertical_alignment = 1
 
 [node name="Quit" type="TextureButton" parent="."]
 offset_left = 50.0
-offset_top = 1050.0
+offset_top = 1300.0
 offset_right = 750.0
-offset_bottom = 1250.0
+offset_bottom = 1500.0
 texture_normal = ExtResource("2_g3dsl")
 texture_pressed = ExtResource("2_g3dsl")
 texture_hover = ExtResource("3_oqet2")
@@ -132,6 +165,11 @@ vertical_alignment = 1
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="input_event" from="DarkOverlay" to="DarkOverlay" method="_on_input_event"]
 [connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Replay" to="." method="_on_replay_pressed"]
 [connection signal="pressed" from="NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="focus_entered" from="NewGame/LineEdit" to="." method="_on_line_edit_focus_entered"]
+[connection signal="focus_exited" from="NewGame/LineEdit" to="." method="_on_line_edit_focus_exited"]
+[connection signal="text_changed" from="NewGame/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="NewGame/LineEdit" to="." method="_on_line_edit_text_submitted"]
 [connection signal="pressed" from="Fullscreen" to="." method="_on_fullscreen_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

@@ -4,11 +4,15 @@ extends Node2D
 
 var movement_occuring = false
 var card_spacing = 92
+
 var max_stack_size
 var move_count = 0
 var time_elapsed = 0
 var time_paused = true
+
 var current_hand = []
+var previous_seed = -1
+var is_numbered_deal = false
 
 #These initializations are here to make sure the game has something to alter while creating a new game
 var free_columns = 0
@@ -38,12 +42,13 @@ func _process(delta):
 
 
 func _input(event):
-	if event.is_action_pressed("Undo"):
-		undo()
-	elif event.is_action_pressed("Redo"):
-		redo()
-	elif event.is_action_pressed("Replay"):
-		replay()
+	if !get_tree().get_root().get_node("Main/GUI/SettingsMenu").visible:
+		if event.is_action_pressed("Undo"):
+			undo()
+		elif event.is_action_pressed("Redo"):
+			redo()
+		elif event.is_action_pressed("Replay"):
+			replay()
 
 
 func toggle_action_happening():
@@ -52,6 +57,12 @@ func toggle_action_happening():
 
 func is_action_happening():
 	return movement_occuring
+
+
+func new_game(replay_hand = false, seed_num = -1):
+	#TODO: if they have made at least one move, ask if they are sure they want to lose progress on the game?
+	clear_board()
+	deal_cards(replay_hand, seed_num)
 
 
 #This is supposed to be like an auto-move for cards that can go to the foundation. It only moves one card at a time.
@@ -94,6 +105,7 @@ func clear_board():
 	for i in range(4):
 		get_node("FreeCell" + str(i + 1)).has_card = false
 		get_node("Foundation" + str(i + 1)).cards.clear()
+		get_node("Foundation" + str(i + 1)).is_full = false
 
 	get_tree().call_group("card", "queue_free")
 	
@@ -104,15 +116,25 @@ func clear_board():
 	time_elapsed = 0
 	$TimerText.text = "Time: " + "%d:%02d" % [floor(time_elapsed / 60), int(time_elapsed) % 60]
 	$MoveCounter.text = "Moves: " + str(move_count)
-	
 
 
-func deal_cards(replay_hand = false):
+func deal_cards(replay_hand, seed_num):
 	var cards = []
 	
 	if !replay_hand:
+		current_hand.clear()
 		for i in range(52):
 			current_hand.append(i)
+		if seed_num > -1:
+			seed(seed_num)
+			is_numbered_deal = true
+			$DealNumber.text = "Deal: #" + str(seed_num)
+		else:
+			is_numbered_deal = false
+			$DealNumber.text = ""
+			if previous_seed != -1: # This to avoid calling randomize() more times than necessary
+				randomize()
+		previous_seed = seed_num
 		current_hand.shuffle()
 	
 	for i in current_hand:
@@ -181,6 +203,13 @@ func move_made(move, record_move = true):
 		if move_count == 1:
 			time_paused = false
 		$MoveCounter.text = "Moves: " + str(move_count)
+	
+	var full_foundations = 0
+	for i in range(4):
+		if get_node("Foundation" + str(i + 1)).is_full:
+			full_foundations += 1
+	if full_foundations == 4:
+		win()
 
 
 func undo():
@@ -200,5 +229,9 @@ func redo():
 
 
 func replay():
-	clear_board()
-	deal_cards(true)
+	new_game(true)
+
+
+func win():
+	#Activate win screen, show stats
+	pass

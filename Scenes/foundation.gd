@@ -1,6 +1,7 @@
 extends Area2D
 
 var cards = []
+var is_full = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,12 +20,16 @@ func add_card(card_list):
 	card.position = Vector2(0, 0)
 	card.column_position = cards.size()
 	cards.append(card)
+	if card.value == 13:
+		is_full = true
 
 
 func remove_card(card):
 	card.get_node("CardArea").set_deferred("disabled", false)
 	var stack = []
 	stack.push_back(cards.pop_back())
+	if card.value == 13:
+		is_full = false
 	return stack
 
 

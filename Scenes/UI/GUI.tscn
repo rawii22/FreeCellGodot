@@ -9,7 +9,7 @@ script = ExtResource("1_x71gi")
 
 [node name="SettingsMenu" parent="." instance=ExtResource("3_beqox")]
 visible = false
-position = Vector2(1520, 480)
+position = Vector2(1520, 355)
 
 [node name="SettingsButton" parent="." instance=ExtResource("2_1j64k")]
 anchors_preset = 3
