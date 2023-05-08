@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://halilhmrnwbj"]
+[gd_scene load_steps=15 format=3 uid="uid://halilhmrnwbj"]
 
 [ext_resource type="Script" path="res://Scenes/table.gd" id="1_6ejq1"]
 [ext_resource type="Texture2D" uid="uid://yftiyvg4uvt1" path="res://Assets/Backgrounds/greenFeltBackground2.jpeg" id="1_f1yuq"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c8opcxd758irl" path="res://Scenes/freecell.tscn" id="4_qcfbx"]
 [ext_resource type="PackedScene" uid="uid://cqjfiswkpnpu" path="res://Scenes/foundation.tscn" id="5_23w33"]
 [ext_resource type="Texture2D" uid="uid://b3l22q2xagwhc" path="res://Assets/UI/UndoLight.png" id="7_mf1ni"]
+[ext_resource type="FontFile" uid="uid://csh6y5qo6krcu" path="res://Assets/Fonts/SymtextFix.ttf" id="7_xqnd6"]
 [ext_resource type="Texture2D" uid="uid://b5ywcermrgmdt" path="res://Assets/UI/Undo.png" id="8_7g4qh"]
 [ext_resource type="Texture2D" uid="uid://b7b71jrylh62l" path="res://Assets/UI/RedoLight.png" id="9_6lwso"]
 [ext_resource type="Texture2D" uid="uid://dnbshwnljpwn4" path="res://Assets/UI/Redo.png" id="10_73r41"]
@@ -82,10 +83,11 @@ position = Vector2(2590, 245)
 position = Vector2(2840, 245)
 
 [node name="MoveCounter" type="Label" parent="."]
-offset_left = 2548.0
-offset_right = 3027.0
-offset_bottom = 99.0
-theme_override_font_sizes/font_size = 70
+offset_left = 2464.0
+offset_right = 2943.0
+offset_bottom = 100.0
+theme_override_fonts/font = ExtResource("7_xqnd6")
+theme_override_font_sizes/font_size = 67
 text = "Moves: ###"
 vertical_alignment = 1
 
@@ -93,15 +95,17 @@ vertical_alignment = 1
 offset_left = 900.0
 offset_right = 1444.0
 offset_bottom = 99.0
-theme_override_font_sizes/font_size = 70
+theme_override_fonts/font = ExtResource("7_xqnd6")
+theme_override_font_sizes/font_size = 67
 text = "Time: 0:00"
 
 [node name="DealNumber" type="Label" parent="."]
-offset_left = 1472.0
-offset_right = 2368.0
-offset_bottom = 99.0
-theme_override_font_sizes/font_size = 70
-text = "Deal: #"
+offset_left = 1510.0
+offset_right = 2330.0
+offset_bottom = 100.0
+theme_override_fonts/font = ExtResource("7_xqnd6")
+theme_override_font_sizes/font_size = 67
+text = "Deal: #######"
 horizontal_alignment = 1
 vertical_alignment = 1
 

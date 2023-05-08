@@ -12,7 +12,7 @@ var time_paused = true
 
 var current_hand = []
 var previous_seed = -1
-var is_numbered_deal = false
+var is_random = true
 
 #These initializations are here to make sure the game has something to alter while creating a new game
 var free_columns = 0
@@ -35,7 +35,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if !time_paused:
+	if !time_paused and move_count > 0:
 		time_elapsed += delta
 		$TimerText.text = "Time: " + "%d:%02d" % [floor(time_elapsed / 60), int(time_elapsed) % 60]
 	pass
@@ -63,12 +63,17 @@ func _on_texture_button_pressed():
 	replay()
 
 
+#This is to prevent multiple inputs from being entered at once, likely resulting in crashes.
 func toggle_action_happening():
 	movement_occuring = !movement_occuring
 
 
 func is_action_happening():
 	return movement_occuring
+
+
+func set_time_paused(value):
+	time_paused = value
 
 
 func new_game(replay_hand = false, seed_num = -1):
@@ -139,13 +144,13 @@ func deal_cards(replay_hand, seed_num):
 			current_hand.append(i)
 		if seed_num > -1:
 			seed(seed_num)
-			is_numbered_deal = true
+			is_random = false
 			$DealNumber.text = "Deal: #" + str(seed_num)
 		else:
-			is_numbered_deal = false
 			$DealNumber.text = ""
 			if previous_seed != -1: # This to avoid calling randomize() more times than necessary
 				randomize()
+			is_random = true
 		previous_seed = seed_num
 		current_hand.shuffle()
 	

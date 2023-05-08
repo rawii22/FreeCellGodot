@@ -1,15 +1,63 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw5qgkpt1x8rv"]
+[gd_scene load_steps=8 format=3 uid="uid://cw5qgkpt1x8rv"]
 
 [ext_resource type="Script" path="res://Scenes/UI/GUI.gd" id="1_x71gi"]
 [ext_resource type="PackedScene" uid="uid://bv5f355kufr5q" path="res://Scenes/UI/settings_button.tscn" id="2_1j64k"]
+[ext_resource type="Script" path="res://Scenes/UI/DarkOverlay.gd" id="2_mvoca"]
+[ext_resource type="PackedScene" uid="uid://qgtyk2u7qlul" path="res://Scenes/UI/info_screen.tscn" id="3_8pnu7"]
 [ext_resource type="PackedScene" uid="uid://dxb7ghjo2y75q" path="res://Scenes/UI/settings_menu.tscn" id="3_beqox"]
+[ext_resource type="FontFile" uid="uid://csh6y5qo6krcu" path="res://Assets/Fonts/SymtextFix.ttf" id="3_w2snl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfktu"]
+size = Vector2(3840, 2160)
 
 [node name="GUI" type="Node2D"]
 script = ExtResource("1_x71gi")
 
+[node name="DarkOverlay" type="Area2D" parent="."]
+script = ExtResource("2_mvoca")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DarkOverlay"]
+visible = false
+position = Vector2(1920, 1080)
+shape = SubResource("RectangleShape2D_jfktu")
+
+[node name="Darkness" type="ColorRect" parent="DarkOverlay"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 3840.0
+offset_bottom = 2160.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.282353, 0.282353, 0.282353, 0.498039)
+
+[node name="Signature" type="Label" parent="DarkOverlay"]
+offset_left = 1320.0
+offset_top = 2000.0
+offset_right = 2520.0
+offset_bottom = 2099.0
+theme_override_fonts/font = ExtResource("3_w2snl")
+theme_override_font_sizes/font_size = 40
+text = "R I C A R D O   R O M A N A C H  2023"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="SettingsMenu" parent="." instance=ExtResource("3_beqox")]
 visible = false
-position = Vector2(1520, 355)
+offset_left = 1520.0
+offset_top = 305.0
+offset_right = 1520.0
+offset_bottom = 305.0
+
+[node name="InfoScreen" parent="." instance=ExtResource("3_8pnu7")]
+visible = false
+offset_left = 670.0
+offset_top = 280.0
+offset_right = 670.0
+offset_bottom = 280.0
 
 [node name="SettingsButton" parent="." instance=ExtResource("2_1j64k")]
 anchors_preset = 3
@@ -17,10 +65,12 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 3696.0
-offset_top = 2016.0
-offset_right = 4296.0
-offset_bottom = 2616.0
+offset_left = 3672.0
+offset_top = 1992.0
+offset_right = 4272.0
+offset_bottom = 2592.0
 grow_horizontal = 0
 grow_vertical = 0
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.3, 0.3)
+
+[connection signal="input_event" from="DarkOverlay" to="DarkOverlay" method="_on_input_event"]

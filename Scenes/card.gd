@@ -71,8 +71,9 @@ func on_click(is_auto = false):
 				is_being_dragged = true
 		else:
 			table.toggle_action_happening()
-			for card in parent_area.get_card_stack(self):
-				card.get_node("ShakeAnimation").play("shake")
+			if !parent_area.name.contains("Foundation"):
+				for card in parent_area.get_card_stack(self):
+					card.get_node("ShakeAnimation").play("shake")
 
 
 func auto_click():
@@ -110,6 +111,7 @@ func auto_click():
 	table.toggle_action_happening()
 	
 	if detected_area == parent_area:
+		#parent_area = get_parent() #Add this line back in if you want animations to work. You still have to figure out how to make the cards show on top though.
 		return false
 	else:
 		return move_occured

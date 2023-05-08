@@ -1,13 +1,7 @@
-extends Node2D
-
-#===================================================
-#TODO: Change the menu to work with a parent control node instead. This will make it infinitely easier
-# to add new menu options. It will also stop you from having to manually change the click area of the
-# DarkOverlay every time the menu size changes. With a control node you should be able to just block
-# clicks from the mouse, and that's exactly what we want.
-#===================================================
+extends Control
 
 var table
+var GUI
 var lineedit_focused
 var old_text
 
@@ -16,7 +10,9 @@ var FSdisabled = "Fullscreen:\nDisabled"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	hide()
 	table = get_tree().get_root().get_node("Main/Table")
+	GUI = get_tree().get_root().get_node("Main/GUI")
 	if is_fullscreen():
 		$Fullscreen.get_node("Label").text = FSenabled
 	else:
@@ -36,8 +32,12 @@ func _input(event):
 func _on_visibility_changed():
 	$NewGame/LineEdit.text = ""
 	old_text = ""
-	if table != null and table.move_count > 0:
-		table.time_paused = visible
+	if get_parent() != null:
+		if visible:
+			get_parent().ui_changed(1)
+			$Resume.grab_focus()
+		else:
+			get_parent().ui_changed(-1)
 
 
 func _on_resume_pressed():
@@ -50,8 +50,6 @@ func _on_replay_pressed():
 
 
 func _on_new_game_pressed():
-	
-	#TODO: If the text in the $NewGame/LineEdit is populated, pass that into the new game
 	if $NewGame/LineEdit.text != "":
 		table.new_game(false, int($NewGame/LineEdit.text))
 	else:
@@ -80,6 +78,15 @@ func _on_line_edit_text_submitted(new_text):
 	hide()
 
 
+func _on_random_deal_pressed():
+	if !table.is_random:
+		randomize()
+	$NewGame/LineEdit.text = str(randi() % 10000000)
+	$NewGame/LineEdit.grab_focus()
+	$NewGame/LineEdit.set_caret_column($NewGame/LineEdit.text.length())
+	
+
+
 func _on_fullscreen_pressed():
 	if toggle_fullscreen():
 		$Fullscreen.get_node("Label").text = FSenabled
@@ -101,5 +108,14 @@ func is_fullscreen():
 	return DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 
 
+func _on_info_pressed():
+	GUI.get_node("InfoScreen").show()
+
+
 func _on_quit_pressed():
 	get_tree().quit()
+
+
+func lose_focus():
+	$Resume.grab_focus()
+	$Resume.release_focus()

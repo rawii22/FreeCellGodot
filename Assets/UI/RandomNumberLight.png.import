@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0t0suiak3w6"
-path="res://.godot/imported/darkened_overlay.png-eb079be8c3695a03d650059739becc98.ctex"
+uid="uid://d0f7g0pdi6oon"
+path="res://.godot/imported/RandomNumberLight.png-e345d839c8ab373d53b9ebc3a3dea620.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UI/darkened_overlay.png"
-dest_files=["res://.godot/imported/darkened_overlay.png-eb079be8c3695a03d650059739becc98.ctex"]
+source_file="res://Assets/UI/RandomNumberLight.png"
+dest_files=["res://.godot/imported/RandomNumberLight.png-e345d839c8ab373d53b9ebc3a3dea620.ctex"]
 
 [params]
 

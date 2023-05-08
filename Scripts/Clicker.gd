@@ -12,8 +12,6 @@ func _ready():
 	table = get_tree().get_root().get_node("Main/Table")
 
 
-#TODO: handle touch events like right clicks, and keep mouse events like before
-
 func _input(event):
 	if !get_tree().get_root().get_node("Main/GUI/SettingsMenu").visible and ((event is InputEventMouseButton and event.pressed and (event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT)) or (event is InputEventScreenTouch)):
 		params.position = event.position

@@ -2,25 +2,15 @@
 
 [ext_resource type="Script" path="res://Scenes/UI/settings_menu.gd" id="1_fy850"]
 [ext_resource type="Texture2D" uid="uid://bjxme0f4fpinx" path="res://Assets/UI/settings_button_background_light.png" id="2_g3dsl"]
-[ext_resource type="Script" path="res://Scenes/UI/DarkOverlay.gd" id="2_uibky"]
 [ext_resource type="Texture2D" uid="uid://r5kcnyvl57dw" path="res://Assets/UI/settings_button_background_dark.png" id="3_oqet2"]
-[ext_resource type="Texture2D" uid="uid://b0t0suiak3w6" path="res://Assets/UI/darkened_overlay.png" id="3_xwn5d"]
 [ext_resource type="FontFile" uid="uid://csh6y5qo6krcu" path="res://Assets/Fonts/SymtextFix.ttf" id="4_4ifl8"]
+[ext_resource type="Texture2D" uid="uid://d0f7g0pdi6oon" path="res://Assets/UI/RandomNumberLight.png" id="5_52pxu"]
+[ext_resource type="Texture2D" uid="uid://b3ayumrc06muv" path="res://Assets/UI/RandomNumber.png" id="6_5bxew"]
 
-[node name="SettingsMenu" type="Node2D"]
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_fy850")
-
-[node name="DarkOverlay" type="Area2D" parent="."]
-position = Vector2(0, 125)
-script = ExtResource("2_uibky")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DarkOverlay"]
-polygon = PackedVector2Array(-1520, -480, 2320, -480, 2320, 1680, 800, 1680, 800, -125, 0, -125, 0, 1425, 800, 1425, 800, 1680, -1520, 1680)
-
-[node name="ColorRect" type="Sprite2D" parent="DarkOverlay"]
-modulate = Color(1, 1, 1, 0.509804)
-position = Vector2(400, 600)
-texture = ExtResource("3_xwn5d")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(800, 1550)
@@ -33,9 +23,13 @@ offset_left = 50.0
 offset_top = 50.0
 offset_right = 750.0
 offset_bottom = 250.0
+focus_neighbor_top = NodePath("../Quit")
+focus_next = NodePath("../Replay")
+focus_previous = NodePath("../Quit")
 texture_normal = ExtResource("2_g3dsl")
 texture_pressed = ExtResource("2_g3dsl")
 texture_hover = ExtResource("3_oqet2")
+texture_focused = ExtResource("3_oqet2")
 
 [node name="Label" type="Label" parent="Resume"]
 layout_mode = 0
@@ -52,9 +46,12 @@ offset_left = 50.0
 offset_top = 300.0
 offset_right = 750.0
 offset_bottom = 500.0
+focus_next = NodePath("../NewGame")
+focus_previous = NodePath("../Resume")
 texture_normal = ExtResource("2_g3dsl")
 texture_pressed = ExtResource("2_g3dsl")
 texture_hover = ExtResource("3_oqet2")
+texture_focused = ExtResource("3_oqet2")
 
 [node name="Label" type="Label" parent="Replay"]
 layout_mode = 0
@@ -71,9 +68,13 @@ offset_left = 50.0
 offset_top = 550.0
 offset_right = 750.0
 offset_bottom = 750.0
+focus_neighbor_bottom = NodePath("LineEdit")
+focus_next = NodePath("LineEdit")
+focus_previous = NodePath("../Replay")
 texture_normal = ExtResource("2_g3dsl")
 texture_pressed = ExtResource("2_g3dsl")
 texture_hover = ExtResource("3_oqet2")
+texture_focused = ExtResource("3_oqet2")
 
 [node name="Label" type="Label" parent="NewGame"]
 layout_mode = 0
@@ -94,22 +95,47 @@ offset_left = 10.0
 offset_top = 95.0
 offset_right = 690.0
 offset_bottom = 192.0
+focus_neighbor_top = NodePath("..")
+focus_neighbor_bottom = NodePath("../RandomDeal")
+focus_next = NodePath("../RandomDeal")
+focus_previous = NodePath("..")
 theme_override_fonts/font = ExtResource("4_4ifl8")
 theme_override_font_sizes/font_size = 60
-placeholder_text = "0-999999999"
+placeholder_text = "0-9999999"
 alignment = 1
-max_length = 9
+max_length = 7
 context_menu_enabled = false
 caret_blink = true
+caret_blink_interval = 0.5
+
+[node name="RandomDeal" type="TextureButton" parent="NewGame"]
+layout_mode = 0
+offset_left = 609.0
+offset_top = 110.0
+offset_right = 809.0
+offset_bottom = 310.0
+scale = Vector2(0.35, 0.35)
+focus_neighbor_top = NodePath("../LineEdit")
+focus_neighbor_bottom = NodePath("../../Fullscreen")
+focus_next = NodePath("../../Fullscreen")
+focus_previous = NodePath("../LineEdit")
+texture_normal = ExtResource("5_52pxu")
+texture_pressed = ExtResource("5_52pxu")
+texture_hover = ExtResource("6_5bxew")
+texture_focused = ExtResource("6_5bxew")
 
 [node name="Fullscreen" type="TextureButton" parent="."]
 offset_left = 50.0
 offset_top = 800.0
 offset_right = 750.0
 offset_bottom = 1000.0
+focus_neighbor_top = NodePath("../NewGame/RandomDeal")
+focus_next = NodePath("../Info")
+focus_previous = NodePath("../NewGame/RandomDeal")
 texture_normal = ExtResource("2_g3dsl")
 texture_pressed = ExtResource("2_g3dsl")
 texture_hover = ExtResource("3_oqet2")
+texture_focused = ExtResource("3_oqet2")
 
 [node name="Label" type="Label" parent="Fullscreen"]
 layout_mode = 0
@@ -125,22 +151,25 @@ horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
-[node name="ViewStats" type="TextureButton" parent="."]
+[node name="Info" type="TextureButton" parent="."]
 offset_left = 50.0
 offset_top = 1050.0
 offset_right = 750.0
 offset_bottom = 1250.0
+focus_next = NodePath("../Quit")
+focus_previous = NodePath("../Fullscreen")
 texture_normal = ExtResource("2_g3dsl")
 texture_pressed = ExtResource("2_g3dsl")
 texture_hover = ExtResource("3_oqet2")
+texture_focused = ExtResource("3_oqet2")
 
-[node name="Label" type="Label" parent="ViewStats"]
+[node name="Label" type="Label" parent="Info"]
 layout_mode = 0
 offset_right = 700.0
 offset_bottom = 200.0
 theme_override_fonts/font = ExtResource("4_4ifl8")
 theme_override_font_sizes/font_size = 80
-text = "View Stats"
+text = "Info..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -149,9 +178,13 @@ offset_left = 50.0
 offset_top = 1300.0
 offset_right = 750.0
 offset_bottom = 1500.0
+focus_neighbor_bottom = NodePath("../Resume")
+focus_next = NodePath("../Resume")
+focus_previous = NodePath("../Info")
 texture_normal = ExtResource("2_g3dsl")
 texture_pressed = ExtResource("2_g3dsl")
 texture_hover = ExtResource("3_oqet2")
+texture_focused = ExtResource("3_oqet2")
 
 [node name="Label" type="Label" parent="Quit"]
 layout_mode = 0
@@ -163,19 +196,7 @@ text = "Quit"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Signature" type="Label" parent="."]
-offset_left = -200.0
-offset_top = 1688.0
-offset_right = 1000.0
-offset_bottom = 1787.0
-theme_override_fonts/font = ExtResource("4_4ifl8")
-theme_override_font_sizes/font_size = 40
-text = "R I C A R D O   R O M A N A C H  2023"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="input_event" from="DarkOverlay" to="DarkOverlay" method="_on_input_event"]
 [connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Replay" to="." method="_on_replay_pressed"]
 [connection signal="pressed" from="NewGame" to="." method="_on_new_game_pressed"]
@@ -183,5 +204,7 @@ vertical_alignment = 1
 [connection signal="focus_exited" from="NewGame/LineEdit" to="." method="_on_line_edit_focus_exited"]
 [connection signal="text_changed" from="NewGame/LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="text_submitted" from="NewGame/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="NewGame/RandomDeal" to="." method="_on_random_deal_pressed"]
 [connection signal="pressed" from="Fullscreen" to="." method="_on_fullscreen_pressed"]
+[connection signal="pressed" from="Info" to="." method="_on_info_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

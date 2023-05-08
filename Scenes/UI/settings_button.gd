@@ -10,11 +10,14 @@ func _process(delta):
 	pass
 
 
-#toggle the settings menu
+#If anything is open, close it. Otherwise, open the settings menu.
 func _button_pressed():
-	get_parent().get_node("SettingsMenu").visible = !get_parent().get_node("SettingsMenu").visible
+	if get_parent().open_ui > 0:
+		get_parent().hide_all_ui()
+	else:
+		get_parent().get_node("SettingsMenu").visible = !get_parent().get_node("SettingsMenu").visible
 
 
 func _input(event):
-	if !get_tree().get_root().get_node("Main/GUI/SettingsMenu").lineedit_focused and event.is_action_pressed("Settings"):
+	if event.is_action_pressed("Settings"):
 		_button_pressed()

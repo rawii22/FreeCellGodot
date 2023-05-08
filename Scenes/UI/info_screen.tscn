@@ -1,0 +1,162 @@
+[gd_scene load_steps=7 format=3 uid="uid://qgtyk2u7qlul"]
+
+[ext_resource type="Script" path="res://Scenes/UI/info_screen.gd" id="1_cwj5c"]
+[ext_resource type="Texture2D" uid="uid://ctk1enchfx35h" path="res://Assets/UI/ExitLight.png" id="1_gbnf7"]
+[ext_resource type="Texture2D" uid="uid://c5jwh1hvrfued" path="res://Assets/UI/Exit.png" id="3_2x17w"]
+[ext_resource type="FontFile" uid="uid://csh6y5qo6krcu" path="res://Assets/Fonts/SymtextFix.ttf" id="4_lhjgh"]
+[ext_resource type="Texture2D" uid="uid://bjxme0f4fpinx" path="res://Assets/UI/settings_button_background_light.png" id="5_wjteo"]
+[ext_resource type="Texture2D" uid="uid://drun5fp1t4wot" path="res://Assets/UI/settings_button_background_darkred.png" id="6_gdr2s"]
+
+[node name="InfoScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1340.0
+offset_bottom = -560.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cwj5c")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 2500.0
+offset_bottom = 1600.0
+color = Color(0.262745, 0.262745, 0.262745, 1)
+
+[node name="ExitButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 2380.0
+offset_top = 20.0
+offset_right = 2880.0
+offset_bottom = 520.0
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("1_gbnf7")
+texture_pressed = ExtResource("1_gbnf7")
+texture_hover = ExtResource("3_2x17w")
+
+[node name="ShortcutBackground" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1315.0
+offset_top = 160.0
+offset_right = 2340.0
+offset_bottom = 1010.0
+color = Color(0, 0, 0, 0.12549)
+
+[node name="ShortcutInfo" type="Label" parent="ShortcutBackground"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 25.0
+offset_right = 1030.0
+offset_bottom = 825.0
+theme_override_fonts/font = ExtResource("4_lhjgh")
+theme_override_font_sizes/font_size = 50
+text = "               Shortcuts
+
+ctrl+z:    undo
+ctrl+y:    redo
+ctrl+r:    replay hand
+
+esc, s:      settings menu
+F:             toggle fullscreen
+i:              information
+f2:           start new game"
+
+[node name="LinkButton" type="LinkButton" parent="."]
+layout_mode = 0
+offset_left = 844.0
+offset_top = 1460.0
+offset_right = 1656.0
+offset_bottom = 1534.0
+auto_translate = false
+theme_override_colors/font_color = Color(0.317647, 0.701961, 1, 1)
+theme_override_fonts/font = ExtResource("4_lhjgh")
+theme_override_font_sizes/font_size = 50
+text = "Free cell Godot - GitHub"
+uri = "https://github.com/rawii22/FreeCellGodot"
+
+[node name="StatsBackground" type="ColorRect" parent="."]
+offset_left = 160.0
+offset_top = 160.0
+offset_right = 1185.0
+offset_bottom = 1010.0
+color = Color(0, 0, 0, 0.12549)
+
+[node name="Stats" type="Label" parent="StatsBackground"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 25.0
+offset_right = 1030.0
+offset_bottom = 102.0
+theme_override_fonts/font = ExtResource("4_lhjgh")
+theme_override_font_sizes/font_size = 50
+text = "               Statistics"
+
+[node name="GamesPlayedLabel" type="Label" parent="StatsBackground"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 176.0
+offset_right = 480.0
+offset_bottom = 253.0
+theme_override_fonts/font = ExtResource("4_lhjgh")
+theme_override_font_sizes/font_size = 50
+text = "Games Played:"
+
+[node name="GamesWonLabel" type="Label" parent="StatsBackground"]
+offset_left = 133.0
+offset_top = 253.0
+offset_right = 480.0
+offset_bottom = 330.0
+theme_override_fonts/font = ExtResource("4_lhjgh")
+theme_override_font_sizes/font_size = 50
+text = "Games Won:"
+
+[node name="WinRateLabel" type="Label" parent="StatsBackground"]
+offset_left = 192.0
+offset_top = 330.0
+offset_right = 480.0
+offset_bottom = 407.0
+theme_override_fonts/font = ExtResource("4_lhjgh")
+theme_override_font_sizes/font_size = 50
+text = "Win Rate:"
+
+[node name="BestTimeLabel" type="Label" parent="StatsBackground"]
+offset_left = 148.0
+offset_top = 407.0
+offset_right = 480.0
+offset_bottom = 484.0
+theme_override_fonts/font = ExtResource("4_lhjgh")
+theme_override_font_sizes/font_size = 50
+text = "Best Time:"
+
+[node name="BestMovesLabel" type="Label" parent="StatsBackground"]
+offset_left = 96.0
+offset_top = 484.0
+offset_right = 480.0
+offset_bottom = 561.0
+theme_override_fonts/font = ExtResource("4_lhjgh")
+theme_override_font_sizes/font_size = 50
+text = "Best Moves:"
+
+[node name="ResetStats" type="TextureButton" parent="."]
+offset_left = 160.0
+offset_top = 1060.0
+offset_right = 860.0
+offset_bottom = 1260.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("5_wjteo")
+texture_pressed = ExtResource("5_wjteo")
+texture_hover = ExtResource("6_gdr2s")
+
+[node name="Label" type="Label" parent="ResetStats"]
+layout_mode = 0
+offset_right = 700.0
+offset_bottom = 200.0
+theme_override_fonts/font = ExtResource("4_lhjgh")
+theme_override_font_sizes/font_size = 75
+text = "Reset Stats"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="visibility_changed" from="ResetStats" to="." method="_on_reset_stats_visibility_changed"]
