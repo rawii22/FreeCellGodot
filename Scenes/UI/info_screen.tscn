@@ -62,7 +62,7 @@ F:             toggle fullscreen
 i:              information
 f2:           start new game"
 
-[node name="LinkButton" type="LinkButton" parent="."]
+[node name="GitubLink" type="LinkButton" parent="."]
 layout_mode = 0
 offset_left = 844.0
 offset_top = 1460.0
@@ -158,5 +158,6 @@ text = "Reset Stats"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="visibility_changed" from="ResetStats" to="." method="_on_reset_stats_visibility_changed"]
+[connection signal="pressed" from="ResetStats" to="." method="_on_reset_stats_pressed"]

@@ -32,10 +32,7 @@ func _process(delta):
 				dragged_stack[i].position.y += (card_spacing * i)
 		else:
 			is_being_dragged = false
-			$DragArea.set_deferred("disabled", true)
-			$CardArea.set_deferred("disabled", false)
 			make_move(detected_area)
-			table.toggle_action_happening()
 
 
 func _on_area_entered(area):
@@ -106,10 +103,6 @@ func auto_click():
 	
 	make_move(detected_area)
 	
-	$DragArea.set_deferred("disabled", true)
-	$CardArea.set_deferred("disabled", false)
-	table.toggle_action_happening()
-	
 	if detected_area == parent_area:
 		#parent_area = get_parent() #Add this line back in if you want animations to work. You still have to figure out how to make the cards show on top though.
 		return false
@@ -134,7 +127,7 @@ func can_drag_stack(stack):
 	return can_move
 
 
-#This function mainly exists to keep track of moves
+#This function keeps track of moves and re-activates the card for clicking
 func make_move(destination, check_move = true):
 	if !check_move: #An assumption is being made here that the only time check_move will be false is when a move is being undone.
 		parent_area = get_parent()
@@ -157,6 +150,8 @@ func make_move(destination, check_move = true):
 			if destination.name.contains("FreeCell"):
 				add_move = false
 		destination.add_card(dragged_stack)
+		table.toggle_action_happening()
+		
 		var move = table.Move.new()
 		move.card = self
 		move.first_position = parent_area
@@ -167,3 +162,7 @@ func make_move(destination, check_move = true):
 			table.move_made(move)
 	else:
 		parent_area.add_card(dragged_stack)
+		table.toggle_action_happening()
+	
+	$DragArea.set_deferred("disabled", true)
+	$CardArea.set_deferred("disabled", false)

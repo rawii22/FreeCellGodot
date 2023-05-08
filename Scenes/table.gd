@@ -1,6 +1,8 @@
 extends Node2D
 
 @export var card_scene: PackedScene
+@export var confirm_screen: PackedScene #TODO: Create this class and connect it
+@export var win_screen: PackedScene #TODO: Create this class and connect it
 
 var movement_occuring = false
 var card_spacing = 92
@@ -9,6 +11,8 @@ var max_stack_size
 var move_count = 0
 var time_elapsed = 0
 var time_paused = true
+var auto_completing = false
+var won = false
 
 var current_hand = []
 var previous_seed = -1
@@ -23,6 +27,14 @@ class Move:
 	var first_position
 	var second_position
 	var increment_moves
+
+class Stats:
+	var games_played
+	var games_won
+	var best_time
+	var best_moves
+
+var current_stats
 	
 var move_history = []
 var redo_stack = []
@@ -30,7 +42,12 @@ var redo_stack = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	#TODO: Read the save file. Set to defaults if none.
+	current_stats = Stats.new()
+	current_stats.games_played = 0
+	current_stats.games_won = 0
+	current_stats.best_time = 0
+	current_stats.best_moves = 0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,7 +55,6 @@ func _process(delta):
 	if !time_paused and move_count > 0:
 		time_elapsed += delta
 		$TimerText.text = "Time: " + "%d:%02d" % [floor(time_elapsed / 60), int(time_elapsed) % 60]
-	pass
 
 
 func _input(event):
@@ -73,11 +89,19 @@ func is_action_happening():
 
 
 func set_time_paused(value):
-	time_paused = value
+	if won or move_count < 1:
+		time_paused = true
+	else:
+		time_paused = value
 
 
 func new_game(replay_hand = false, seed_num = -1):
-	#TODO: if they have made at least one move, ask if they are sure they want to lose progress on the game?
+	#TODO: if they have made at least one move, ask if they are sure they want to lose progress on the game? "Will be counted as a loss"
+	if !won and move_count > 0:
+		#Create scene instance,
+		#If confirm newgame:
+		lose()
+	
 	clear_board()
 	deal_cards(replay_hand, seed_num)
 
@@ -126,11 +150,16 @@ func clear_board():
 
 	get_tree().call_group("card", "queue_free")
 	
+	if won:
+		#TODO: Delete won screen
+		pass
+	
 	move_history.clear()
 	redo_stack.clear()
 	move_count = 0
 	time_paused = true
 	time_elapsed = 0
+	won = false
 	$TimerText.text = "Time: " + "%d:%02d" % [floor(time_elapsed / 60), int(time_elapsed) % 60]
 	$MoveCounter.text = "Moves: " + str(move_count)
 
@@ -217,9 +246,10 @@ func move_made(move, record_move = true):
 		
 	if move.increment_moves:
 		move_count += 1
-		if move_count == 1:
-			time_paused = false
+		set_time_paused(false)
 		$MoveCounter.text = "Moves: " + str(move_count)
+	
+	check_autocomplete()
 	
 	var full_foundations = 0
 	for i in range(4):
@@ -227,10 +257,35 @@ func move_made(move, record_move = true):
 			full_foundations += 1
 	if full_foundations == 4:
 		win()
+		return
+
+
+func check_autocomplete():
+	if !auto_completing: #This is to avoid one massive infinite loop
+		var cards_remaining = 0
+		for i in range(8):
+			var previous_card_value = 13
+			for card in get_node("Column" + str(i + 1)).cards:
+				cards_remaining += 1
+				if card.value <= previous_card_value:
+					previous_card_value = card.value
+				else:
+					return
+		
+		for i in range(4):
+			if get_node("FreeCell" + str(i + 1)).has_card:
+				cards_remaining += 1
+		
+		#TODO: Confirm for auto complete
+		auto_completing = true
+		for i in range(cards_remaining):
+			await get_tree().create_timer(0.15).timeout
+			auto_move()
+		auto_completing = false
 
 
 func undo():
-	if move_history.size() > 0:
+	if !won and move_history.size() > 0:
 		var previous_move = move_history.pop_back()
 		redo_stack.push_front(previous_move)
 		previous_move.card.make_move(previous_move.first_position, false)
@@ -250,5 +305,36 @@ func replay():
 
 
 func win():
-	#Activate win screen, show stats
+	time_paused = true
+	won = true
+	#TODO: Instantiate win screen
+	
+	current_stats.games_played += 1
+	current_stats.games_won += 1
+	if time_elapsed < current_stats.best_time:
+		current_stats.best_time = time_elapsed
+	if move_count < current_stats.best_moves:
+		current_stats.best_moves = move_count
+	
+	#TODO: Save data to file
+	save()
+
+
+func lose():
+	current_stats.games_played += 1
+	
+	#TODO: Save data to file
+	save()
+
+
+func save():
+	#TODO: Export Stats class to file
 	pass
+
+
+func reset_stats():
+	current_stats.games_played = 0
+	current_stats.games_won = 0
+	current_stats.best_time = 0
+	current_stats.best_moves = 0
+	save()

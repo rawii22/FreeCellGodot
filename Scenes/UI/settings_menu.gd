@@ -19,11 +19,6 @@ func _ready():
 		$Fullscreen.get_node("Label").text = FSdisabled
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func _input(event):
 	if !lineedit_focused and event.is_action_pressed("Toggle Fullscreen"):
 		_on_fullscreen_pressed()
@@ -84,7 +79,6 @@ func _on_random_deal_pressed():
 	$NewGame/LineEdit.text = str(randi() % 10000000)
 	$NewGame/LineEdit.grab_focus()
 	$NewGame/LineEdit.set_caret_column($NewGame/LineEdit.text.length())
-	
 
 
 func _on_fullscreen_pressed():
@@ -119,3 +113,12 @@ func _on_quit_pressed():
 func lose_focus():
 	$Resume.grab_focus()
 	$Resume.release_focus()
+
+
+func toggle():
+	#If there are other things on screen, close them out first and show settings on top.
+	if (get_parent().open_ui > 1 and visible) or (get_parent().open_ui > 0 and !visible):
+		get_parent().hide_all_ui()
+		show()
+	else:
+		visible = !visible

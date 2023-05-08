@@ -9,11 +9,6 @@ func _ready():
 	table = get_tree().get_root().get_node("Main/Table")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func add_card(card_list):
 	var card = card_list.front()
 	has_card = true

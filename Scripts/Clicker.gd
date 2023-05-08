@@ -13,7 +13,7 @@ func _ready():
 
 
 func _input(event):
-	if !get_tree().get_root().get_node("Main/GUI/SettingsMenu").visible and ((event is InputEventMouseButton and event.pressed and (event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT)) or (event is InputEventScreenTouch)):
+	if !table.auto_completing and !get_tree().get_root().get_node("Main/GUI/SettingsMenu").visible and ((event is InputEventMouseButton and event.pressed and (event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT)) or (event is InputEventScreenTouch)):
 		params.position = event.position
 		var shapes = get_world_2d().direct_space_state.intersect_point(params)
 		var top_card

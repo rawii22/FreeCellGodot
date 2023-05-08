@@ -7,11 +7,6 @@ func _ready():
 	get_tree().get_root().get_node("Main/Table").new_game()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func _input(event):
 	if !get_tree().get_root().get_node("Main/GUI/SettingsMenu").visible:
 		if event.is_action_pressed("New Game"):

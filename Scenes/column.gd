@@ -11,11 +11,6 @@ func _ready():
 	card_spacing = table.card_spacing
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 #This is function makes it easier in other places when you don't know if your card is a single or a stack.
 #It prevents me from having to write for-loops everywhere
 func add_card(data, do_animation = true):
