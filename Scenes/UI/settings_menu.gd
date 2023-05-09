@@ -82,6 +82,9 @@ func _on_random_deal_pressed():
 
 
 func _on_fullscreen_pressed():
+	if get_parent().block_ui_changes:
+		return
+	
 	if toggle_fullscreen():
 		$Fullscreen.get_node("Label").text = FSenabled
 	else:
@@ -116,6 +119,8 @@ func lose_focus():
 
 
 func toggle():
+	if get_parent().block_ui_changes:
+		return
 	#If there are other things on screen, close them out first and show settings on top.
 	if (get_parent().open_ui > 1 and visible) or (get_parent().open_ui > 0 and !visible):
 		get_parent().hide_all_ui()

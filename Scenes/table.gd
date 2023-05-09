@@ -13,12 +13,14 @@ var time_elapsed = 0
 var time_paused = true
 
 var auto_completing = false
+var auto_complete_rejected = false
 var won = false
 var win_screen
 
 var current_hand = []
 var previous_seed = -1
 var is_random = true
+var move_made_on_current_hand = false
 
 #These initializations are here to make sure the game has something to alter while creating a new game
 var free_columns = 0
@@ -30,13 +32,10 @@ class Move:
 	var second_position
 	var increment_moves
 
-class Stats:
-	var games_played
-	var games_won
-	var best_time
-	var best_moves
-
-var current_stats
+var games_played
+var games_won
+var best_time
+var best_moves
 	
 var move_history = []
 var redo_stack = []
@@ -44,10 +43,23 @@ var redo_stack = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	current_stats = Stats.new()
 	#TODO: Read the save file. Set to defaults if none.
-	#If no data found, reset stats to defaults. Otherwise, read it.
-	reset_stats()
+	if !FileAccess.file_exists("user://savegame.save"):
+		reset_stats()
+		return
+	
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
+	var json_string = save_file.get_line()
+	var json = JSON.new()
+	var json_result = json.parse(json_string)
+	if json_result != OK:
+		reset_stats()
+		return
+	var save_data = json.get_data()
+	games_played = save_data["games_played"]
+	games_won = save_data["games_won"]
+	best_time = save_data["best_time"]
+	best_moves = save_data["best_moves"]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -58,7 +70,7 @@ func _process(delta):
 
 
 func _input(event):
-	if !get_tree().get_root().get_node("Main/GUI/SettingsMenu").visible:
+	if get_tree().get_root().get_node("Main/GUI").open_ui == 0:
 		if event.is_action_pressed("Undo"):
 			undo()
 		elif event.is_action_pressed("Redo"):
@@ -97,7 +109,7 @@ func set_time_paused(value):
 
 func new_game(replay_hand = false, seed_num = -1):
 	#TODO: if they have made at least one move, ask if they are sure they want to lose progress on the game? "Will be counted as a loss"
-	if !won and move_count > 0:
+	if !won and move_made_on_current_hand and !replay_hand:
 		#Create scene instance,
 		#If confirm newgame:
 		lose()
@@ -157,6 +169,7 @@ func clear_board():
 	move_history.clear()
 	redo_stack.clear()
 	won = false
+	auto_complete_rejected = false
 	move_count = 0
 	time_elapsed = 0
 	set_time_paused(true)
@@ -167,7 +180,7 @@ func clear_board():
 func deal_cards(replay_hand, seed_num):
 	var cards = []
 	
-	if !replay_hand:
+	if !replay_hand or seed_num != previous_seed:
 		current_hand.clear()
 		for i in range(52):
 			current_hand.append(i)
@@ -182,6 +195,7 @@ func deal_cards(replay_hand, seed_num):
 			is_random = true
 		previous_seed = seed_num
 		current_hand.shuffle()
+		move_made_on_current_hand = false
 	
 	for i in current_hand:
 		var card = card_scene.instantiate()
@@ -248,6 +262,7 @@ func move_made(move, record_move = true):
 		move_count += 1
 		set_time_paused(false)
 		$MoveCounter.text = "Moves: " + str(move_count)
+		move_made_on_current_hand = true
 	
 	check_autocomplete()
 	
@@ -276,12 +291,16 @@ func check_autocomplete():
 			if get_node("FreeCell" + str(i + 1)).has_card:
 				cards_remaining += 1
 		
-		#TODO: Confirm for auto complete
-		auto_completing = true
-		for i in range(cards_remaining):
-			await get_tree().create_timer(0.15).timeout
-			auto_move()
-		auto_completing = false
+		if !auto_complete_rejected:
+#			if confirmation_screen.confirm("Autocomplete?", "Yes", "No", true)
+			#TODO: Confirm for auto complete
+			auto_completing = true
+			for i in range(cards_remaining):
+				await get_tree().create_timer(0.15).timeout
+				auto_move()
+			auto_completing = false
+#			else:
+#				auto_complete_rejected = true
 
 
 func undo():
@@ -312,32 +331,35 @@ func win():
 	add_child(win_screen)
 	win_screen.show()
 	
-	current_stats.games_played += 1
-	current_stats.games_won += 1
-	if time_elapsed < current_stats.best_time:
-		current_stats.best_time = time_elapsed
-	if move_count < current_stats.best_moves:
-		current_stats.best_moves = move_count
-	
-	#TODO: Save data to file
+	games_played += 1
+	games_won += 1
+	if time_elapsed < best_time:
+		best_time = time_elapsed
+	if move_count < best_moves:
+		best_moves = move_count
 	save()
 
 
 func lose():
-	current_stats.games_played += 1
-	
-	#TODO: Save data to file
+	games_played += 1
 	save()
 
 
 func save():
-	#TODO: Export Stats class to file
-	pass
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	var save_data = {
+		"games_played" : games_played,
+		"games_won" : games_won,
+		"best_time" : best_time,
+		"best_moves" : best_moves
+	}
+	var save_data_json = JSON.stringify(save_data)
+	save_file.store_line(save_data_json)
 
 
 func reset_stats():
-	current_stats.games_played = 0
-	current_stats.games_won = 0
-	current_stats.best_time = 99999999 #~3 years
-	current_stats.best_moves = pow(2,63) #
+	games_played = 0
+	games_won = 0
+	best_time = 99999999 #~3 years
+	best_moves = pow(2,63) #
 	save()

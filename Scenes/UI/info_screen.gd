@@ -13,7 +13,7 @@ func _on_exit_button_pressed():
 
 
 func _input(event):
-	if event.is_action_pressed("Info"):
+	if event.is_action_pressed("Info") and !get_tree().get_root().get_node("Main/GUI").block_ui_changes:
 		visible = !visible
 
 
@@ -25,7 +25,7 @@ func _on_visibility_changed():
 			update_info()
 		else:
 			get_parent().ui_changed(-1)
-			if get_parent().get_node("SettingsMenu").visible:
+			if get_parent().open_ui == 1 and get_parent().get_node("SettingsMenu").visible:
 				get_parent().get_node("SettingsMenu/Resume").grab_focus()
 
 
@@ -38,12 +38,12 @@ func _on_reset_stats_pressed():
 
 
 func update_info():
-	$StatsBackground/GamesPlayed.text = str(table.current_stats.games_played)
-	$StatsBackground/GamesWon.text = str(table.current_stats.games_won)
-	if table.current_stats.games_played > 0:
-		$StatsBackground/WinRate.text = "%.2f" % ((float(table.current_stats.games_won) / table.current_stats.games_played) * 100) + "%"
-		$StatsBackground/BestTime.text = "%d:%02d" % [floor(table.current_stats.best_time / 60), int(table.current_stats.best_time) % 60]
-		$StatsBackground/BestMoves.text = str(table.current_stats.best_moves)
+	$StatsBackground/GamesPlayed.text = str(table.games_played)
+	$StatsBackground/GamesWon.text = str(table.games_won)
+	if table.games_played > 0:
+		$StatsBackground/WinRate.text = "%.2f" % ((float(table.games_won) / table.games_played) * 100) + "%"
+		$StatsBackground/BestTime.text = "%d:%02d" % [floor(table.best_time / 60), int(table.best_time) % 60]
+		$StatsBackground/BestMoves.text = str(table.best_moves)
 	else:
 		$StatsBackground/WinRate.text = ""
 		$StatsBackground/BestTime.text = ""

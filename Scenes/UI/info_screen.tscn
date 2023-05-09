@@ -76,6 +76,7 @@ text = "Free cell Godot - GitHub"
 uri = "https://github.com/rawii22/FreeCellGodot"
 
 [node name="StatsBackground" type="ColorRect" parent="."]
+layout_mode = 0
 offset_left = 160.0
 offset_top = 160.0
 offset_right = 1185.0
@@ -113,6 +114,7 @@ theme_override_font_sizes/font_size = 50
 text = "####"
 
 [node name="GamesWonLabel" type="Label" parent="StatsBackground"]
+layout_mode = 0
 offset_left = 133.0
 offset_top = 253.0
 offset_right = 480.0
@@ -122,6 +124,7 @@ theme_override_font_sizes/font_size = 50
 text = "Games Won:"
 
 [node name="GamesWon" type="Label" parent="StatsBackground"]
+layout_mode = 0
 offset_left = 530.0
 offset_top = 253.0
 offset_right = 618.0
@@ -131,6 +134,7 @@ theme_override_font_sizes/font_size = 50
 text = "###"
 
 [node name="WinRateLabel" type="Label" parent="StatsBackground"]
+layout_mode = 0
 offset_left = 192.0
 offset_top = 330.0
 offset_right = 480.0
@@ -140,6 +144,7 @@ theme_override_font_sizes/font_size = 50
 text = "Win Rate:"
 
 [node name="WinRate" type="Label" parent="StatsBackground"]
+layout_mode = 0
 offset_left = 530.0
 offset_top = 330.0
 offset_right = 618.0
@@ -148,6 +153,7 @@ theme_override_fonts/font = ExtResource("4_lhjgh")
 theme_override_font_sizes/font_size = 50
 
 [node name="BestTimeLabel" type="Label" parent="StatsBackground"]
+layout_mode = 0
 offset_left = 148.0
 offset_top = 407.0
 offset_right = 480.0
@@ -157,6 +163,7 @@ theme_override_font_sizes/font_size = 50
 text = "Best Time:"
 
 [node name="BestTime" type="Label" parent="StatsBackground"]
+layout_mode = 0
 offset_left = 530.0
 offset_top = 407.0
 offset_right = 618.0
@@ -165,6 +172,7 @@ theme_override_fonts/font = ExtResource("4_lhjgh")
 theme_override_font_sizes/font_size = 50
 
 [node name="BestMovesLabel" type="Label" parent="StatsBackground"]
+layout_mode = 0
 offset_left = 96.0
 offset_top = 484.0
 offset_right = 480.0
@@ -174,6 +182,7 @@ theme_override_font_sizes/font_size = 50
 text = "Best Moves:"
 
 [node name="BestMoves" type="Label" parent="StatsBackground"]
+layout_mode = 0
 offset_left = 530.0
 offset_top = 484.0
 offset_right = 618.0
@@ -182,6 +191,7 @@ theme_override_fonts/font = ExtResource("4_lhjgh")
 theme_override_font_sizes/font_size = 50
 
 [node name="ResetStats" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 160.0
 offset_top = 1060.0
 offset_right = 860.0

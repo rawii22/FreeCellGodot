@@ -8,6 +8,6 @@ func _ready():
 
 
 func _input(event):
-	if !get_tree().get_root().get_node("Main/GUI/SettingsMenu").visible:
+	if get_tree().get_root().get_node("Main/GUI").open_ui == 0 and !get_tree().get_root().get_node("Main/GUI").block_ui_changes:
 		if event.is_action_pressed("New Game"):
 			get_tree().get_root().get_node("Main/Table").new_game()

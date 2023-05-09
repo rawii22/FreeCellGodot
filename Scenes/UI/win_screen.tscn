@@ -53,6 +53,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CompleteTimeLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1242.0
 offset_top = 650.0
 offset_right = 1920.0
@@ -64,6 +65,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MovesLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 1633.0
 offset_top = 800.0
 offset_right = 1920.0
@@ -95,6 +97,7 @@ theme_override_font_sizes/font_size = 70
 text = "###"
 
 [node name="NewGame" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 1170.0
 offset_top = 1750.0
 offset_right = 1870.0
@@ -118,6 +121,7 @@ vertical_alignment = 1
 clip_text = true
 
 [node name="Replay" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 1970.0
 offset_top = 1750.0
 offset_right = 2670.0
