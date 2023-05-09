@@ -1,8 +1,8 @@
 extends Node2D
 
 @export var card_scene: PackedScene
-@export var confirm_screen: PackedScene #TODO: Create this class and connect it
-@export var win_screen: PackedScene #TODO: Create this class and connect it
+@export var confirm_screen_scene: PackedScene #TODO: Create this class and connect it
+@export var win_screen_scene: PackedScene #TODO: Create this class and connect it
 
 var movement_occuring = false
 var card_spacing = 92
@@ -11,8 +11,10 @@ var max_stack_size
 var move_count = 0
 var time_elapsed = 0
 var time_paused = true
+
 var auto_completing = false
 var won = false
+var win_screen
 
 var current_hand = []
 var previous_seed = -1
@@ -42,12 +44,10 @@ var redo_stack = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#TODO: Read the save file. Set to defaults if none.
 	current_stats = Stats.new()
-	current_stats.games_played = 0
-	current_stats.games_won = 0
-	current_stats.best_time = 0
-	current_stats.best_moves = 0
+	#TODO: Read the save file. Set to defaults if none.
+	#If no data found, reset stats to defaults. Otherwise, read it.
+	reset_stats()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -151,15 +151,15 @@ func clear_board():
 	get_tree().call_group("card", "queue_free")
 	
 	if won:
-		#TODO: Delete won screen
-		pass
+		remove_child(win_screen)
+		win_screen.queue_free()
 	
 	move_history.clear()
 	redo_stack.clear()
-	move_count = 0
-	time_paused = true
-	time_elapsed = 0
 	won = false
+	move_count = 0
+	time_elapsed = 0
+	set_time_paused(true)
 	$TimerText.text = "Time: " + "%d:%02d" % [floor(time_elapsed / 60), int(time_elapsed) % 60]
 	$MoveCounter.text = "Moves: " + str(move_count)
 
@@ -228,7 +228,7 @@ func deal_cards(replay_hand, seed_num):
 
 
 func calculate_max_stack_size():
-	max_stack_size = (2**free_columns) * (free_cells + 1)
+	max_stack_size = (pow(2, free_columns)) * (free_cells + 1)
 
 
 func update_free_cells(delta, is_column = false):
@@ -305,9 +305,12 @@ func replay():
 
 
 func win():
-	time_paused = true
+	set_time_paused(true)
 	won = true
-	#TODO: Instantiate win screen
+	win_screen = win_screen_scene.instantiate()
+	win_screen.construct(time_elapsed, move_count)
+	add_child(win_screen)
+	win_screen.show()
 	
 	current_stats.games_played += 1
 	current_stats.games_won += 1
@@ -335,6 +338,6 @@ func save():
 func reset_stats():
 	current_stats.games_played = 0
 	current_stats.games_won = 0
-	current_stats.best_time = 0
-	current_stats.best_moves = 0
+	current_stats.best_time = 99999999 #~3 years
+	current_stats.best_moves = pow(2,63) #
 	save()

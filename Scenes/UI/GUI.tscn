@@ -36,9 +36,9 @@ color = Color(0.282353, 0.282353, 0.282353, 0.498039)
 
 [node name="Signature" type="Label" parent="DarkOverlay"]
 offset_left = 1320.0
-offset_top = 2000.0
+offset_top = 2023.0
 offset_right = 2520.0
-offset_bottom = 2099.0
+offset_bottom = 2122.0
 theme_override_fonts/font = ExtResource("3_w2snl")
 theme_override_font_sizes/font_size = 40
 text = "R I C A R D O   R O M A N A C H  2023"

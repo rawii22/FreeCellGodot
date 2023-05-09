@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://halilhmrnwbj"]
+[gd_scene load_steps=15 format=3 uid="uid://halilhmrnwbj"]
 
 [ext_resource type="Script" path="res://Scenes/table.gd" id="1_6ejq1"]
 [ext_resource type="Texture2D" uid="uid://yftiyvg4uvt1" path="res://Assets/Backgrounds/greenFeltBackground2.jpeg" id="1_f1yuq"]
 [ext_resource type="PackedScene" uid="uid://qwn5500363f6" path="res://Scenes/card.tscn" id="2_miioh"]
+[ext_resource type="PackedScene" uid="uid://d3x2imw43msls" path="res://Scenes/UI/win_screen.tscn" id="3_5ekoy"]
 [ext_resource type="PackedScene" uid="uid://bcfvtshla67dh" path="res://Scenes/column.tscn" id="3_aykv7"]
 [ext_resource type="PackedScene" uid="uid://c8opcxd758irl" path="res://Scenes/freecell.tscn" id="4_qcfbx"]
 [ext_resource type="PackedScene" uid="uid://cqjfiswkpnpu" path="res://Scenes/foundation.tscn" id="5_23w33"]
@@ -17,6 +18,7 @@
 [node name="Table" type="Node2D"]
 script = ExtResource("1_6ejq1")
 card_scene = ExtResource("2_miioh")
+win_screen_scene = ExtResource("3_5ekoy")
 
 [node name="Background" type="TextureRect" parent="."]
 offset_right = 3840.0

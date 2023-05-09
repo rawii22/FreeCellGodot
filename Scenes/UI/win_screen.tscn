@@ -1,0 +1,143 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3x2imw43msls"]
+
+[ext_resource type="Script" path="res://Scenes/UI/win_screen.gd" id="1_afsuq"]
+[ext_resource type="FontFile" uid="uid://csh6y5qo6krcu" path="res://Assets/Fonts/SymtextFix.ttf" id="1_rsptf"]
+[ext_resource type="Texture2D" uid="uid://bjxme0f4fpinx" path="res://Assets/UI/settings_button_background_light.png" id="3_bybtl"]
+[ext_resource type="Texture2D" uid="uid://r5kcnyvl57dw" path="res://Assets/UI/settings_button_background_dark.png" id="4_h0yqu"]
+
+[node name="WinScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_afsuq")
+
+[node name="Overlay" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 3840.0
+offset_bottom = 2160.0
+color = Color(0.282353, 0.282353, 0.282353, 0.498039)
+
+[node name="Container" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 130.0
+offset_right = 3320.0
+offset_bottom = 2030.0
+color = Color(0.262745, 0.262745, 0.262745, 0.968627)
+
+[node name="YouWon" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1524.0
+offset_top = 180.0
+offset_right = 2316.0
+offset_bottom = 403.0
+theme_override_fonts/font = ExtResource("1_rsptf")
+theme_override_font_sizes/font_size = 150
+text = "You Won!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Results" type="Label" parent="."]
+layout_mode = 0
+offset_left = 670.0
+offset_top = 470.0
+offset_right = 3170.0
+offset_bottom = 590.0
+theme_override_fonts/font = ExtResource("1_rsptf")
+theme_override_font_sizes/font_size = 70
+text = "-  Results  -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CompleteTimeLabel" type="Label" parent="."]
+offset_left = 1242.0
+offset_top = 650.0
+offset_right = 1920.0
+offset_bottom = 757.0
+theme_override_fonts/font = ExtResource("1_rsptf")
+theme_override_font_sizes/font_size = 70
+text = "Complete Time:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MovesLabel" type="Label" parent="."]
+offset_left = 1633.0
+offset_top = 800.0
+offset_right = 1920.0
+offset_bottom = 907.0
+theme_override_fonts/font = ExtResource("1_rsptf")
+theme_override_font_sizes/font_size = 70
+text = "Moves:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CompleteTime" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2020.0
+offset_top = 650.0
+offset_right = 2289.0
+offset_bottom = 757.0
+theme_override_fonts/font = ExtResource("1_rsptf")
+theme_override_font_sizes/font_size = 70
+text = "##:##"
+
+[node name="Moves" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2020.0
+offset_top = 800.0
+offset_right = 2206.0
+offset_bottom = 907.0
+theme_override_fonts/font = ExtResource("1_rsptf")
+theme_override_font_sizes/font_size = 70
+text = "###"
+
+[node name="NewGame" type="TextureButton" parent="."]
+offset_left = 1170.0
+offset_top = 1750.0
+offset_right = 1870.0
+offset_bottom = 1950.0
+focus_previous = NodePath("../Replay")
+texture_normal = ExtResource("3_bybtl")
+texture_pressed = ExtResource("3_bybtl")
+texture_hover = ExtResource("4_h0yqu")
+texture_focused = ExtResource("4_h0yqu")
+
+[node name="Label" type="Label" parent="NewGame"]
+layout_mode = 0
+offset_right = 700.0
+offset_bottom = 200.0
+theme_override_constants/line_spacing = -25
+theme_override_fonts/font = ExtResource("1_rsptf")
+theme_override_font_sizes/font_size = 75
+text = "new game"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Replay" type="TextureButton" parent="."]
+offset_left = 1970.0
+offset_top = 1750.0
+offset_right = 2670.0
+offset_bottom = 1950.0
+focus_next = NodePath("../NewGame")
+focus_previous = NodePath("../Resume")
+texture_normal = ExtResource("3_bybtl")
+texture_pressed = ExtResource("3_bybtl")
+texture_hover = ExtResource("4_h0yqu")
+texture_focused = ExtResource("4_h0yqu")
+
+[node name="Label" type="Label" parent="Replay"]
+layout_mode = 0
+offset_right = 700.0
+offset_bottom = 200.0
+theme_override_fonts/font = ExtResource("1_rsptf")
+theme_override_font_sizes/font_size = 80
+text = "Replay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="Replay" to="." method="_on_replay_pressed"]
