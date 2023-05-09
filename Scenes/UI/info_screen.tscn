@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://qgtyk2u7qlul"]
+[gd_scene load_steps=8 format=3 uid="uid://qgtyk2u7qlul"]
 
 [ext_resource type="Script" path="res://Scenes/UI/info_screen.gd" id="1_cwj5c"]
 [ext_resource type="Texture2D" uid="uid://ctk1enchfx35h" path="res://Assets/UI/ExitLight.png" id="1_gbnf7"]
+[ext_resource type="PackedScene" uid="uid://3tyeetg11pmv" path="res://Scenes/UI/confirmation_screen.tscn" id="2_fc26o"]
 [ext_resource type="Texture2D" uid="uid://c5jwh1hvrfued" path="res://Assets/UI/Exit.png" id="3_2x17w"]
 [ext_resource type="FontFile" uid="uid://csh6y5qo6krcu" path="res://Assets/Fonts/SymtextFix.ttf" id="4_lhjgh"]
 [ext_resource type="Texture2D" uid="uid://bjxme0f4fpinx" path="res://Assets/UI/settings_button_background_light.png" id="5_wjteo"]
@@ -17,6 +18,7 @@ offset_bottom = -560.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cwj5c")
+confirm_screen_scene = ExtResource("2_fc26o")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 0

@@ -1,8 +1,8 @@
 extends Node2D
 
 @export var card_scene: PackedScene
-@export var confirm_screen_scene: PackedScene #TODO: Create this class and connect it
-@export var win_screen_scene: PackedScene #TODO: Create this class and connect it
+@export var confirm_screen_scene: PackedScene
+@export var win_screen_scene: PackedScene
 
 var movement_occuring = false
 var card_spacing = 92
@@ -70,7 +70,7 @@ func _process(delta):
 
 
 func _input(event):
-	if get_tree().get_root().get_node("Main/GUI").open_ui == 0:
+	if get_tree().get_root().get_node("Main/GUI").open_ui == 0 and !get_tree().get_root().get_node("Main/GUI").block_ui_changes and !auto_completing:
 		if event.is_action_pressed("Undo"):
 			undo()
 		elif event.is_action_pressed("Redo"):
@@ -87,8 +87,13 @@ func _on_redo_button_pressed():
 	redo()
 
 
-func _on_texture_button_pressed():
+func _on_replay_button_pressed():
 	replay()
+
+
+func _on_autocomplete_button_pressed():
+	auto_complete_rejected = false
+	check_autocomplete()
 
 
 #This is to prevent multiple inputs from being entered at once, likely resulting in crashes.
@@ -110,9 +115,17 @@ func set_time_paused(value):
 func new_game(replay_hand = false, seed_num = -1):
 	#TODO: if they have made at least one move, ask if they are sure they want to lose progress on the game? "Will be counted as a loss"
 	if !won and move_made_on_current_hand and !replay_hand:
-		#Create scene instance,
-		#If confirm newgame:
-		lose()
+		var confirmation_screen = confirm_screen_scene.instantiate()
+		add_child(confirmation_screen)
+		var response = await confirmation_screen.confirm("Start a new game?\n(This will count as a loss)", true)
+		confirmation_screen.queue_free()
+		if response:
+			lose()
+		else:
+			return
+	
+	if replay_hand and seed_num == -1:
+		seed_num = previous_seed
 	
 	clear_board()
 	deal_cards(replay_hand, seed_num)
@@ -170,6 +183,7 @@ func clear_board():
 	redo_stack.clear()
 	won = false
 	auto_complete_rejected = false
+	$AutocompleteButton.hide()
 	move_count = 0
 	time_elapsed = 0
 	set_time_paused(true)
@@ -291,16 +305,20 @@ func check_autocomplete():
 			if get_node("FreeCell" + str(i + 1)).has_card:
 				cards_remaining += 1
 		
+		$AutocompleteButton.show()
 		if !auto_complete_rejected:
-#			if confirmation_screen.confirm("Autocomplete?", "Yes", "No", true)
-			#TODO: Confirm for auto complete
-			auto_completing = true
-			for i in range(cards_remaining):
-				await get_tree().create_timer(0.15).timeout
-				auto_move()
-			auto_completing = false
-#			else:
-#				auto_complete_rejected = true
+			var confirmation_screen = confirm_screen_scene.instantiate()
+			add_child(confirmation_screen)
+			var response = await confirmation_screen.confirm("Autocomplete?", true)
+			confirmation_screen.queue_free()
+			if response:
+				auto_completing = true
+				for i in range(cards_remaining):
+					await get_tree().create_timer(0.15).timeout
+					auto_move()
+				auto_completing = false
+			else:
+				auto_complete_rejected = true
 
 
 func undo():

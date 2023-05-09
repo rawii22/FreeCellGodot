@@ -25,10 +25,10 @@ func _input(event):
 
 
 func _on_visibility_changed():
-	$NewGame/LineEdit.text = ""
-	old_text = ""
 	if get_parent() != null:
 		if visible:
+			$NewGame/LineEdit.text = ""
+			old_text = ""
 			get_parent().ui_changed(1)
 			$Resume.grab_focus()
 		else:
@@ -40,16 +40,16 @@ func _on_resume_pressed():
 
 
 func _on_replay_pressed():
-	table.replay()
 	hide()
+	table.replay()
 
 
 func _on_new_game_pressed():
+	hide()
 	if $NewGame/LineEdit.text != "":
 		table.new_game(false, int($NewGame/LineEdit.text))
 	else:
 		table.new_game()
-	hide()
 
 
 func _on_line_edit_focus_entered():
@@ -69,8 +69,8 @@ func _on_line_edit_text_changed(new_text):
 
 
 func _on_line_edit_text_submitted(new_text):
-	_on_new_game_pressed()
 	hide()
+	_on_new_game_pressed()
 
 
 func _on_random_deal_pressed():

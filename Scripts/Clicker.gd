@@ -4,16 +4,18 @@ extends Node2D
 
 var params
 var table
+var GUI
 
 func _ready():
 	params = PhysicsPointQueryParameters2D.new()
 	params.set_collide_with_areas(true)
 	params.set_collision_mask(2)
 	table = get_tree().get_root().get_node("Main/Table")
+	GUI = get_tree().get_root().get_node("Main/GUI")
 
 
 func _input(event):
-	if !table.auto_completing and !get_tree().get_root().get_node("Main/GUI/SettingsMenu").visible and ((event is InputEventMouseButton and event.pressed and (event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT)) or (event is InputEventScreenTouch)):
+	if !table.auto_completing and !GUI.block_ui_changes and GUI.open_ui == 0 and ((event is InputEventMouseButton and event.pressed and (event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT)) or (event is InputEventScreenTouch)):
 		params.position = event.position
 		var shapes = get_world_2d().direct_space_state.intersect_point(params)
 		var top_card

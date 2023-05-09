@@ -55,9 +55,9 @@ vertical_alignment = 1
 [node name="CompleteTimeLabel" type="Label" parent="."]
 layout_mode = 0
 offset_left = 1242.0
-offset_top = 650.0
+offset_top = 800.0
 offset_right = 1920.0
-offset_bottom = 757.0
+offset_bottom = 907.0
 theme_override_fonts/font = ExtResource("1_rsptf")
 theme_override_font_sizes/font_size = 70
 text = "Complete Time:"
@@ -67,9 +67,9 @@ vertical_alignment = 1
 [node name="MovesLabel" type="Label" parent="."]
 layout_mode = 0
 offset_left = 1633.0
-offset_top = 800.0
+offset_top = 950.0
 offset_right = 1920.0
-offset_bottom = 907.0
+offset_bottom = 1057.0
 theme_override_fonts/font = ExtResource("1_rsptf")
 theme_override_font_sizes/font_size = 70
 text = "Moves:"
@@ -79,9 +79,9 @@ vertical_alignment = 1
 [node name="CompleteTime" type="Label" parent="."]
 layout_mode = 0
 offset_left = 2020.0
-offset_top = 650.0
+offset_top = 800.0
 offset_right = 2289.0
-offset_bottom = 757.0
+offset_bottom = 907.0
 theme_override_fonts/font = ExtResource("1_rsptf")
 theme_override_font_sizes/font_size = 70
 text = "##:##"
@@ -89,9 +89,9 @@ text = "##:##"
 [node name="Moves" type="Label" parent="."]
 layout_mode = 0
 offset_left = 2020.0
-offset_top = 800.0
+offset_top = 950.0
 offset_right = 2206.0
-offset_bottom = 907.0
+offset_bottom = 1057.0
 theme_override_fonts/font = ExtResource("1_rsptf")
 theme_override_font_sizes/font_size = 70
 text = "###"

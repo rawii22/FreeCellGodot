@@ -1,19 +1,24 @@
 extends Control
 
+@export var confirm_screen_scene: PackedScene
+
 var table
+var GUI
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hide()
 	table = get_tree().get_root().get_node("Main/Table")
+	GUI = get_tree().get_root().get_node("Main/GUI")
 
 
 func _on_exit_button_pressed():
-	hide()
+	if !GUI.block_ui_changes:
+		hide()
 
 
 func _input(event):
-	if event.is_action_pressed("Info") and !get_tree().get_root().get_node("Main/GUI").block_ui_changes:
+	if event.is_action_pressed("Info") and !GUI.block_ui_changes:
 		visible = !visible
 
 
@@ -30,11 +35,13 @@ func _on_visibility_changed():
 
 
 func _on_reset_stats_pressed():
-	#TODO:
-	#Create confirm object
-	#If confirm,
-	table.reset_stats()
-	update_info()
+	if !GUI.block_ui_changes:
+		var confirmation_screen = confirm_screen_scene.instantiate()
+		get_parent().add_child(confirmation_screen)
+		if await confirmation_screen.confirm("are you sure you want to reset stats?", false):
+			table.reset_stats()
+			update_info()
+		confirmation_screen.queue_free()
 
 
 func update_info():

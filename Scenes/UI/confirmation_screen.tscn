@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=3 uid="uid://3tyeetg11pmv"]
+
+[ext_resource type="Script" path="res://Scenes/UI/confirmation_screen.gd" id="1_1rxxp"]
+[ext_resource type="FontFile" uid="uid://csh6y5qo6krcu" path="res://Assets/Fonts/SymtextFix.ttf" id="2_uh3wm"]
+[ext_resource type="Texture2D" uid="uid://bjxme0f4fpinx" path="res://Assets/UI/settings_button_background_light.png" id="3_dvhm4"]
+[ext_resource type="Texture2D" uid="uid://r5kcnyvl57dw" path="res://Assets/UI/settings_button_background_dark.png" id="4_6n3ek"]
+
+[node name="ConfirmationScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1rxxp")
+
+[node name="Menu" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1120.0
+offset_top = 780.0
+offset_right = 2720.0
+offset_bottom = 1380.0
+
+[node name="Background" type="ColorRect" parent="Menu"]
+offset_right = 1600.0
+offset_bottom = 600.0
+color = Color(0.262745, 0.262745, 0.262745, 1)
+
+[node name="Prompt" type="Label" parent="Menu"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 35.0
+offset_right = 1550.0
+offset_bottom = 285.0
+theme_override_fonts/font = ExtResource("2_uh3wm")
+theme_override_font_sizes/font_size = 70
+text = "Confirmation message"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+
+[node name="Reject" type="TextureButton" parent="Menu"]
+offset_left = 75.0
+offset_top = 325.0
+offset_right = 775.0
+offset_bottom = 525.0
+focus_previous = NodePath("../Replay")
+texture_normal = ExtResource("3_dvhm4")
+texture_pressed = ExtResource("3_dvhm4")
+texture_hover = ExtResource("4_6n3ek")
+texture_focused = ExtResource("4_6n3ek")
+
+[node name="Label" type="Label" parent="Menu/Reject"]
+layout_mode = 0
+offset_right = 700.0
+offset_bottom = 200.0
+focus_neighbor_left = NodePath("../../Confirm")
+focus_neighbor_right = NodePath("../../Confirm")
+focus_next = NodePath("../../Confirm")
+focus_previous = NodePath("../../Confirm")
+theme_override_constants/line_spacing = -25
+theme_override_fonts/font = ExtResource("2_uh3wm")
+theme_override_font_sizes/font_size = 75
+text = "no"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Confirm" type="TextureButton" parent="Menu"]
+offset_left = 825.0
+offset_top = 325.0
+offset_right = 1525.0
+offset_bottom = 525.0
+focus_previous = NodePath("../Replay")
+texture_normal = ExtResource("3_dvhm4")
+texture_pressed = ExtResource("3_dvhm4")
+texture_hover = ExtResource("4_6n3ek")
+texture_focused = ExtResource("4_6n3ek")
+
+[node name="Label" type="Label" parent="Menu/Confirm"]
+layout_mode = 0
+offset_right = 700.0
+offset_bottom = 200.0
+focus_neighbor_left = NodePath("../../Reject")
+focus_neighbor_right = NodePath("../../Reject")
+focus_next = NodePath("../../Reject")
+focus_previous = NodePath("../../Reject")
+theme_override_constants/line_spacing = -25
+theme_override_fonts/font = ExtResource("2_uh3wm")
+theme_override_font_sizes/font_size = 75
+text = "yes"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[connection signal="pressed" from="Menu/Reject" to="." method="_on_reject_pressed"]
+[connection signal="pressed" from="Menu/Confirm" to="." method="_on_confirm_pressed"]
