@@ -1,0 +1,497 @@
+[gd_scene load_steps=13 format=3 uid="uid://ccicuk51w8mn1"]
+
+[ext_resource type="Script" path="res://Scenes/UI/custom_game_screen.gd" id="1_abq4v"]
+[ext_resource type="Texture2D" uid="uid://ctk1enchfx35h" path="res://Assets/UI/ExitLight.png" id="2_aab3q"]
+[ext_resource type="Texture2D" uid="uid://c5jwh1hvrfued" path="res://Assets/UI/Exit.png" id="3_ljklt"]
+[ext_resource type="Texture2D" uid="uid://b3ook1tg6nwh0" path="res://Assets/freecell.png" id="4_tmosv"]
+[ext_resource type="FontFile" uid="uid://csh6y5qo6krcu" path="res://Assets/Fonts/SymtextFix.ttf" id="5_3acpe"]
+[ext_resource type="PackedScene" uid="uid://c4cyk3oyjtyba" path="res://Scenes/custom_card_area.tscn" id="5_36cav"]
+[ext_resource type="Texture2D" uid="uid://h7gpxudomcm1" path="res://Assets/spades.png" id="5_i7lns"]
+[ext_resource type="Texture2D" uid="uid://4wxih0lwh0al" path="res://Assets/clubs.png" id="6_4773n"]
+[ext_resource type="Texture2D" uid="uid://14fx8j3qofiu" path="res://Assets/diamonds.png" id="7_ksvvs"]
+[ext_resource type="Texture2D" uid="uid://bhpob2kw3x38a" path="res://Assets/hearts.png" id="8_ttk2v"]
+[ext_resource type="Texture2D" uid="uid://bjxme0f4fpinx" path="res://Assets/UI/settings_button_background_light.png" id="11_skohf"]
+[ext_resource type="Texture2D" uid="uid://r5kcnyvl57dw" path="res://Assets/UI/settings_button_background_dark.png" id="12_dko1l"]
+
+[node name="CustomGameScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1340.0
+offset_bottom = -560.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_abq4v")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 2500.0
+offset_bottom = 1600.0
+color = Color(0.262745, 0.262745, 0.262745, 1)
+
+[node name="ExitButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 2380.0
+offset_top = 20.0
+offset_right = 2880.0
+offset_bottom = 520.0
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("2_aab3q")
+texture_pressed = ExtResource("2_aab3q")
+texture_hover = ExtResource("3_ljklt")
+
+[node name="Table" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 300.0
+offset_right = 2400.0
+offset_bottom = 1500.0
+color = Color(0, 0, 0, 0.12549)
+
+[node name="Column1" type="Sprite2D" parent="Table"]
+position = Vector2(910, 170)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("4_tmosv")
+
+[node name="Column2" type="Sprite2D" parent="Table"]
+position = Vector2(1090, 170)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("4_tmosv")
+
+[node name="Column3" type="Sprite2D" parent="Table"]
+position = Vector2(1270, 170)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("4_tmosv")
+
+[node name="Column4" type="Sprite2D" parent="Table"]
+position = Vector2(1450, 170)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("4_tmosv")
+
+[node name="Column5" type="Sprite2D" parent="Table"]
+position = Vector2(1630, 170)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("4_tmosv")
+
+[node name="Column6" type="Sprite2D" parent="Table"]
+position = Vector2(1810, 170)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("4_tmosv")
+
+[node name="Column7" type="Sprite2D" parent="Table"]
+position = Vector2(1990, 170)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("4_tmosv")
+
+[node name="Column8" type="Sprite2D" parent="Table"]
+position = Vector2(2170, 170)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("4_tmosv")
+
+[node name="CustomCardArea1" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 860.0
+offset_top = 310.0
+offset_right = 860.0
+offset_bottom = 310.0
+
+[node name="CustomCardArea2" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1040.0
+offset_top = 310.0
+offset_right = 1040.0
+offset_bottom = 310.0
+
+[node name="CustomCardArea3" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1220.0
+offset_top = 310.0
+offset_right = 1220.0
+offset_bottom = 310.0
+
+[node name="CustomCardArea4" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1400.0
+offset_top = 310.0
+offset_right = 1400.0
+offset_bottom = 310.0
+
+[node name="CustomCardArea5" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1580.0
+offset_top = 310.0
+offset_right = 1580.0
+offset_bottom = 310.0
+
+[node name="CustomCardArea6" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1760.0
+offset_top = 310.0
+offset_right = 1760.0
+offset_bottom = 310.0
+
+[node name="CustomCardArea7" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1940.0
+offset_top = 310.0
+offset_right = 1940.0
+offset_bottom = 310.0
+
+[node name="CustomCardArea8" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 2120.0
+offset_top = 310.0
+offset_right = 2120.0
+offset_bottom = 310.0
+
+[node name="CustomCardArea9" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 860.0
+offset_top = 430.0
+offset_right = 860.0
+offset_bottom = 430.0
+
+[node name="CustomCardArea10" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1040.0
+offset_top = 430.0
+offset_right = 1040.0
+offset_bottom = 430.0
+
+[node name="CustomCardArea11" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1220.0
+offset_top = 430.0
+offset_right = 1220.0
+offset_bottom = 430.0
+
+[node name="CustomCardArea12" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1400.0
+offset_top = 430.0
+offset_right = 1400.0
+offset_bottom = 430.0
+
+[node name="CustomCardArea13" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1580.0
+offset_top = 430.0
+offset_right = 1580.0
+offset_bottom = 430.0
+
+[node name="CustomCardArea14" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1760.0
+offset_top = 430.0
+offset_right = 1760.0
+offset_bottom = 430.0
+
+[node name="CustomCardArea15" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1940.0
+offset_top = 430.0
+offset_right = 1940.0
+offset_bottom = 430.0
+
+[node name="CustomCardArea16" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 2120.0
+offset_top = 430.0
+offset_right = 2120.0
+offset_bottom = 430.0
+
+[node name="CustomCardArea17" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 860.0
+offset_top = 550.0
+offset_right = 860.0
+offset_bottom = 550.0
+
+[node name="CustomCardArea18" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1040.0
+offset_top = 550.0
+offset_right = 1040.0
+offset_bottom = 550.0
+
+[node name="CustomCardArea19" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1220.0
+offset_top = 550.0
+offset_right = 1220.0
+offset_bottom = 550.0
+
+[node name="CustomCardArea20" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1400.0
+offset_top = 550.0
+offset_right = 1400.0
+offset_bottom = 550.0
+
+[node name="CustomCardArea21" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1580.0
+offset_top = 550.0
+offset_right = 1580.0
+offset_bottom = 550.0
+
+[node name="CustomCardArea22" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1760.0
+offset_top = 550.0
+offset_right = 1760.0
+offset_bottom = 550.0
+
+[node name="CustomCardArea23" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1940.0
+offset_top = 550.0
+offset_right = 1940.0
+offset_bottom = 550.0
+
+[node name="CustomCardArea24" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 2120.0
+offset_top = 550.0
+offset_right = 2120.0
+offset_bottom = 550.0
+
+[node name="CustomCardArea25" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 860.0
+offset_top = 670.0
+offset_right = 860.0
+offset_bottom = 670.0
+
+[node name="CustomCardArea26" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1040.0
+offset_top = 670.0
+offset_right = 1040.0
+offset_bottom = 670.0
+
+[node name="CustomCardArea27" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1220.0
+offset_top = 670.0
+offset_right = 1220.0
+offset_bottom = 670.0
+
+[node name="CustomCardArea28" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1400.0
+offset_top = 670.0
+offset_right = 1400.0
+offset_bottom = 670.0
+
+[node name="CustomCardArea29" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1580.0
+offset_top = 670.0
+offset_right = 1580.0
+offset_bottom = 670.0
+
+[node name="CustomCardArea30" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1760.0
+offset_top = 670.0
+offset_right = 1760.0
+offset_bottom = 670.0
+
+[node name="CustomCardArea31" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1940.0
+offset_top = 670.0
+offset_right = 1940.0
+offset_bottom = 670.0
+
+[node name="CustomCardArea32" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 2120.0
+offset_top = 670.0
+offset_right = 2120.0
+offset_bottom = 670.0
+
+[node name="CustomCardArea33" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 860.0
+offset_top = 790.0
+offset_right = 860.0
+offset_bottom = 790.0
+
+[node name="CustomCardArea34" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1040.0
+offset_top = 790.0
+offset_right = 1040.0
+offset_bottom = 790.0
+
+[node name="CustomCardArea35" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1220.0
+offset_top = 790.0
+offset_right = 1220.0
+offset_bottom = 790.0
+
+[node name="CustomCardArea36" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1400.0
+offset_top = 790.0
+offset_right = 1400.0
+offset_bottom = 790.0
+
+[node name="CustomCardArea37" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1580.0
+offset_top = 790.0
+offset_right = 1580.0
+offset_bottom = 790.0
+
+[node name="CustomCardArea38" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1760.0
+offset_top = 790.0
+offset_right = 1760.0
+offset_bottom = 790.0
+
+[node name="CustomCardArea39" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1940.0
+offset_top = 790.0
+offset_right = 1940.0
+offset_bottom = 790.0
+
+[node name="CustomCardArea40" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 2120.0
+offset_top = 790.0
+offset_right = 2120.0
+offset_bottom = 790.0
+
+[node name="CustomCardArea41" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 860.0
+offset_top = 910.0
+offset_right = 860.0
+offset_bottom = 910.0
+
+[node name="CustomCardArea42" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1040.0
+offset_top = 910.0
+offset_right = 1040.0
+offset_bottom = 910.0
+
+[node name="CustomCardArea43" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1220.0
+offset_top = 910.0
+offset_right = 1220.0
+offset_bottom = 910.0
+
+[node name="CustomCardArea44" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1400.0
+offset_top = 910.0
+offset_right = 1400.0
+offset_bottom = 910.0
+
+[node name="CustomCardArea45" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1580.0
+offset_top = 910.0
+offset_right = 1580.0
+offset_bottom = 910.0
+
+[node name="CustomCardArea46" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1760.0
+offset_top = 910.0
+offset_right = 1760.0
+offset_bottom = 910.0
+
+[node name="CustomCardArea47" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1940.0
+offset_top = 910.0
+offset_right = 1940.0
+offset_bottom = 910.0
+
+[node name="CustomCardArea48" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 2120.0
+offset_top = 910.0
+offset_right = 2120.0
+offset_bottom = 910.0
+
+[node name="CustomCardArea49" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 860.0
+offset_top = 1030.0
+offset_right = 860.0
+offset_bottom = 1030.0
+
+[node name="CustomCardArea50" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1040.0
+offset_top = 1030.0
+offset_right = 1040.0
+offset_bottom = 1030.0
+
+[node name="CustomCardArea51" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1220.0
+offset_top = 1030.0
+offset_right = 1220.0
+offset_bottom = 1030.0
+
+[node name="CustomCardArea52" parent="Table" instance=ExtResource("5_36cav")]
+offset_left = 1400.0
+offset_top = 1030.0
+offset_right = 1400.0
+offset_bottom = 1030.0
+
+[node name="CardSelector" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 350.0
+offset_right = 870.0
+offset_bottom = 1450.0
+color = Color(0, 0, 0, 0.12549)
+
+[node name="Spades" type="Sprite2D" parent="CardSelector"]
+position = Vector2(85, 85)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_i7lns")
+
+[node name="Line1" type="ColorRect" parent="CardSelector"]
+layout_mode = 0
+offset_left = 170.0
+offset_right = 180.0
+offset_bottom = 1100.0
+color = Color(0.18, 0.18, 0.18, 1)
+
+[node name="Clubs" type="Sprite2D" parent="CardSelector"]
+position = Vector2(265, 85)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_4773n")
+
+[node name="Line2" type="ColorRect" parent="CardSelector"]
+layout_mode = 0
+offset_left = 350.0
+offset_right = 360.0
+offset_bottom = 1100.0
+color = Color(0.18, 0.18, 0.18, 1)
+
+[node name="Diamonds" type="Sprite2D" parent="CardSelector"]
+position = Vector2(445, 85)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("7_ksvvs")
+
+[node name="Line3" type="ColorRect" parent="CardSelector"]
+layout_mode = 0
+offset_left = 530.0
+offset_right = 540.0
+offset_bottom = 1100.0
+color = Color(0.18, 0.18, 0.18, 1)
+
+[node name="Hearts" type="Sprite2D" parent="CardSelector"]
+position = Vector2(625, 85)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("8_ttk2v")
+
+[node name="Line4" type="ColorRect" parent="CardSelector"]
+layout_mode = 0
+offset_top = 155.0
+offset_right = 720.0
+offset_bottom = 165.0
+color = Color(0.18, 0.18, 0.18, 1)
+
+[node name="CardList" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 130.0
+offset_right = 2400.0
+offset_bottom = 240.0
+theme_override_fonts/font = ExtResource("5_3acpe")
+theme_override_font_sizes/font_size = 28
+alignment = 1
+max_length = 146
+context_menu_enabled = false
+
+[node name="PlayHand" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1970.0
+offset_top = 1360.0
+offset_right = 2670.0
+offset_bottom = 1560.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("11_skohf")
+texture_pressed = ExtResource("11_skohf")
+texture_hover = ExtResource("12_dko1l")
+
+[node name="Label" type="Label" parent="PlayHand"]
+layout_mode = 0
+offset_right = 700.0
+offset_bottom = 200.0
+theme_override_colors/font_color = Color(0.847059, 0.207843, 0, 1)
+theme_override_fonts/font = ExtResource("5_3acpe")
+theme_override_font_sizes/font_size = 75
+text = "Play Hand"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="text_changed" from="CardList" to="." method="_on_card_list_text_changed"]
+[connection signal="pressed" from="PlayHand" to="." method="_on_play_hand_pressed"]

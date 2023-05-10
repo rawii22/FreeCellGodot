@@ -4,6 +4,8 @@ extends Node2D
 @export var confirm_screen_scene: PackedScene
 @export var win_screen_scene: PackedScene
 
+var special_hand = [51,38,25,12,50,37,24,11,49,36,23,10,48,35,22,9,47,34,21,8,46,33,20,7,45,32,19,6,44,31,18,5,43,30,17,4,42,29,16,3,41,28,15,2,40,27,14,1,39,26,13,0]
+
 var movement_occuring = false
 var card_spacing = 92
 
@@ -20,6 +22,7 @@ var win_screen
 var current_hand = []
 var previous_seed = -1
 var is_random = true
+var is_custom = false
 var move_made_on_current_hand = false
 
 #These initializations are here to make sure the game has something to alter while creating a new game
@@ -112,20 +115,31 @@ func set_time_paused(value):
 		time_paused = value
 
 
-func new_game(replay_hand = false, seed_num = -1):
-	#TODO: if they have made at least one move, ask if they are sure they want to lose progress on the game? "Will be counted as a loss"
+func new_game(replay_hand = false, seed_num = -1, custom_deal = null):
 	if !won and move_made_on_current_hand and !replay_hand:
 		var confirmation_screen = confirm_screen_scene.instantiate()
 		add_child(confirmation_screen)
-		var response = await confirmation_screen.confirm("Start a new game?\n(This will count as a loss)", true)
+		var prompt
+		if is_custom:
+			prompt = "Start a new game?\n(Custom deals do not affect statistics)"
+		else:
+			prompt = "Start a new game?\n(This will count as a loss)"
+		var response = await confirmation_screen.confirm(prompt, true)
 		confirmation_screen.queue_free()
 		if response:
 			lose()
 		else:
 			return
 	
-	if replay_hand and seed_num == -1:
+	if replay_hand and seed_num == -1: #If replaying, and seed is not specified, maintain the seed of the replayed game, whether that be a random deal, or a numbered deal.
 		seed_num = previous_seed
+	
+	if !replay_hand:
+		if custom_deal != null:
+			current_hand = custom_deal
+			is_custom = true
+		else:
+			is_custom = false
 	
 	clear_board()
 	deal_cards(replay_hand, seed_num)
@@ -195,21 +209,28 @@ func deal_cards(replay_hand, seed_num):
 	var cards = []
 	
 	if !replay_hand or seed_num != previous_seed:
-		current_hand.clear()
-		for i in range(52):
-			current_hand.append(i)
-		if seed_num > -1:
-			seed(seed_num)
-			is_random = false
-			$DealNumber.text = "Deal: #" + str(seed_num)
+		if !is_custom:
+			current_hand.clear()
+			for i in range(52):
+				current_hand.append(i)
+			if seed_num > -1:
+				seed(seed_num)
+				is_random = false
+				$DealNumber.text = "Deal: #" + str(seed_num)
+			else:
+				$DealNumber.text = ""
+				if previous_seed != -1: # This to avoid calling randomize() more times than necessary
+					randomize()
+				is_random = true
+			previous_seed = seed_num
+			current_hand.shuffle()
+			if seed_num == 2023:
+				current_hand.clear()
+				current_hand = special_hand.duplicate()
+				is_custom = true
 		else:
-			$DealNumber.text = ""
-			if previous_seed != -1: # This to avoid calling randomize() more times than necessary
-				randomize()
-			is_random = true
-		previous_seed = seed_num
-		current_hand.shuffle()
-		move_made_on_current_hand = false
+			$DealNumber.text = "Custom Deal"
+		move_made_on_current_hand = false #This must be here and not in clear_board since only deal_cards can tell if the user is replaying
 	
 	for i in current_hand:
 		var card = card_scene.instantiate()
@@ -239,10 +260,10 @@ func deal_cards(replay_hand, seed_num):
 	
 	#TODO: Dealing animation?
 	
-	for i in range(8):
-		for j in range(6):
+	for i in range(6):
+		for j in range(8):
 			card_to_deal = cards.pop_front()
-			get_node("Column" + str(i + 1)).add_card(card_to_deal, false)
+			get_node("Column" + str(j + 1)).add_card(card_to_deal, false)
 			card_to_deal.show()
 	
 	for i in range(4):
@@ -313,10 +334,12 @@ func check_autocomplete():
 			confirmation_screen.queue_free()
 			if response:
 				auto_completing = true
+				get_tree().get_root().get_node("Main/GUI").block_ui_changes = true
 				for i in range(cards_remaining):
-					await get_tree().create_timer(0.15).timeout
+					await get_tree().create_timer(0.06).timeout
 					auto_move()
 				auto_completing = false
+				get_tree().get_root().get_node("Main/GUI").block_ui_changes = false
 			else:
 				auto_complete_rejected = true
 
@@ -345,22 +368,24 @@ func win():
 	set_time_paused(true)
 	won = true
 	win_screen = win_screen_scene.instantiate()
-	win_screen.construct(time_elapsed, move_count)
+	win_screen.construct(time_elapsed, move_count, is_custom)
 	add_child(win_screen)
 	win_screen.show()
 	
-	games_played += 1
-	games_won += 1
-	if time_elapsed < best_time:
-		best_time = time_elapsed
-	if move_count < best_moves:
-		best_moves = move_count
-	save()
+	if !is_custom:
+		games_played += 1
+		games_won += 1
+		if time_elapsed < best_time:
+			best_time = time_elapsed
+		if move_count < best_moves:
+			best_moves = move_count
+		save()
 
 
 func lose():
-	games_played += 1
-	save()
+	if !is_custom:
+		games_played += 1
+		save()
 
 
 func save():

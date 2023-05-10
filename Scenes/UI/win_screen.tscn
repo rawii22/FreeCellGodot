@@ -96,6 +96,18 @@ theme_override_fonts/font = ExtResource("1_rsptf")
 theme_override_font_sizes/font_size = 70
 text = "###"
 
+[node name="CustomGameMessage" type="Label" parent="."]
+visible = false
+offset_left = 670.0
+offset_top = 1242.0
+offset_right = 3170.0
+offset_bottom = 1362.0
+theme_override_fonts/font = ExtResource("1_rsptf")
+theme_override_font_sizes/font_size = 70
+text = "(Custom games do not count in statistics)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="NewGame" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 1170.0

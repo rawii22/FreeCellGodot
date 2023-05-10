@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://qwn5500363f6"]
+[gd_scene load_steps=8 format=3 uid="uid://bkl1dn3e1cgtw"]
 
 [ext_resource type="Texture2D" uid="uid://cgd7gusrkam4e" path="res://Assets/Cards/cardback.png" id="1_auwtk"]
 [ext_resource type="Script" path="res://Scenes/card.gd" id="1_b5413"]
-[ext_resource type="Texture2D" uid="uid://de6bjaayiwv7d" path="res://Assets/outline.png" id="3_avb2c"]
+[ext_resource type="Texture2D" uid="uid://de6bjaayiwv7d" path="res://Assets/cardShadow.png" id="3_gwtde"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wohtn"]
 size = Vector2(1000, 1410)
@@ -29,7 +29,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Outline:offset")
+tracks/1/path = NodePath("CardShadow:offset")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -59,8 +59,8 @@ disabled = true
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_auwtk")
 
-[node name="Outline" type="Sprite2D" parent="."]
-texture = ExtResource("3_avb2c")
+[node name="CardShadow" type="Sprite2D" parent="."]
+texture = ExtResource("3_gwtde")
 
 [node name="ShakeAnimation" type="AnimationPlayer" parent="."]
 reset_on_save = false

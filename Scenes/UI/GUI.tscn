@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cw5qgkpt1x8rv"]
+[gd_scene load_steps=9 format=3 uid="uid://cw5qgkpt1x8rv"]
 
 [ext_resource type="Script" path="res://Scenes/UI/GUI.gd" id="1_x71gi"]
 [ext_resource type="PackedScene" uid="uid://bv5f355kufr5q" path="res://Scenes/UI/settings_button.tscn" id="2_1j64k"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://qgtyk2u7qlul" path="res://Scenes/UI/info_screen.tscn" id="3_8pnu7"]
 [ext_resource type="PackedScene" uid="uid://dxb7ghjo2y75q" path="res://Scenes/UI/settings_menu.tscn" id="3_beqox"]
 [ext_resource type="FontFile" uid="uid://csh6y5qo6krcu" path="res://Assets/Fonts/SymtextFix.ttf" id="3_w2snl"]
+[ext_resource type="PackedScene" uid="uid://ccicuk51w8mn1" path="res://Scenes/UI/custom_game_screen.tscn" id="6_tw6d4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jfktu"]
 size = Vector2(3840, 2160)
@@ -59,6 +60,13 @@ offset_top = 280.0
 offset_right = 670.0
 offset_bottom = 280.0
 
+[node name="CustomGameScreen" parent="." instance=ExtResource("6_tw6d4")]
+visible = false
+offset_left = 670.0
+offset_top = 280.0
+offset_right = 670.0
+offset_bottom = 280.0
+
 [node name="SettingsButton" parent="." instance=ExtResource("2_1j64k")]
 anchors_preset = 3
 anchor_left = 1.0
@@ -73,4 +81,12 @@ grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.3, 0.3)
 
+[node name="CustomGameButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 2228.0
+offset_top = 2055.0
+offset_right = 2355.0
+offset_bottom = 2096.0
+
 [connection signal="input_event" from="DarkOverlay" to="DarkOverlay" method="_on_input_event"]
+[connection signal="pressed" from="CustomGameButton" to="." method="_on_custom_game_button_pressed"]

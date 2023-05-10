@@ -22,6 +22,7 @@ offset_right = 2720.0
 offset_bottom = 1380.0
 
 [node name="Background" type="ColorRect" parent="Menu"]
+layout_mode = 0
 offset_right = 1600.0
 offset_bottom = 600.0
 color = Color(0.262745, 0.262745, 0.262745, 1)
@@ -29,9 +30,9 @@ color = Color(0.262745, 0.262745, 0.262745, 1)
 [node name="Prompt" type="Label" parent="Menu"]
 layout_mode = 0
 offset_left = 50.0
-offset_top = 35.0
+offset_top = -5.0
 offset_right = 1550.0
-offset_bottom = 285.0
+offset_bottom = 332.0
 theme_override_fonts/font = ExtResource("2_uh3wm")
 theme_override_font_sizes/font_size = 70
 text = "Confirmation message"
@@ -41,6 +42,7 @@ autowrap_mode = 2
 clip_text = true
 
 [node name="Reject" type="TextureButton" parent="Menu"]
+layout_mode = 0
 offset_left = 75.0
 offset_top = 325.0
 offset_right = 775.0
@@ -68,6 +70,7 @@ vertical_alignment = 1
 clip_text = true
 
 [node name="Confirm" type="TextureButton" parent="Menu"]
+layout_mode = 0
 offset_left = 825.0
 offset_top = 325.0
 offset_right = 1525.0

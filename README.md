@@ -28,6 +28,7 @@ For the sake of keeping things as generic as possible, each area (columns, free 
 	- The limit for an integer in Godot is -9223372036854775808 to 9223372036854775807 (signed 64 bits). I chose 9999999 arbitrarily, but partially because it looked pretty and it fit in the text box.
 - **Touch Screen Compatible**: This game should work on touch screen devices. When a card is tapped, it will do the same thing as a right-click. Dragging works the same as dragging with the mouse. Buttons are visible on the screen to make Undo, Redo, and Replay easy to access.
 - **Save Data**: Statistics on games played are persistent.
+- **Easter Eggs**: 2023 is quite an interesting number...
 
 ## Shortcuts
 

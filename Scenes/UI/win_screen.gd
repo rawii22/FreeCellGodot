@@ -1,9 +1,11 @@
 extends Control
 
 
-func construct(complete_time, moves_made):
+func construct(complete_time, moves_made, is_custom):
 	$CompleteTime.text = "%d:%02d" % [floor(complete_time / 60), int(complete_time) % 60]
 	$Moves.text = str(moves_made)
+	if is_custom:
+		$CustomGameMessage.show()
 
 
 func _on_new_game_pressed():

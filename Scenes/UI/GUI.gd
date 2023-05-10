@@ -23,6 +23,7 @@ func ui_changed(value):
 func hide_all_ui():
 	$SettingsMenu.hide()
 	$InfoScreen.hide()
+	$CustomGameScreen.hide()
 
 
 func block_ui(value):
@@ -31,3 +32,7 @@ func block_ui(value):
 		table.set_time_paused(true)
 	else:
 		table.set_time_paused(value)
+
+
+func _on_custom_game_button_pressed():
+	$CustomGameScreen.show()
