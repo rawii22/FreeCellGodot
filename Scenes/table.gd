@@ -4,6 +4,8 @@ extends Node2D
 @export var confirm_screen_scene: PackedScene
 @export var win_screen_scene: PackedScene
 
+const save_file_location = "res://savegame.save"
+
 var special_hand = [51,38,25,12,50,37,24,11,49,36,23,10,48,35,22,9,47,34,21,8,46,33,20,7,45,32,19,6,44,31,18,5,43,30,17,4,42,29,16,3,41,28,15,2,40,27,14,1,39,26,13,0]
 
 var movement_occuring = false
@@ -51,11 +53,11 @@ var redo_stack = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#TODO: Read the save file. Set to defaults if none.
-	if !FileAccess.file_exists("user://savegame.save"):
+	if !FileAccess.file_exists(save_file_location):
 		reset_stats()
 		return
 	
-	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
+	var save_file = FileAccess.open(save_file_location, FileAccess.READ)
 	var json_string = save_file.get_line()
 	var json = JSON.new()
 	var json_result = json.parse(json_string)
@@ -400,7 +402,7 @@ func lose():
 
 
 func save():
-	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	var save_file = FileAccess.open(save_file_location, FileAccess.WRITE)
 	var save_data = {
 		"games_played" : games_played,
 		"games_won" : games_won,
