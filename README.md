@@ -13,7 +13,7 @@ For the sake of keeping things as generic as possible, each area (columns, free 
 
 - `add_card`
 	- Receives an array of cards. Returns nothing. Places the card(s) in the list into the respective area.
-		- The Column area is an exception since it is capable of receiving a single card object.
+		- The Column area is an exception since it is capable of receiving a single card object at a time. This is because when cards are being dealt to the columns, they are added as single cards. When cards are being moved back and forth during gameplay, they are added as stacks.
 - `remove_card`
 	- Receives a single card object. Returns a list of cards. For columns, a list of all cards under the specified card, if any, will be returned. For the other two areas, an array with the single specified card will be returned. This function, as opposed to get_card_stack, will actually change internal properties of the parent area.
 - `get_card_stack`

@@ -11,8 +11,9 @@ func _ready():
 	card_spacing = table.card_spacing
 
 
-#This is function makes it easier in other places when you don't know if your card is a single or a stack.
-#It prevents me from having to write for-loops everywhere
+#This is function makes it easier when you don't know if your card is a single card object or an array of cards.
+#When cards are being dealt to the columns, they are added as single cards. When cards are being moved
+#back and forth during gameplay, they are added as stacks.
 func add_card(data, do_animation = true):
 	if cards.size() == 0:
 		table.update_free_cells(-1, true)
