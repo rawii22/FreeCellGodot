@@ -53,6 +53,5 @@ func update_info():
 		$StatsBackground/BestTime.text = "%d:%02d" % [floor(table.best_time / 60), int(table.best_time) % 60]
 		$StatsBackground/BestMoves.text = str(table.best_moves)
 	else:
-		$StatsBackground/WinRate.text = ""
 		$StatsBackground/BestTime.text = ""
 		$StatsBackground/BestMoves.text = ""

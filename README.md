@@ -30,6 +30,7 @@ For the sake of keeping things as generic as possible, each area (columns, free 
 - **Touch Screen Compatible**: This game should work on touch screen devices. When a card is tapped, it will do the same thing as a right-click. Dragging works the same as dragging with the mouse. Buttons are visible on the screen to make Undo, Redo, and Replay easy to access.
 - **Save Data**: Statistics on games played are persistent.
 - **Easter Eggs**: 2023 is quite an interesting number...
+- **Custom Game**: Click on the "2023" next to my name when you open the settings screen to open the custom game screen.
 
 ## Shortcuts
 

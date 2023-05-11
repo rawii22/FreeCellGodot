@@ -88,7 +88,7 @@ func auto_click():
 			if detected_area.can_place_card(dragged_stack):
 				move_occured = true
 	
-	for i in range(8): #Auto move card to a column that already has cards on it
+	for i in range(8): #Auto move card from a column to a non-empty column to the right
 		if !move_occured:
 			detected_area = get_tree().get_root().get_node("Main/Table/Column" + str(i + 1))
 			if detected_area != parent_area:
@@ -101,7 +101,7 @@ func auto_click():
 			if detected_area != parent_area:
 				if detected_area.can_place_card(dragged_stack):
 					move_occured = true
-
+	
 	for i in range(4):
 		if !move_occured:
 			detected_area = get_tree().get_root().get_node("Main/Table/FreeCell" + str(i + 1))

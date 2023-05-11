@@ -39,14 +39,6 @@ func _on_value_button_mouse_exited():
 		self.modulate.a = resting_alpha
 
 
-func _on_value_button_focus_entered():
-	_on_value_button_mouse_entered()
-
-
-func _on_value_button_focus_exited():
-	_on_value_button_mouse_exited()
-
-
 #If the button is pressed, put the card into the selected area. If the button is not pressed, it will
 # simply pass the card ID and be done. If the button is currently pressed, replace the existing card
 # in the selected area with the card value, but if the card in the selected area is the same as the

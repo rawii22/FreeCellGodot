@@ -20,11 +20,7 @@ func _on_texture_button_mouse_exited():
 
 
 func _on_texture_button_focus_entered():
-	_on_texture_button_mouse_entered()
-
-
-func _on_texture_button_focus_exited():
-	_on_texture_button_mouse_exited()
+	_on_texture_button_button_down()
 
 
 func _on_texture_button_button_down():
