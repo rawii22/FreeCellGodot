@@ -72,6 +72,7 @@ func _process(delta):
 		$TimerText.text = "Time: " + "%d:%02d" % [floor(time_elapsed / 60), int(time_elapsed) % 60]
 
 
+#Block table input if there is any ui open or if there is a blocking ui call (likely a confirmation screen).
 func _input(event):
 	if get_tree().get_root().get_node("Main/GUI").open_ui == 0 and !get_tree().get_root().get_node("Main/GUI").block_ui_changes and !auto_completing:
 		if event.is_action_pressed("Undo"):
@@ -145,39 +146,6 @@ func new_game(replay_hand = false, seed_num = -1, custom_deal = null):
 	deal_cards(replay_hand, seed_num)
 
 
-#This is supposed to be like an auto-move for cards that can go to the foundation. It only moves one card at a time.
-#If you want to move more than one card at a time to the foundation, try removing the checks for move_occured as a start.
-func auto_move():
-	if !movement_occuring:
-		var current_area
-		var current_card
-		var move_occured = false
-		
-		for i in range(8):
-			if !move_occured:
-				current_area = get_tree().get_root().get_node("Main/Table/Column" + str(i + 1))
-				if current_area.cards.size() > 0:
-					current_card = current_area.cards.back()
-					if can_go_in_foundation(current_card):
-						move_occured = current_card.on_click(true)
-		
-		for i in range(4):
-			if !move_occured:
-				current_area = get_tree().get_root().get_node("Main/Table/FreeCell" + str(i + 1))
-				if current_area.has_card:
-					current_card = current_area.held_card
-					if can_go_in_foundation(current_card):
-						move_occured = current_card.on_click(true)
-
-
-func can_go_in_foundation(card):
-	var current_foundation
-	for j in range(4):
-		current_foundation = get_tree().get_root().get_node("Main/Table/Foundation" + str(j + 1))
-		if current_foundation.can_place_card(card):
-			return true
-
-
 func clear_board():
 	for i in range(8):
 		get_node("Column" + str(i + 1)).cards.clear()
@@ -226,7 +194,7 @@ func deal_cards(replay_hand, seed_num):
 			current_hand.shuffle()
 			if seed_num == 2023:
 				current_hand.clear()
-				current_hand = special_hand.duplicate()
+				current_hand = special_hand.duplicate() # Duplicate here or else the original array will be cleared as well when a new game is started. This is because of pointers.
 				is_custom = true
 		else:
 			$DealNumber.text = "Custom Deal"
@@ -276,18 +244,6 @@ func deal_cards(replay_hand, seed_num):
 	calculate_max_stack_size()
 
 
-func calculate_max_stack_size():
-	max_stack_size = (pow(2, free_columns)) * (free_cells + 1)
-
-
-func update_free_cells(delta, is_column = false):
-	if is_column:
-		free_columns += delta
-	else:
-		free_cells += delta
-	calculate_max_stack_size()
-
-
 func move_made(move, record_move = true):
 	if record_move:
 		move_history.push_back(move)
@@ -310,6 +266,10 @@ func move_made(move, record_move = true):
 		return
 
 
+#If the cards can be auto completed, this function will prompt the user if they want to auto complete
+# the game. If they reject it, it will not prompt them again until they hit the autocomplete button.
+# When autocomplete starts, it will simply defer to the the auto_move function cards_remaining number
+# of times.
 func check_autocomplete():
 	if !auto_completing: #This is to avoid one massive infinite loop
 		var cards_remaining = 0
@@ -342,6 +302,51 @@ func check_autocomplete():
 				get_tree().get_root().get_node("Main/GUI").block_ui_changes = false
 			else:
 				auto_complete_rejected = true
+
+
+#This is supposed to be like an auto-move for cards that can go to the foundation. It only moves one card at a time.
+#If you want to move more than one card at a time to the foundation, try removing the checks for move_occured as a start.
+func auto_move():
+	if !movement_occuring:
+		var current_area
+		var current_card
+		var move_occured = false
+		
+		for i in range(8):
+			if !move_occured:
+				current_area = get_tree().get_root().get_node("Main/Table/Column" + str(i + 1))
+				if current_area.cards.size() > 0:
+					current_card = current_area.cards.back()
+					if can_go_in_foundation(current_card):
+						move_occured = current_card.on_click(true)
+		
+		for i in range(4):
+			if !move_occured:
+				current_area = get_tree().get_root().get_node("Main/Table/FreeCell" + str(i + 1))
+				if current_area.has_card:
+					current_card = current_area.held_card
+					if can_go_in_foundation(current_card):
+						move_occured = current_card.on_click(true)
+
+
+func can_go_in_foundation(card):
+	var current_foundation
+	for j in range(4):
+		current_foundation = get_tree().get_root().get_node("Main/Table/Foundation" + str(j + 1))
+		if current_foundation.can_place_card(card):
+			return true
+
+
+func update_free_cells(delta, is_column = false):
+	if is_column:
+		free_columns += delta
+	else:
+		free_cells += delta
+	calculate_max_stack_size()
+
+
+func calculate_max_stack_size():
+	max_stack_size = (pow(2, free_columns)) * (free_cells + 1)
 
 
 func undo():

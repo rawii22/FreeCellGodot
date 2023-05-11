@@ -26,25 +26,32 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if is_being_dragged:
+		#As long as the mouse button is clicked, drag the card to follow it.
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			#Maintain the stack structure for each card being dragged.
 			for i in range(dragged_stack.size()):
 				dragged_stack[i].position = get_viewport().get_mouse_position() - offset
 				dragged_stack[i].position.y += (card_spacing * i)
 		else:
+			#Once dragging ends, place the cards.
 			is_being_dragged = false
 			make_move(detected_area)
 
 
+#If a column is entered, store it in case the player releases their cards over it.
 func _on_area_entered(area):
 	if area.name.contains("Column") or area.name.contains("FreeCell") or area.name.contains("Foundation"):
 		detected_area = area
 
 
+#If a player is not over a valid location, reset the area.
 func _on_area_exited(area):
 	if is_being_dragged and (area.name.contains("Column") or area.name.contains("FreeCell") or area.name.contains("Foundation")):
 		detected_area = null
 
 
+#Nothing will occur if an action is happening to another card.
+#This function returns true if a move was made.
 func on_click(is_auto = false):
 	if !table.is_action_happening():
 		table.toggle_action_happening() #First block other things from happening
@@ -53,7 +60,7 @@ func on_click(is_auto = false):
 			$CardArea.set_deferred("disabled", true)
 			$DragArea.set_deferred("disabled", false)
 			dragged_stack = parent_area.remove_card(self)
-			offset = get_viewport().get_mouse_position() - (parent_area.position + position)
+			offset = get_viewport().get_mouse_position() - (parent_area.position + position) #Calculate offset so the card will move with the mouse.
 			for card in dragged_stack:
 				card.reparent(get_parent().get_parent())
 			if is_auto:
@@ -128,8 +135,14 @@ func can_drag_stack(stack):
 
 
 #This function keeps track of moves and re-activates the card for clicking
+#Card(s) will be placed in whichever location is stored in destination. If destination is null,
+#the cards will be moved back to the parent_area.
+#If a move is being undone, toggle_action_happening will not be called since the move was not
+#made from inside the card.
 func make_move(destination, check_move = true):
-	if !check_move: #An assumption is being made here that the only time check_move will be false is when a move is being undone.
+	#An assumption is being made here that the only time check_move will be false is when a move is being undone.
+	#If the move is being undone, the cards have not yet been removed from their parent area.
+	if !check_move:
 		parent_area = get_parent()
 		dragged_stack = parent_area.remove_card(self)
 	
@@ -139,6 +152,7 @@ func make_move(destination, check_move = true):
 	if !check_move:
 		destination.add_card(dragged_stack)
 	elif destination != null and destination.can_place_card(dragged_stack):
+		#Do not increment the move count if a card is moved between two empty areas.
 		var add_move = true
 		if parent_area.name.contains("FreeCell"):
 			if destination.name.contains("FreeCell"):
