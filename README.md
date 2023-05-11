@@ -31,6 +31,7 @@ For the sake of keeping things as generic as possible, each area (columns, free 
 - **Save Data**: Statistics on games played are persistent.
 - **Easter Eggs**: 2023 is quite an interesting number...
 - **Custom Game**: Click on the "2023" next to my name when you open the settings screen to open the custom game screen.
+	- Use the arrow keys to change which card slot is selected. Clicking "tab" after moving the selected card slot will move the focus to the card selection area. After hitting "enter" in the card selection area or clicking "tab" again, the focus will move back to the card slot area.
 
 ## Shortcuts
 

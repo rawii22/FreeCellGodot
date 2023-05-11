@@ -6,9 +6,9 @@ extends Control
 
 var card_id
 var value
-var resting_alpha = 0.8
+var resting_alpha = 0.7
 var hover_alpha = 1
-var disabled_alpha = 0.5
+var disabled_alpha = 0.4
 var pressed = false
 
 var unpressed_texture
@@ -39,6 +39,19 @@ func _on_value_button_mouse_exited():
 		self.modulate.a = resting_alpha
 
 
+func _on_value_button_focus_entered():
+	_on_value_button_mouse_entered()
+
+
+func _on_value_button_focus_exited():
+	_on_value_button_mouse_exited()
+
+
+func _on_value_button_gui_input(event):
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		get_tree().get_root().get_node("Main/GUI/CustomGameScreen").selected_area.focus()
+
+
 #If the button is pressed, put the card into the selected area. If the button is not pressed, it will
 # simply pass the card ID and be done. If the button is currently pressed, replace the existing card
 # in the selected area with the card value, but if the card in the selected area is the same as the
@@ -53,6 +66,7 @@ func _on_value_button_button_down():
 	if !pressed:
 		press()
 		get_tree().get_root().get_node("Main/GUI/CustomGameScreen").add_card(card_id)
+		get_tree().get_root().get_node("Main/GUI/CustomGameScreen").selected_area.focus()
 
 
 func press():

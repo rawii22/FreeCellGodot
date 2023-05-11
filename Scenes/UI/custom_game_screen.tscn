@@ -108,338 +108,573 @@ offset_left = 860.0
 offset_top = 310.0
 offset_right = 860.0
 offset_bottom = 310.0
-focus_neighbor_bottom = NodePath("../CustomCardArea9")
-focus_next = NodePath(".")
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
 focus_previous = NodePath("../../CardList")
+focus_mode = 2
 
 [node name="CustomCardArea2" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1040.0
 offset_top = 310.0
 offset_right = 1040.0
 offset_bottom = 310.0
-focus_neighbor_bottom = NodePath("../CustomCardArea10")
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea3" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1220.0
 offset_top = 310.0
 offset_right = 1220.0
 offset_bottom = 310.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea4" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1400.0
 offset_top = 310.0
 offset_right = 1400.0
 offset_bottom = 310.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea5" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1580.0
 offset_top = 310.0
 offset_right = 1580.0
 offset_bottom = 310.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea6" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1760.0
 offset_top = 310.0
 offset_right = 1760.0
 offset_bottom = 310.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea7" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1940.0
 offset_top = 310.0
 offset_right = 1940.0
 offset_bottom = 310.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea8" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 2120.0
 offset_top = 310.0
 offset_right = 2120.0
 offset_bottom = 310.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea9" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 860.0
 offset_top = 430.0
 offset_right = 860.0
 offset_bottom = 430.0
-focus_neighbor_top = NodePath("../CustomCardArea1")
-focus_neighbor_bottom = NodePath("../CustomCardArea17")
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea10" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1040.0
 offset_top = 430.0
 offset_right = 1040.0
 offset_bottom = 430.0
-focus_neighbor_top = NodePath("../CustomCardArea2")
-focus_neighbor_bottom = NodePath("../CustomCardArea18")
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea11" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1220.0
 offset_top = 430.0
 offset_right = 1220.0
 offset_bottom = 430.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea12" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1400.0
 offset_top = 430.0
 offset_right = 1400.0
 offset_bottom = 430.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea13" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1580.0
 offset_top = 430.0
 offset_right = 1580.0
 offset_bottom = 430.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea14" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1760.0
 offset_top = 430.0
 offset_right = 1760.0
 offset_bottom = 430.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea15" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1940.0
 offset_top = 430.0
 offset_right = 1940.0
 offset_bottom = 430.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea16" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 2120.0
 offset_top = 430.0
 offset_right = 2120.0
 offset_bottom = 430.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea17" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 860.0
 offset_top = 550.0
 offset_right = 860.0
 offset_bottom = 550.0
-focus_neighbor_top = NodePath("../CustomCardArea9")
-focus_neighbor_bottom = NodePath("../CustomCardArea25")
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea18" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1040.0
 offset_top = 550.0
 offset_right = 1040.0
 offset_bottom = 550.0
-focus_neighbor_top = NodePath("../CustomCardArea10")
-focus_neighbor_bottom = NodePath("../CustomCardArea26")
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea19" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1220.0
 offset_top = 550.0
 offset_right = 1220.0
 offset_bottom = 550.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea20" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1400.0
 offset_top = 550.0
 offset_right = 1400.0
 offset_bottom = 550.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea21" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1580.0
 offset_top = 550.0
 offset_right = 1580.0
 offset_bottom = 550.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea22" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1760.0
 offset_top = 550.0
 offset_right = 1760.0
 offset_bottom = 550.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea23" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1940.0
 offset_top = 550.0
 offset_right = 1940.0
 offset_bottom = 550.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea24" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 2120.0
 offset_top = 550.0
 offset_right = 2120.0
 offset_bottom = 550.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea25" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 860.0
 offset_top = 670.0
 offset_right = 860.0
 offset_bottom = 670.0
-focus_neighbor_top = NodePath("../CustomCardArea17")
-focus_neighbor_bottom = NodePath("../CustomCardArea33")
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea26" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1040.0
 offset_top = 670.0
 offset_right = 1040.0
 offset_bottom = 670.0
-focus_neighbor_top = NodePath("../CustomCardArea18")
-focus_neighbor_bottom = NodePath("../CustomCardArea34")
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea27" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1220.0
 offset_top = 670.0
 offset_right = 1220.0
 offset_bottom = 670.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea28" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1400.0
 offset_top = 670.0
 offset_right = 1400.0
 offset_bottom = 670.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea29" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1580.0
 offset_top = 670.0
 offset_right = 1580.0
 offset_bottom = 670.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea30" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1760.0
 offset_top = 670.0
 offset_right = 1760.0
 offset_bottom = 670.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea31" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1940.0
 offset_top = 670.0
 offset_right = 1940.0
 offset_bottom = 670.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea32" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 2120.0
 offset_top = 670.0
 offset_right = 2120.0
 offset_bottom = 670.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea33" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 860.0
 offset_top = 790.0
 offset_right = 860.0
 offset_bottom = 790.0
-focus_neighbor_top = NodePath("../CustomCardArea25")
-focus_neighbor_bottom = NodePath("../CustomCardArea41")
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea34" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1040.0
 offset_top = 790.0
 offset_right = 1040.0
 offset_bottom = 790.0
-focus_neighbor_top = NodePath("../CustomCardArea26")
-focus_neighbor_bottom = NodePath("../CustomCardArea42")
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea35" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1220.0
 offset_top = 790.0
 offset_right = 1220.0
 offset_bottom = 790.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea36" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1400.0
 offset_top = 790.0
 offset_right = 1400.0
 offset_bottom = 790.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea37" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1580.0
 offset_top = 790.0
 offset_right = 1580.0
 offset_bottom = 790.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea38" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1760.0
 offset_top = 790.0
 offset_right = 1760.0
 offset_bottom = 790.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea39" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1940.0
 offset_top = 790.0
 offset_right = 1940.0
 offset_bottom = 790.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea40" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 2120.0
 offset_top = 790.0
 offset_right = 2120.0
 offset_bottom = 790.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea41" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 860.0
 offset_top = 910.0
 offset_right = 860.0
 offset_bottom = 910.0
-focus_neighbor_top = NodePath("../CustomCardArea33")
-focus_neighbor_bottom = NodePath("../CustomCardArea49")
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea42" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1040.0
 offset_top = 910.0
 offset_right = 1040.0
 offset_bottom = 910.0
-focus_neighbor_top = NodePath("../CustomCardArea34")
-focus_neighbor_bottom = NodePath("../CustomCardArea50")
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea43" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1220.0
 offset_top = 910.0
 offset_right = 1220.0
 offset_bottom = 910.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea44" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1400.0
 offset_top = 910.0
 offset_right = 1400.0
 offset_bottom = 910.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea45" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1580.0
 offset_top = 910.0
 offset_right = 1580.0
 offset_bottom = 910.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea46" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1760.0
 offset_top = 910.0
 offset_right = 1760.0
 offset_bottom = 910.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea47" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1940.0
 offset_top = 910.0
 offset_right = 1940.0
 offset_bottom = 910.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea48" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 2120.0
 offset_top = 910.0
 offset_right = 2120.0
 offset_bottom = 910.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea49" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 860.0
 offset_top = 1030.0
 offset_right = 860.0
 offset_bottom = 1030.0
-focus_neighbor_top = NodePath("../CustomCardArea41")
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea50" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1040.0
 offset_top = 1030.0
 offset_right = 1040.0
 offset_bottom = 1030.0
-focus_neighbor_top = NodePath("../CustomCardArea42")
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea51" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1220.0
 offset_top = 1030.0
 offset_right = 1220.0
 offset_bottom = 1030.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CustomCardArea52" parent="Table" instance=ExtResource("5_36cav")]
 offset_left = 1400.0
 offset_top = 1030.0
 offset_right = 1400.0
 offset_bottom = 1030.0
+focus_neighbor_left = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_top = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_right = NodePath("../../CardSelector/CustomCardSelector1")
+focus_neighbor_bottom = NodePath("../../CardSelector/CustomCardSelector1")
+focus_mode = 2
 
 [node name="CardSelector" type="ColorRect" parent="."]
 layout_mode = 0
@@ -503,8 +738,7 @@ offset_left = 55.0
 offset_top = 189.0
 offset_right = -665.0
 offset_bottom = -911.0
-focus_neighbor_right = NodePath("../../Table/CustomCardArea14")
-focus_neighbor_bottom = NodePath("../../Table/CustomCardArea2")
+focus_mode = 2
 
 [node name="CustomCardSelector2" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -512,7 +746,7 @@ offset_left = 55.0
 offset_top = 257.0
 offset_right = -665.0
 offset_bottom = -843.0
-focus_neighbor_top = NodePath("../../Table/CustomCardArea1")
+focus_mode = 2
 
 [node name="CustomCardSelector3" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -520,6 +754,7 @@ offset_left = 55.0
 offset_top = 325.0
 offset_right = -665.0
 offset_bottom = -775.0
+focus_mode = 2
 
 [node name="CustomCardSelector4" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -527,6 +762,7 @@ offset_left = 55.0
 offset_top = 393.0
 offset_right = -665.0
 offset_bottom = -707.0
+focus_mode = 2
 
 [node name="CustomCardSelector5" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -534,6 +770,7 @@ offset_left = 55.0
 offset_top = 461.0
 offset_right = -665.0
 offset_bottom = -639.0
+focus_mode = 2
 
 [node name="CustomCardSelector6" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -541,6 +778,7 @@ offset_left = 55.0
 offset_top = 529.0
 offset_right = -665.0
 offset_bottom = -571.0
+focus_mode = 2
 
 [node name="CustomCardSelector7" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -548,6 +786,7 @@ offset_left = 55.0
 offset_top = 597.0
 offset_right = -665.0
 offset_bottom = -503.0
+focus_mode = 2
 
 [node name="CustomCardSelector8" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -555,6 +794,7 @@ offset_left = 55.0
 offset_top = 665.0
 offset_right = -665.0
 offset_bottom = -435.0
+focus_mode = 2
 
 [node name="CustomCardSelector9" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -562,6 +802,7 @@ offset_left = 55.0
 offset_top = 733.0
 offset_right = -665.0
 offset_bottom = -367.0
+focus_mode = 2
 
 [node name="CustomCardSelector10" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -569,6 +810,7 @@ offset_left = 55.0
 offset_top = 801.0
 offset_right = -665.0
 offset_bottom = -299.0
+focus_mode = 2
 
 [node name="CustomCardSelector11" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -576,6 +818,7 @@ offset_left = 55.0
 offset_top = 869.0
 offset_right = -665.0
 offset_bottom = -231.0
+focus_mode = 2
 
 [node name="CustomCardSelector12" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -583,6 +826,7 @@ offset_left = 55.0
 offset_top = 937.0
 offset_right = -665.0
 offset_bottom = -163.0
+focus_mode = 2
 
 [node name="CustomCardSelector13" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -590,6 +834,7 @@ offset_left = 55.0
 offset_top = 1005.0
 offset_right = -665.0
 offset_bottom = -95.0
+focus_mode = 2
 
 [node name="CustomCardSelector14" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -597,7 +842,7 @@ offset_left = 235.0
 offset_top = 189.0
 offset_right = -485.0
 offset_bottom = -911.0
-focus_neighbor_left = NodePath("../../Table/CustomCardArea1")
+focus_mode = 2
 
 [node name="CustomCardSelector15" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -605,6 +850,7 @@ offset_left = 235.0
 offset_top = 257.0
 offset_right = -485.0
 offset_bottom = -843.0
+focus_mode = 2
 
 [node name="CustomCardSelector16" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -612,6 +858,7 @@ offset_left = 235.0
 offset_top = 325.0
 offset_right = -485.0
 offset_bottom = -775.0
+focus_mode = 2
 
 [node name="CustomCardSelector17" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -619,6 +866,7 @@ offset_left = 235.0
 offset_top = 393.0
 offset_right = -485.0
 offset_bottom = -707.0
+focus_mode = 2
 
 [node name="CustomCardSelector18" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -626,6 +874,7 @@ offset_left = 235.0
 offset_top = 461.0
 offset_right = -485.0
 offset_bottom = -639.0
+focus_mode = 2
 
 [node name="CustomCardSelector19" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -633,6 +882,7 @@ offset_left = 235.0
 offset_top = 529.0
 offset_right = -485.0
 offset_bottom = -571.0
+focus_mode = 2
 
 [node name="CustomCardSelector20" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -640,6 +890,7 @@ offset_left = 235.0
 offset_top = 597.0
 offset_right = -485.0
 offset_bottom = -503.0
+focus_mode = 2
 
 [node name="CustomCardSelector21" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -647,6 +898,7 @@ offset_left = 235.0
 offset_top = 665.0
 offset_right = -485.0
 offset_bottom = -435.0
+focus_mode = 2
 
 [node name="CustomCardSelector22" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -654,6 +906,7 @@ offset_left = 235.0
 offset_top = 733.0
 offset_right = -485.0
 offset_bottom = -367.0
+focus_mode = 2
 
 [node name="CustomCardSelector23" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -661,6 +914,7 @@ offset_left = 235.0
 offset_top = 801.0
 offset_right = -485.0
 offset_bottom = -299.0
+focus_mode = 2
 
 [node name="CustomCardSelector24" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -668,6 +922,7 @@ offset_left = 235.0
 offset_top = 869.0
 offset_right = -485.0
 offset_bottom = -231.0
+focus_mode = 2
 
 [node name="CustomCardSelector25" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -675,6 +930,7 @@ offset_left = 235.0
 offset_top = 937.0
 offset_right = -485.0
 offset_bottom = -163.0
+focus_mode = 2
 
 [node name="CustomCardSelector26" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -682,6 +938,7 @@ offset_left = 235.0
 offset_top = 1005.0
 offset_right = -485.0
 offset_bottom = -95.0
+focus_mode = 2
 
 [node name="CustomCardSelector27" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -689,6 +946,7 @@ offset_left = 415.0
 offset_top = 189.0
 offset_right = -305.0
 offset_bottom = -911.0
+focus_mode = 2
 
 [node name="CustomCardSelector28" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -696,6 +954,7 @@ offset_left = 415.0
 offset_top = 257.0
 offset_right = -305.0
 offset_bottom = -843.0
+focus_mode = 2
 
 [node name="CustomCardSelector29" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -703,6 +962,7 @@ offset_left = 415.0
 offset_top = 325.0
 offset_right = -305.0
 offset_bottom = -775.0
+focus_mode = 2
 
 [node name="CustomCardSelector30" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -710,6 +970,7 @@ offset_left = 415.0
 offset_top = 393.0
 offset_right = -305.0
 offset_bottom = -707.0
+focus_mode = 2
 
 [node name="CustomCardSelector31" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -717,6 +978,7 @@ offset_left = 415.0
 offset_top = 461.0
 offset_right = -305.0
 offset_bottom = -639.0
+focus_mode = 2
 
 [node name="CustomCardSelector32" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -724,6 +986,7 @@ offset_left = 415.0
 offset_top = 529.0
 offset_right = -305.0
 offset_bottom = -571.0
+focus_mode = 2
 
 [node name="CustomCardSelector33" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -731,6 +994,7 @@ offset_left = 415.0
 offset_top = 597.0
 offset_right = -305.0
 offset_bottom = -503.0
+focus_mode = 2
 
 [node name="CustomCardSelector34" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -738,6 +1002,7 @@ offset_left = 415.0
 offset_top = 665.0
 offset_right = -305.0
 offset_bottom = -435.0
+focus_mode = 2
 
 [node name="CustomCardSelector35" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -745,6 +1010,7 @@ offset_left = 415.0
 offset_top = 733.0
 offset_right = -305.0
 offset_bottom = -367.0
+focus_mode = 2
 
 [node name="CustomCardSelector36" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -752,6 +1018,7 @@ offset_left = 415.0
 offset_top = 801.0
 offset_right = -305.0
 offset_bottom = -299.0
+focus_mode = 2
 
 [node name="CustomCardSelector37" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -759,6 +1026,7 @@ offset_left = 415.0
 offset_top = 869.0
 offset_right = -305.0
 offset_bottom = -231.0
+focus_mode = 2
 
 [node name="CustomCardSelector38" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -766,6 +1034,7 @@ offset_left = 415.0
 offset_top = 937.0
 offset_right = -305.0
 offset_bottom = -163.0
+focus_mode = 2
 
 [node name="CustomCardSelector39" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -773,6 +1042,7 @@ offset_left = 415.0
 offset_top = 1005.0
 offset_right = -305.0
 offset_bottom = -95.0
+focus_mode = 2
 
 [node name="CustomCardSelector40" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -780,6 +1050,7 @@ offset_left = 595.0
 offset_top = 189.0
 offset_right = -125.0
 offset_bottom = -911.0
+focus_mode = 2
 
 [node name="CustomCardSelector41" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -787,6 +1058,7 @@ offset_left = 595.0
 offset_top = 257.0
 offset_right = -125.0
 offset_bottom = -843.0
+focus_mode = 2
 
 [node name="CustomCardSelector42" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -794,6 +1066,7 @@ offset_left = 595.0
 offset_top = 325.0
 offset_right = -125.0
 offset_bottom = -775.0
+focus_mode = 2
 
 [node name="CustomCardSelector43" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -801,6 +1074,7 @@ offset_left = 595.0
 offset_top = 393.0
 offset_right = -125.0
 offset_bottom = -707.0
+focus_mode = 2
 
 [node name="CustomCardSelector44" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -808,6 +1082,7 @@ offset_left = 595.0
 offset_top = 461.0
 offset_right = -125.0
 offset_bottom = -639.0
+focus_mode = 2
 
 [node name="CustomCardSelector45" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -815,6 +1090,7 @@ offset_left = 595.0
 offset_top = 529.0
 offset_right = -125.0
 offset_bottom = -571.0
+focus_mode = 2
 
 [node name="CustomCardSelector46" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -822,6 +1098,7 @@ offset_left = 595.0
 offset_top = 597.0
 offset_right = -125.0
 offset_bottom = -503.0
+focus_mode = 2
 
 [node name="CustomCardSelector47" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -829,6 +1106,7 @@ offset_left = 595.0
 offset_top = 665.0
 offset_right = -125.0
 offset_bottom = -435.0
+focus_mode = 2
 
 [node name="CustomCardSelector48" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -836,6 +1114,7 @@ offset_left = 595.0
 offset_top = 733.0
 offset_right = -125.0
 offset_bottom = -367.0
+focus_mode = 2
 
 [node name="CustomCardSelector49" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -843,6 +1122,7 @@ offset_left = 595.0
 offset_top = 801.0
 offset_right = -125.0
 offset_bottom = -299.0
+focus_mode = 2
 
 [node name="CustomCardSelector50" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -850,6 +1130,7 @@ offset_left = 595.0
 offset_top = 869.0
 offset_right = -125.0
 offset_bottom = -231.0
+focus_mode = 2
 
 [node name="CustomCardSelector51" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -857,6 +1138,7 @@ offset_left = 595.0
 offset_top = 937.0
 offset_right = -125.0
 offset_bottom = -163.0
+focus_mode = 2
 
 [node name="CustomCardSelector52" parent="CardSelector" instance=ExtResource("10_vir8u")]
 layout_mode = 1
@@ -864,6 +1146,7 @@ offset_left = 595.0
 offset_top = 1005.0
 offset_right = -125.0
 offset_bottom = -95.0
+focus_mode = 2
 
 [node name="CardList" type="LineEdit" parent="."]
 layout_mode = 0

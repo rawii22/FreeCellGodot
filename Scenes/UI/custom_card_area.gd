@@ -33,6 +33,11 @@ func _on_texture_button_gui_input(event):
 		get_tree().get_root().get_node("Main/GUI/CustomGameScreen").clear_card_area(area_id)
 
 
+func focus():
+	_on_texture_button_button_down()
+	$TextureButton.grab_focus()
+
+
 func select():
 	$Outline.show()
 
