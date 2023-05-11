@@ -38,7 +38,7 @@ For the sake of keeping things as generic as possible, each area (columns, free 
 - **`Ctrl+R`**: Replay the current hand.
 - **`F2`**: Start a new game.
 - **`Esc`** or **`S`**: Open the settings menu.
-- **`F`**: Toggle full screen.
+- **`Ctrl+F`**: Toggle full screen.
 - **`I`**: Open the information screen.
 
 ## Potential Issues

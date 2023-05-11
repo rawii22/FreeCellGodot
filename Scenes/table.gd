@@ -39,7 +39,11 @@ var games_played
 var games_won
 var best_time
 var best_moves
-	
+
+const time_reset_value = 99999999 #~3 years
+const move_reset_value = 9223372036854775807 #max value of signed 64 bit int
+
+
 var move_history = []
 var redo_stack = []
 
@@ -169,6 +173,7 @@ func clear_board():
 	move_count = 0
 	time_elapsed = 0
 	set_time_paused(true)
+	movement_occuring = false
 	$TimerText.text = "Time: " + "%d:%02d" % [floor(time_elapsed / 60), int(time_elapsed) % 60]
 	$MoveCounter.text = "Moves: " + str(move_count)
 
@@ -350,7 +355,7 @@ func calculate_max_stack_size():
 
 
 func undo():
-	if !won and move_history.size() > 0:
+	if !movement_occuring and !won and move_history.size() > 0:
 		var previous_move = move_history.pop_back()
 		redo_stack.push_front(previous_move)
 		previous_move.card.make_move(previous_move.first_position, false)
@@ -358,7 +363,7 @@ func undo():
 
 
 func redo():
-	if redo_stack.size() > 0:
+	if !movement_occuring and redo_stack.size() > 0:
 		var next_move = redo_stack.pop_front()
 		move_history.push_back(next_move)
 		next_move.card.make_move(next_move.second_position, false)
@@ -366,7 +371,8 @@ func redo():
 
 
 func replay():
-	new_game(true)
+	if !movement_occuring and !get_tree().get_root().get_node("Main/GUI").block_ui_changes and !auto_completing:
+		new_game(true)
 
 
 func win():
@@ -408,6 +414,6 @@ func save():
 func reset_stats():
 	games_played = 0
 	games_won = 0
-	best_time = 99999999 #~3 years
-	best_moves = pow(2,63) #
+	best_time = time_reset_value
+	best_moves = move_reset_value
 	save()
