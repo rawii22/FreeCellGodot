@@ -1,11 +1,53 @@
 # FreeCell
 The game FreeCell implemented with Godot!
 
+[FreeCellGodot - GitHub](https://github.com/rawii22/FreeCellGodot)
+
 <img src="./Assets/freecellicon.png" width="200"/>
 
-GitHub: [FreeCellGodot](https://github.com/rawii22/FreeCellGodot)
-
 Ricardo Romanach 2023
+
+
+## The Game
+
+### Background
+
+The game of FreeCell is only one of the many variations of the eternal solitaire format. The immediate predecesors to FreeCell are considered to be Baker's Game and Eight Off. In Baker's Game, stacks are built down by suit instead of alternating color. This slight differnece makes Baker's Game more difficult than FreeCell. The vast majority of FreeCell deals are solvable which is uncommon in the solitaire world. FreeCell is what is known as an *open* solitaire game where all the cards are visible from the start.
+
+### Rules
+
+The **objective** is to move all cards to the foundation in ascending order, from Ace to King, by suit.
+- **Free cells**: You are provided with 4 holding cells. Each can only hold one card at a time.
+- **Columns**: *Any* card can be placed in an empty column slot. You are not restricted to placing Kings in empty columns like in Klondike solitaire.
+- **Stacks**: Cards can be stacked in descending order and alternating in color.
+	- **Limitations**: The number of cards in a stack that can be moved is determined by the number of open cells on the table. The number of cards that can moved at a time is as follows:
+		- **`(2 ^ number of empty columns) x (number of empty holding cells + 1)`**
+	- When attempting to place a stack of cards onto an empty column cell, the number should be halved **halved** before you place it.
+
+> Check out this [Wikipedia page](https://en.wikipedia.org/wiki/FreeCell) for more information on history, variations, and statistical analysis.
+
+## Features
+
+- **Right clicking on a card** will automatically move it to another location. It will attempt to move to another location in this order: foundation, occupied columns, open columns, free cells. If none of these locations are available, it will not move.
+- By **right clicking anywhere on the table**, the game will look for any card that can be moved to the foundation and, if possible, move it to the foundation automatically.
+- **Auto-complete**: Once the game detects that you have won, it will offer the option to auto complete. If you reject auto-complete, you can always trigger it again by clicking on the check button on the left of the play area.
+- **Numbered Deals**: By opening the menu, you can specify the desired deal number in the "New Game" button. Hit enter or click on the button after typing in the number (0-9999999) and the respective deal will be drawn. You can also click on the little "?" button to have a random number selected for you.
+	- The limit for an integer in Godot is -9223372036854775808 to 9223372036854775807 (signed 64 bits). I chose 9999999 arbitrarily, but partially because it looked pretty and it fit in the text box.
+- **Save Data**: Statistics on games played are persistent. Pressing `I` will open the information screen which will show you your statistics.
+- **Touch Screen Compatible**: This game should work on touch screen devices. When a card is tapped, it will do the same thing as a right-click. Dragging works the same as dragging with the mouse. Buttons are visible on the screen to make Undo, Redo, and Replay easy to access.
+- **Easter Eggs**: 2023 is quite an interesting number...
+- **Custom Game**: Click on the "2023" next to my name when you open the settings screen to open the custom game screen.
+	- Use the arrow keys to change which card slot is selected. Clicking "tab" after moving the selected card slot will move the focus to the card selection area. After hitting "enter" in the card selection area or clicking "tab" again, the focus will move back to the card slot area.
+
+## Shortcuts
+
+- **`Ctrl+Z`**: Undo a move. Making a move after undoing will clear out the redo stack.
+- **`Ctrl+Y`**: Redo a move.
+- **`Ctrl+R`**: Replay the current hand.
+- **`F2`**: Start a new game.
+- **`Esc`** or **`S`**: Open the settings menu.
+- **`Ctrl+F`**: Toggle full screen.
+- **`I`**: Open the information screen.
 
 ## Implementation
 
@@ -21,33 +63,11 @@ For the sake of keeping things as generic as possible, each area (columns, free 
 - `can_place_card`
 	- Received a list of cards. Returns a boolean. If the card(s) in the list can be placed in the respective area, it will return true.
 
-## Features
-- **Right clicking on a card** will automatically move it to another location. It will attempt to move to another location in this order: foundation, occupied columns, open columns, free cells. If none of these locations are available, it will not move.
-- By **right clicking anywhere on the table**, the game will look for any card that can be moved to the foundation and, if possible, move it to the foundation automatically.
-- **Auto-complete**: Once the game detects that you have won, it will offer the option to auto complete. If you reject auto-complete, you can always trigger it again by clicking on the check button on the left of the play area.
-- **Numbered Deals**: By opening the menu, you can specify the desired deal number in the "New Game" button. Hit enter or click on the button after typing in the number (0-9999999) and the respective deal will be drawn. You can also click on the little "?" button to have a random number selected for you.
-	- The limit for an integer in Godot is -9223372036854775808 to 9223372036854775807 (signed 64 bits). I chose 9999999 arbitrarily, but partially because it looked pretty and it fit in the text box.
-- **Touch Screen Compatible**: This game should work on touch screen devices. When a card is tapped, it will do the same thing as a right-click. Dragging works the same as dragging with the mouse. Buttons are visible on the screen to make Undo, Redo, and Replay easy to access.
-- **Save Data**: Statistics on games played are persistent.
-- **Easter Eggs**: 2023 is quite an interesting number...
-- **Custom Game**: Click on the "2023" next to my name when you open the settings screen to open the custom game screen.
-	- Use the arrow keys to change which card slot is selected. Clicking "tab" after moving the selected card slot will move the focus to the card selection area. After hitting "enter" in the card selection area or clicking "tab" again, the focus will move back to the card slot area.
-
-## Shortcuts
-
-- **`Ctrl+Z`**: Undo a move. Making a move after undoing will clear out the redo stack.
-- **`Ctrl+Y`**: Redo a move.
-- **`Ctrl+R`**: Replay the current hand.
-- **`F2`**: Start a new game.
-- **`Esc`** or **`S`**: Open the settings menu.
-- **`Ctrl+F`**: Toggle full screen.
-- **`I`**: Open the information screen.
-
 ## Potential Issues
+
 - When playing the game with a **touchscreen and on a windows computer**, if you tap and hold a card to perform a touchscreen right-click, Windows will send two signals. A general **Touch event** will trigger, and also a **Mouse Right-Click event** will trigger, causing two cards to move at the same time. The current solution is to try to avoid right-clicking via touch.
 
 	- My theory is that this will be a problem on any computer/device that attempts to emulate a right click via touch. I don't think there's much that can be done about this unless I add a cooldown between card moves. Such a cooldown would have to apply to both mouse and touch events since there's no way to distinguish between an *emulated* right-click mouse event and a *real* right-click mouse event.
-
 
 ## Credits
 
