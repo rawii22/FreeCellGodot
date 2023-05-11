@@ -43,6 +43,17 @@ text = "Right-click to remove card"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Label2" type="Label" parent="Background"]
+offset_left = 1000.0
+offset_top = 10.0
+offset_right = 1500.0
+offset_bottom = 110.0
+theme_override_fonts/font = ExtResource("5_3acpe")
+theme_override_font_sizes/font_size = 60
+text = "Custom Deal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ExitButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 2380.0

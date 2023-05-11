@@ -213,6 +213,18 @@ text = "Reset Stats"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Information" type="Label" parent="."]
+layout_mode = 0
+offset_left = 950.0
+offset_top = 4.0
+offset_right = 1550.0
+offset_bottom = 134.0
+theme_override_fonts/font = ExtResource("4_lhjgh")
+theme_override_font_sizes/font_size = 80
+text = "Information"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="ResetStats" to="." method="_on_reset_stats_pressed"]
