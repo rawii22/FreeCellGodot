@@ -97,6 +97,7 @@ theme_override_font_sizes/font_size = 70
 text = "###"
 
 [node name="CustomGameMessage" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 670.0
 offset_top = 1242.0

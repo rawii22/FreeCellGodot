@@ -115,10 +115,12 @@ func _on_info_pressed():
 
 func _on_quit_pressed():
 	quitting = true
-	var confirmation_screen = confirm_screen_scene.instantiate()
-	get_parent().add_child(confirmation_screen)
-	var response = await confirmation_screen.confirm("Quit?\n(Unfinished non-custom games will count as a loss)", true)
-	confirmation_screen.queue_free()
+	var response = true
+	if !table.won and table.move_made_on_current_hand:
+		var confirmation_screen = confirm_screen_scene.instantiate()
+		get_parent().add_child(confirmation_screen)
+		response = await confirmation_screen.confirm("Quit?\n(Unfinished non-custom games will count as a loss)", true)
+		confirmation_screen.queue_free()
 	if response:
 		table.end_game(true)
 		get_tree().quit()

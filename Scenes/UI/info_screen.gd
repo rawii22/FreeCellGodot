@@ -49,6 +49,8 @@ func update_info():
 	$StatsBackground/GamesWon.text = str(table.games_won)
 	if table.games_played > 0:
 		$StatsBackground/WinRate.text = "%.2f" % ((float(table.games_won) / table.games_played) * 100) + "%"
+	else:
+		$StatsBackground/WinRate.text = ""
 	if table.best_moves != table.move_reset_value:
 		$StatsBackground/BestTime.text = "%d:%02d" % [floor(table.best_time / 60), int(table.best_time) % 60]
 		$StatsBackground/BestMoves.text = str(table.best_moves)
