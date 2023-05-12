@@ -80,3 +80,7 @@ pointing/emulate_mouse_from_touch=false
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/ssao/quality=1
+environment/ssil/quality=1
+environment/glow/upscale_mode=0
+environment/max_fps=0

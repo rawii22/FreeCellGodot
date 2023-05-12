@@ -26,7 +26,8 @@ func confirm(prompt, focus_confirm = null, confirm_text = "yes", reject_text = "
 	
 	await self.response_made
 	hide()
-	GUI.block_ui(false)
+	if get_tree().get_nodes_in_group("confirmation").size() == 1:
+		GUI.block_ui(false)
 	return response
 
 

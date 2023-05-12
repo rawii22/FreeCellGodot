@@ -1,9 +1,13 @@
 extends Control
 
+@export var confirm_screen_scene: PackedScene
+
 var table
 var GUI
 var lineedit_focused
 var old_text
+
+var quitting = false
 
 var FSenabled = "Fullscreen:\nEnabled"
 var FSdisabled = "Fullscreen:\nDisabled"
@@ -110,7 +114,15 @@ func _on_info_pressed():
 
 
 func _on_quit_pressed():
-	get_tree().quit()
+	quitting = true
+	var confirmation_screen = confirm_screen_scene.instantiate()
+	get_parent().add_child(confirmation_screen)
+	var response = await confirmation_screen.confirm("Quit?\n(Unfinished non-custom games will count as a loss)", true)
+	confirmation_screen.queue_free()
+	if response:
+		table.end_game(true)
+		get_tree().quit()
+	quitting = false
 
 
 func lose_focus():

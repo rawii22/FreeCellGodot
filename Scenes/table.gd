@@ -134,7 +134,7 @@ func new_game(replay_hand = false, seed_num = -1, custom_deal = null):
 		var response = await confirmation_screen.confirm(prompt, true)
 		confirmation_screen.queue_free()
 		if response:
-			lose()
+			end_game()
 		else:
 			return
 	
@@ -269,7 +269,8 @@ func move_made(move, record_move = true):
 		if get_node("Foundation" + str(i + 1)).is_full:
 			full_foundations += 1
 	if full_foundations == 4:
-		win()
+		won = true
+		end_game()
 		return
 
 
@@ -377,28 +378,24 @@ func replay():
 		new_game(true)
 
 
-func win():
+func end_game(quitting = false):
 	set_time_paused(true)
-	won = true
-	win_screen = win_screen_scene.instantiate()
-	win_screen.construct(time_elapsed, move_count, is_custom)
-	add_child(win_screen)
-	win_screen.show()
-	
-	if !is_custom:
+	#If the game is being closed imediately after the player won, don't count the win twice.
+	if won and !quitting:
+		win_screen = win_screen_scene.instantiate()
+		win_screen.construct(time_elapsed, move_count, is_custom)
+		add_child(win_screen)
+		win_screen.show()
+		if !is_custom:
+			games_played += 1
+			games_won += 1
+			if time_elapsed < best_time:
+				best_time = time_elapsed
+			if move_count < best_moves:
+				best_moves = move_count
+	elif !won and move_made_on_current_hand and !is_custom:
 		games_played += 1
-		games_won += 1
-		if time_elapsed < best_time:
-			best_time = time_elapsed
-		if move_count < best_moves:
-			best_moves = move_count
-		save()
-
-
-func lose():
-	if !is_custom:
-		games_played += 1
-		save()
+	save()
 
 
 func save():
