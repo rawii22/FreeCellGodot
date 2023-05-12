@@ -8,6 +8,11 @@ var block_ui_changes = false
 func _ready():
 	table = get_tree().get_root().get_node("Main/Table")
 
+
+func _on_custom_game_button_pressed():
+	$CustomGameScreen.show()
+
+
 #This is to prevent race conditions. Do not set the time_paused variable from any other script.
 #If two UI screens try to alter it at the same time when one is closing and the other is opening,
 #there's no telling what value time_paused will be holding.
@@ -32,7 +37,3 @@ func block_ui(value):
 		table.set_time_paused(true)
 	else:
 		table.set_time_paused(value)
-
-
-func _on_custom_game_button_pressed():
-	$CustomGameScreen.show()

@@ -12,14 +12,14 @@ func _ready():
 	GUI = get_tree().get_root().get_node("Main/GUI")
 
 
-func _on_exit_button_pressed():
-	if !GUI.block_ui_changes:
-		hide()
-
-
 func _input(event):
 	if event.is_action_pressed("Info") and !GUI.block_ui_changes:
 		visible = !visible
+
+
+func _on_exit_button_pressed():
+	if !GUI.block_ui_changes:
+		hide()
 
 
 func _on_visibility_changed():

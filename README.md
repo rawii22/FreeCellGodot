@@ -12,7 +12,7 @@ Ricardo Romanach 2023
 
 ### Background
 
-The game of FreeCell is only one of the many variations of the eternal solitaire format. The immediate predecesors to FreeCell are considered to be Baker's Game and Eight Off. In Baker's Game, stacks are built down by suit instead of alternating color. This slight differnece makes Baker's Game more difficult than FreeCell. The vast majority of FreeCell deals are solvable which is uncommon in the solitaire world. FreeCell is what is known as an *open* solitaire game where all the cards are visible from the start.
+The game of FreeCell is only one of the many variations of the eternal solitaire format. The immediate predecessors to FreeCell are considered to be Baker's Game and Eight Off. In Baker's Game, stacks are built down by suit instead of alternating color. This slight difference makes Baker's Game more difficult than FreeCell. The vast majority of FreeCell deals are solvable which is uncommon in the solitaire world. FreeCell is what is known as an *open* solitaire game where all the cards are visible from the start.
 
 ### Rules
 
