@@ -32,7 +32,7 @@ The **objective** is to move all cards to the foundation in ascending order, fro
 - By **right clicking anywhere on the table**, the game will look for any card that can be moved to the foundation and, if possible, move it to the foundation automatically.
 - **Auto-complete**: Once the game detects that you have won, it will offer the option to auto complete. If you reject auto-complete, you can always trigger it again by clicking on the check button on the left of the play area.
 - **Numbered Deals**: By opening the menu, you can specify the desired deal number in the "New Game" button. Hit enter or click on the button after typing in the number (0-9999999) and the respective deal will be drawn. You can also click on the little "?" button to have a random number selected for you.
-	- The limit for an integer in Godot is -9223372036854775808 to 9223372036854775807 (signed 64 bits). I chose 9999999 arbitrarily, but partially because it looked pretty and it fit in the text box.
+	> **NOTE**: The numbered deals in this implementation of the game should match those of most other FreeCell games. It is based on the original Microsoft random number generator.
 - **Save Data**: Statistics on games played are persistent. Pressing `I` will open the information screen which will show you your statistics.
 - **Touch Screen Compatible**: This game should work on touch screen devices. When a card is tapped, it will do the same thing as a right-click. Dragging works the same as dragging with the mouse. Buttons are visible on the screen to make Undo, Redo, and Replay easy to access.
 - **Easter Eggs**: 2023 is quite an interesting number...

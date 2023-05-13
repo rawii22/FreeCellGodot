@@ -7,8 +7,6 @@ extends Node2D
 const save_file_location = "res://savegame.save"
 
 var special_hand = [51,38,25,12,50,37,24,11,49,36,23,10,48,35,22,9,47,34,21,8,46,33,20,7,45,32,19,6,44,31,18,5,43,30,17,4,42,29,16,3,41,28,15,2,40,27,14,1,39,26,13,0]
-#Deal 11982 from Jim Horne's Windows 3.1 FreeCell game is the only unsolvable deal out of the 32,000 numbered deals that were offered.
-var microsoft_11982 = [39,0,42,13,27,5,9,10,28,41,11,24,7,45,26,12,38,44,4,29,47,49,8,15,23,30,17,20,34,35,51,19,18,14,48,50,31,22,3,6,36,32,46,21,40,37,16,43,25,33,1,2]
 
 var movement_occuring = false
 var card_spacing = 92
@@ -24,7 +22,6 @@ var won = false
 var win_screen
 
 var current_hand = []
-var previous_seed = -1
 var is_random = true
 var is_custom = false
 var move_made_on_current_hand = false
@@ -46,7 +43,6 @@ var best_moves
 
 const time_reset_value = 99999999 #~3 years
 const move_reset_value = 9223372036854775807 #max value of signed 64 bit int
-
 
 var move_history = []
 var redo_stack = []
@@ -140,9 +136,6 @@ func new_game(replay_hand = false, seed_num = -1, custom_deal = null):
 		else:
 			return
 	
-	if replay_hand and seed_num == -1: #If replaying, and seed is not specified, maintain the seed of the replayed game, whether that be a random deal, or a numbered deal.
-		seed_num = previous_seed
-	
 	if !replay_hand:
 		if custom_deal != null:
 			current_hand = custom_deal
@@ -185,29 +178,22 @@ func clear_board():
 func deal_cards(replay_hand, seed_num):
 	var cards = []
 	
-	if !replay_hand or seed_num != previous_seed:
+	if !replay_hand:
 		if !is_custom:
 			current_hand.clear()
 			for i in range(52):
 				current_hand.append(i)
 			if seed_num > -1:
-				seed(seed_num)
+				current_hand = microsoft_freecell_rng(seed_num)
 				is_random = false
 				$DealNumber.text = "Deal: #" + str(seed_num)
 			else:
 				$DealNumber.text = ""
-				if previous_seed != -1: # This to avoid calling randomize() more times than necessary
-					randomize()
 				is_random = true
-			previous_seed = seed_num
-			current_hand.shuffle()
+				current_hand.shuffle()
 			if seed_num == 2023:
 				current_hand.clear()
 				current_hand = special_hand.duplicate() # Duplicate here or else the original array will be cleared as well when a new game is started. This is because of pointers.
-				is_custom = true
-			if seed_num == 11982:
-				current_hand.clear()
-				current_hand = microsoft_11982.duplicate()
 				is_custom = true
 		else:
 			$DealNumber.text = "Custom Deal"
@@ -422,3 +408,16 @@ func reset_stats():
 	best_time = time_reset_value
 	best_moves = move_reset_value
 	save()
+
+
+func microsoft_freecell_rng(seed):
+	var deck = [13,26,39,0,14,27,40,1,15,28,41,2,16,29,42,3,17,30,43,4,18,31,44,5,19,32,45,6,20,33,46,7,21,34,47,8,22,35,48,9,23,36,49,10,24,37,50,11,25,38,51,12]
+	var max_32_int = 2147483647
+	for i in range(51, 0, -1):
+		seed = ((214013 * seed) + 2531011) & max_32_int
+		var r = (seed >> 16) % (i + 1)
+		var temp = deck[r]
+		deck[r] = deck[i]
+		deck[i] = temp
+	deck.reverse()
+	return deck
