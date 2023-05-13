@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4d5un6q825nl"
-path="res://.godot/imported/freecellicon.png-aa19591798099bea5938b42bf25be572.ctex"
+uid="uid://f2c5xopntmx1"
+path="res://.godot/imported/freecellicon.png-e096235251e3e3f041282790a09cb454.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/freecellicon.png"
-dest_files=["res://.godot/imported/freecellicon.png-aa19591798099bea5938b42bf25be572.ctex"]
+source_file="res://freecellicon.png"
+dest_files=["res://.godot/imported/freecellicon.png-e096235251e3e3f041282790a09cb454.ctex"]
 
 [params]
 

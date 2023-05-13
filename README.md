@@ -3,7 +3,7 @@ The game FreeCell implemented with Godot!
 
 [FreeCellGodot - GitHub](https://github.com/rawii22/FreeCellGodot)
 
-<img src="./Assets/freecellicon.png" width="200"/>
+<img src="./freecellicon.png" width="200"/>
 
 Ricardo Romanach 2023
 
