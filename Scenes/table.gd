@@ -7,6 +7,8 @@ extends Node2D
 const save_file_location = "res://savegame.save"
 
 var special_hand = [51,38,25,12,50,37,24,11,49,36,23,10,48,35,22,9,47,34,21,8,46,33,20,7,45,32,19,6,44,31,18,5,43,30,17,4,42,29,16,3,41,28,15,2,40,27,14,1,39,26,13,0]
+#Deal 11982 from Jim Horne's Windows 3.1 FreeCell game is the only unsolvable deal out of the 32,000 numbered deals that were offered.
+var microsoft_11982 = [39,0,42,13,27,5,9,10,28,41,11,24,7,45,26,12,38,44,4,29,47,49,8,15,23,30,17,20,34,35,51,19,18,14,48,50,31,22,3,6,36,32,46,21,40,37,16,43,25,33,1,2]
 
 var movement_occuring = false
 var card_spacing = 92
@@ -202,6 +204,10 @@ func deal_cards(replay_hand, seed_num):
 			if seed_num == 2023:
 				current_hand.clear()
 				current_hand = special_hand.duplicate() # Duplicate here or else the original array will be cleared as well when a new game is started. This is because of pointers.
+				is_custom = true
+			if seed_num == 11982:
+				current_hand.clear()
+				current_hand = microsoft_11982.duplicate()
 				is_custom = true
 		else:
 			$DealNumber.text = "Custom Deal"
