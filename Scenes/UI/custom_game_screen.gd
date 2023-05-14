@@ -28,10 +28,12 @@ func _on_visibility_changed():
 	if GUI != null:
 		$CardList.text = ""
 		if visible:
+			enable_play_button(false)
 			hand.clear()
+			hand = table.current_hand.duplicate()
+			$CardList.text = hand_to_string(hand)
 			update_screen()
 			GUI.block_ui(true)
-			enable_play_button(false)
 			select_area($Table/CustomCardArea1)
 			$CardList.grab_focus()
 		else:
@@ -40,7 +42,7 @@ func _on_visibility_changed():
 
 func _on_play_hand_pressed():
 	GUI.hide_all_ui()
-	table.new_game(false, -1, hand)
+	table.new_game(false, -1, hand.duplicate())
 
 
 func _on_card_list_text_changed(new_text):
@@ -113,7 +115,7 @@ func enable_play_button(value):
 func update_screen(string_data = null):
 	var manual_entry = false
 	if string_data == null:
-		string_data = hand_to_string()
+		string_data = hand_to_string(hand)
 	else:
 		manual_entry = true
 	
@@ -144,12 +146,12 @@ func update_screen(string_data = null):
 			get_node("CardSelector/CustomCardSelector" + str(value + 1)).disable()
 
 
-func hand_to_string():
+func hand_to_string(array):
 	var hand_string = ""
-	for i in range(hand.size()):
-		if hand[i] != null:
-			hand_string += str(hand[i])
-		if i != hand.size() - 1: #Don't print out a comma if it is the last number
+	for i in range(array.size()):
+		if array[i] != null:
+			hand_string += str(array[i])
+		if i != array.size() - 1: #Don't print out a comma if it is the last number
 			hand_string += ","
 	return hand_string
 

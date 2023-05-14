@@ -1172,6 +1172,7 @@ theme_override_font_sizes/font_size = 26
 alignment = 1
 max_length = 200
 context_menu_enabled = false
+clear_button_enabled = true
 
 [node name="PlayHand" type="TextureButton" parent="."]
 layout_mode = 0

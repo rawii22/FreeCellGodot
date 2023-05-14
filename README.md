@@ -36,7 +36,7 @@ The **objective** is to move all cards to the foundation in ascending order, fro
 - **Save Data**: Statistics on games played are persistent. Pressing `I` will open the information screen which will show you your statistics.
 - **Touch Screen Compatible**: This game should work on touch screen devices. When a card is tapped, it will do the same thing as a right-click. Dragging works the same as dragging with the mouse. Buttons are visible on the screen to make Undo, Redo, and Replay easy to access.
 - **Easter Eggs**: 2023 is quite an interesting number...
-- **Custom Game**: Click on the "2023" next to my name when you open the settings screen to open the custom game screen.
+- **Custom Game**: Click on the "2023" next to my name when you open the settings screen to open the custom game screen. You can also click on the "Custom Game" button on the Information screen.
 	- Use the arrow keys to change which card slot is selected. Clicking "tab" after moving the selected card slot will move the focus to the card selection area. After hitting "enter" in the card selection area or clicking "tab" again, the focus will move back to the card slot area.
 
 ## Shortcuts

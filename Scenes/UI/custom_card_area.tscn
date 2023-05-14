@@ -22,7 +22,7 @@ stretch_mode = 3
 
 [node name="HoverOutline" type="Sprite2D" parent="."]
 visible = false
-modulate = Color(1, 1, 1, 0.172549)
+modulate = Color(1, 1, 1, 0.313726)
 position = Vector2(50, 50)
 scale = Vector2(0.13, 0.13)
 texture = ExtResource("3_fytpm")

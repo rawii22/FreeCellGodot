@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://qgtyk2u7qlul"]
+[gd_scene load_steps=9 format=3 uid="uid://qgtyk2u7qlul"]
 
 [ext_resource type="Script" path="res://Scenes/UI/info_screen.gd" id="1_cwj5c"]
 [ext_resource type="Texture2D" uid="uid://ctk1enchfx35h" path="res://Assets/UI/ExitLight.png" id="1_gbnf7"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://csh6y5qo6krcu" path="res://Assets/Fonts/SymtextFix.ttf" id="4_lhjgh"]
 [ext_resource type="Texture2D" uid="uid://bjxme0f4fpinx" path="res://Assets/UI/settings_button_background_light.png" id="5_wjteo"]
 [ext_resource type="Texture2D" uid="uid://drun5fp1t4wot" path="res://Assets/UI/settings_button_background_darkred.png" id="6_gdr2s"]
+[ext_resource type="Texture2D" uid="uid://r5kcnyvl57dw" path="res://Assets/UI/settings_button_background_dark.png" id="8_exo5u"]
 
 [node name="InfoScreen" type="Control"]
 layout_mode = 3
@@ -213,6 +214,26 @@ text = "Reset Stats"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CustomGame" type="TextureButton" parent="."]
+offset_left = 1990.0
+offset_top = 1060.0
+offset_right = 2690.0
+offset_bottom = 1260.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("5_wjteo")
+texture_pressed = ExtResource("5_wjteo")
+texture_hover = ExtResource("8_exo5u")
+
+[node name="Label" type="Label" parent="CustomGame"]
+layout_mode = 0
+offset_right = 700.0
+offset_bottom = 200.0
+theme_override_fonts/font = ExtResource("4_lhjgh")
+theme_override_font_sizes/font_size = 75
+text = "Custom Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Information" type="Label" parent="."]
 layout_mode = 0
 offset_left = 950.0
@@ -228,3 +249,4 @@ vertical_alignment = 1
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="ResetStats" to="." method="_on_reset_stats_pressed"]
+[connection signal="pressed" from="CustomGame" to="." method="_on_custom_game_pressed"]

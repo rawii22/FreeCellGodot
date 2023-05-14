@@ -44,6 +44,10 @@ func _on_reset_stats_pressed():
 		confirmation_screen.queue_free()
 
 
+func _on_custom_game_pressed():
+	GUI._on_custom_game_button_pressed()
+
+
 func update_info():
 	$StatsBackground/GamesPlayed.text = str(table.games_played)
 	$StatsBackground/GamesWon.text = str(table.games_won)
