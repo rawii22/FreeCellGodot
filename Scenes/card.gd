@@ -157,11 +157,13 @@ func make_move(destination, check_move = true):
 		if parent_area.name.contains("FreeCell"):
 			if destination.name.contains("FreeCell"):
 				add_move = false
-			if destination.name.contains("Column"):
+			elif destination.name.contains("Column"):
 				if destination.is_empty():
 					add_move = false
 		elif parent_area.name.contains("Column") and parent_area.is_empty():
 			if destination.name.contains("FreeCell"):
+				add_move = false
+			elif destination.name.contains("Column") and parent_area.is_empty():
 				add_move = false
 		destination.add_card(dragged_stack)
 		table.toggle_action_happening()
