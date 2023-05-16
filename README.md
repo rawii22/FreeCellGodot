@@ -31,25 +31,25 @@ The **objective** is to move all cards to the foundation in ascending order, fro
 - **Right clicking on a card** will automatically move it to another location. It will attempt to move to another location in this order: foundation, occupied columns, open columns, free cells. If none of these locations are available, it will not move.
 - By **right clicking anywhere on the table**, the game will look for any card that can be moved to the foundation and, if possible, move it to the foundation automatically.
 - **Auto-complete**: Once the game detects that you have won, it will offer the option to auto complete. If you reject auto-complete, you can always trigger it again by clicking on the check button on the left of the play area.
-- **Numbered Deals**: By opening the menu, you can specify the desired deal number in the "New Game" button. Hit enter or click on the button after typing in the number (0-9999999) and the respective deal will be drawn. You can also click on the little "?" button to have a random number selected for you.
+- **Numbered Deals**: By opening the menu, you can specify the desired deal number in the "New Game" button. Hit enter or click on the button after typing in the number (0-9999999) and the respective deal will be drawn. You can also click on the little "?" button to have a random number selected for you. Clicking the "New Numbered Game" button on the win screen will start a random *numbered* game.
 	> **NOTE**: The numbered deals in this implementation of the game should match those of most other FreeCell games. It is based on the original Microsoft random number generator.
+- **Custom Games**: Click on the "2023" next to my name when you open the settings screen to open the custom game screen. You can also click on the "Custom Game" button on the information screen.
+	> **Trick**: For keyboard oriented use, pressing "tab" after moving the selected card slot will move the focus to the card selection area. After hitting "enter" in the card selection area or clicking "tab" again, the focus will move back to the card slot area. For another fast trick, use the arrow keys to change which card slot is selected, and then click on the card you want in that slot from the card selection area on the left.
 - **Save Data**: Statistics on games played are persistent. Pressing `I` will open the information screen which will show you your statistics.
 - **Touch Screen Compatible**: This game should work on touch screen devices. When a card is tapped, it will do the same thing as a right-click. Dragging works the same as dragging with the mouse. Buttons are visible on the screen to make Undo, Redo, and Replay easy to access.
-- **Easter Eggs**: 2023 is quite an interesting number...
-- **Custom Game**: Click on the "2023" next to my name when you open the settings screen to open the custom game screen. You can also click on the "Custom Game" button on the Information screen.
-	- Use the arrow keys to change which card slot is selected. Clicking "tab" after moving the selected card slot will move the focus to the card selection area. After hitting "enter" in the card selection area or clicking "tab" again, the focus will move back to the card slot area.
 
 ## Shortcuts
 
 - **`Ctrl+Z`**: Undo a move. Making a move after undoing will clear out the redo stack.
 - **`Ctrl+Y`**: Redo a move.
 - **`Ctrl+R`**: Replay the current hand.
-- **`F2`**: Start a new game.
+- **`F2`**: Start a random game.
+- **`F3`**: Start a random numbered deal.
 - **`Esc`** or **`S`**: Open the settings menu.
 - **`Ctrl+F`**: Toggle full screen.
 - **`I`**: Open the information screen.
 
-## Implementation
+## Implementation Notes
 
 For the sake of keeping things as generic as possible, each area (columns, free cells, foundation slots) has these 4 functions:
 
@@ -65,7 +65,7 @@ For the sake of keeping things as generic as possible, each area (columns, free 
 
 ## Potential Issues
 
-- When playing the game with a **touchscreen and on a windows computer**, if you tap and hold a card to perform a touchscreen right-click, Windows will send two signals. A general **Touch event** will trigger, and also a **Mouse Right-Click event** will trigger, causing two cards to move at the same time. The current solution is to try to avoid right-clicking via touch.
+- When playing the game with a **touchscreen and on a windows computer**, if you tap and hold a card to perform a touchscreen right-click, Windows will send two signals. A general **Touch event** will trigger, and also a right-click **Mouse  event** will trigger, causing two cards to move at the same time. The current solution is to try to avoid right-clicking via touch.
 
 	- My theory is that this will be a problem on any computer/device that attempts to emulate a right click via touch. I don't think there's much that can be done about this unless I add a cooldown between card moves. Such a cooldown would have to apply to both mouse and touch events since there's no way to distinguish between an *emulated* right-click mouse event and a *real* right-click mouse event.
 

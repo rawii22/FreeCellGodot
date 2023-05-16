@@ -40,6 +40,8 @@ var games_played
 var games_won
 var best_time
 var best_moves
+var longest_time
+var most_moves
 
 const time_reset_value = 99999999 #~3 years
 const move_reset_value = 9223372036854775807 #max value of signed 64 bit int
@@ -67,6 +69,8 @@ func _ready():
 	games_won = save_data["games_won"]
 	best_time = save_data["best_time"]
 	best_moves = save_data["best_moves"]
+	longest_time = save_data["longest_time"]
+	most_moves = save_data["most_moves"]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -191,7 +195,7 @@ func deal_cards(replay_hand, seed_num):
 				$DealNumber.text = ""
 				is_random = true
 				current_hand.shuffle()
-			if seed_num == 2023:
+			if seed_num == 0:
 				current_hand.clear()
 				current_hand = special_hand.duplicate() # Duplicate here or else the original array will be cleared as well when a new game is started. This is because of pointers.
 				is_custom = true
@@ -374,17 +378,25 @@ func end_game(quitting = false):
 	set_time_paused(true)
 	#If the game is being closed imediately after the player won, don't count the win twice.
 	if won and !quitting:
-		win_screen = win_screen_scene.instantiate()
-		win_screen.construct(time_elapsed, move_count, is_custom)
-		add_child(win_screen)
-		win_screen.show()
+		var new_best_time = false
+		var new_best_moves = false
 		if !is_custom:
 			games_played += 1
 			games_won += 1
 			if time_elapsed < best_time:
 				best_time = time_elapsed
+				new_best_time = true
 			if move_count < best_moves:
 				best_moves = move_count
+				new_best_moves = true
+			if time_elapsed > longest_time:
+				longest_time = time_elapsed
+			if move_count > most_moves:
+				most_moves = move_count
+		win_screen = win_screen_scene.instantiate()
+		add_child(win_screen)
+		win_screen.construct(time_elapsed, new_best_time, move_count, new_best_moves, is_custom)
+		win_screen.show()
 	elif !won and move_made_on_current_hand and !is_custom:
 		games_played += 1
 	save()
@@ -396,7 +408,9 @@ func save():
 		"games_played" : games_played,
 		"games_won" : games_won,
 		"best_time" : best_time,
-		"best_moves" : best_moves
+		"best_moves" : best_moves,
+		"longest_time" : longest_time,
+		"most_moves" : most_moves
 	}
 	var save_data_json = JSON.stringify(save_data)
 	save_file.store_line(save_data_json)
@@ -407,6 +421,8 @@ func reset_stats():
 	games_won = 0
 	best_time = time_reset_value
 	best_moves = move_reset_value
+	longest_time = 0
+	most_moves = 0
 	save()
 
 

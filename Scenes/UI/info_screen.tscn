@@ -59,11 +59,11 @@ text = "               Shortcuts
 ctrl+z:    undo
 ctrl+y:    redo
 ctrl+r:    replay hand
-
+f2:           new random game
+f3:           new numbered game
 esc, s:      settings menu
-F:             toggle fullscreen
-i:              information
-f2:           start new game"
+ctrl+f:    toggle fullscreen
+i:              information"
 
 [node name="GitubLink" type="LinkButton" parent="."]
 layout_mode = 0
@@ -174,12 +174,30 @@ offset_bottom = 484.0
 theme_override_fonts/font = ExtResource("4_lhjgh")
 theme_override_font_sizes/font_size = 50
 
-[node name="BestMovesLabel" type="Label" parent="StatsBackground"]
-layout_mode = 0
-offset_left = 96.0
+[node name="LongestTimeLabel" type="Label" parent="StatsBackground"]
+offset_left = 37.0
 offset_top = 484.0
 offset_right = 480.0
 offset_bottom = 561.0
+theme_override_fonts/font = ExtResource("4_lhjgh")
+theme_override_font_sizes/font_size = 50
+text = "Longest Time:"
+horizontal_alignment = 2
+
+[node name="LongestTime" type="Label" parent="StatsBackground"]
+offset_left = 530.0
+offset_top = 484.0
+offset_right = 618.0
+offset_bottom = 561.0
+theme_override_fonts/font = ExtResource("4_lhjgh")
+theme_override_font_sizes/font_size = 50
+
+[node name="BestMovesLabel" type="Label" parent="StatsBackground"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 561.0
+offset_right = 480.0
+offset_bottom = 638.0
 theme_override_fonts/font = ExtResource("4_lhjgh")
 theme_override_font_sizes/font_size = 50
 text = "Best Moves:"
@@ -187,9 +205,27 @@ text = "Best Moves:"
 [node name="BestMoves" type="Label" parent="StatsBackground"]
 layout_mode = 0
 offset_left = 530.0
-offset_top = 484.0
+offset_top = 561.0
 offset_right = 618.0
-offset_bottom = 561.0
+offset_bottom = 638.0
+theme_override_fonts/font = ExtResource("4_lhjgh")
+theme_override_font_sizes/font_size = 50
+
+[node name="MostMovesLabel" type="Label" parent="StatsBackground"]
+offset_left = 89.0
+offset_top = 638.0
+offset_right = 480.0
+offset_bottom = 715.0
+theme_override_fonts/font = ExtResource("4_lhjgh")
+theme_override_font_sizes/font_size = 50
+text = "Most Moves:"
+horizontal_alignment = 2
+
+[node name="MostMoves" type="Label" parent="StatsBackground"]
+offset_left = 530.0
+offset_top = 638.0
+offset_right = 618.0
+offset_bottom = 715.0
 theme_override_fonts/font = ExtResource("4_lhjgh")
 theme_override_font_sizes/font_size = 50
 
@@ -215,6 +251,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CustomGame" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 1990.0
 offset_top = 1060.0
 offset_right = 2690.0

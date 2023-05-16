@@ -11,8 +11,8 @@
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_top = 100.0
-offset_bottom = 100.0
+offset_top = 250.0
+offset_bottom = 250.0
 script = ExtResource("1_fy850")
 confirm_screen_scene = ExtResource("2_26826")
 
