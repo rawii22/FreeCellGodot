@@ -150,7 +150,7 @@ func make_move(destination, check_move = true):
 		card.get_parent().remove_child(card)
 	
 	if !check_move:
-		destination.add_card(dragged_stack)
+		destination.add_card(dragged_stack, table.simulating)
 	elif destination != null and destination.can_place_card(dragged_stack):
 		#Do not increment the move count if a card is moved between two empty areas.
 		var add_move = true

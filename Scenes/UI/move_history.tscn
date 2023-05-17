@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2xjo7ascxgms"]
+[gd_scene load_steps=7 format=3 uid="uid://c2xjo7ascxgms"]
 
 [ext_resource type="FontFile" uid="uid://csh6y5qo6krcu" path="res://Assets/Fonts/SymtextFix.ttf" id="1_6pu6h"]
 [ext_resource type="Script" path="res://Scenes/UI/move_history.gd" id="1_dow5g"]
 [ext_resource type="Texture2D" uid="uid://ctk1enchfx35h" path="res://Assets/UI/ExitLight.png" id="2_f7qt3"]
 [ext_resource type="Texture2D" uid="uid://c5jwh1hvrfued" path="res://Assets/UI/Exit.png" id="3_qi6vq"]
+[ext_resource type="Texture2D" uid="uid://bjxme0f4fpinx" path="res://Assets/UI/settings_button_background_light.png" id="5_pp5ol"]
+[ext_resource type="Texture2D" uid="uid://r5kcnyvl57dw" path="res://Assets/UI/settings_button_background_dark.png" id="6_7m76w"]
 
 [node name="MoveHistory" type="Control"]
 layout_mode = 3
@@ -49,7 +51,7 @@ layout_mode = 0
 offset_left = 40.0
 offset_top = 120.0
 offset_right = 1560.0
-offset_bottom = 1460.0
+offset_bottom = 1345.0
 theme_override_fonts/font = ExtResource("1_6pu6h")
 theme_override_font_sizes/font_size = 35
 editable = false
@@ -57,4 +59,27 @@ context_menu_enabled = false
 middle_mouse_paste_enabled = false
 scroll_smooth = true
 
+[node name="SimulateMoves" type="TextureButton" parent="."]
+offset_left = 625.0
+offset_top = 1370.0
+offset_right = 1325.0
+offset_bottom = 1570.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("5_pp5ol")
+texture_pressed = ExtResource("5_pp5ol")
+texture_hover = ExtResource("6_7m76w")
+texture_focused = ExtResource("6_7m76w")
+
+[node name="Label" type="Label" parent="SimulateMoves"]
+layout_mode = 0
+offset_right = 700.0
+offset_bottom = 200.0
+theme_override_colors/font_color = Color(0.847059, 0.207843, 0, 1)
+theme_override_fonts/font = ExtResource("1_6pu6h")
+theme_override_font_sizes/font_size = 75
+text = "Simulate"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="SimulateMoves" to="." method="_on_simulate_moves_pressed"]

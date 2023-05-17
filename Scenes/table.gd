@@ -18,6 +18,8 @@ var time_paused = true
 
 var auto_completing = false
 var auto_complete_rejected = false
+var simulating = false
+var skip_simulation = false
 var won = false
 var win_screen
 
@@ -96,7 +98,8 @@ func _on_undo_button_pressed():
 
 
 func _on_redo_button_pressed():
-	redo()
+	if !simulating:
+		redo()
 
 
 func _on_replay_button_pressed():
@@ -104,8 +107,11 @@ func _on_replay_button_pressed():
 
 
 func _on_autocomplete_button_pressed():
-	auto_complete_rejected = false
-	check_autocomplete()
+	if !auto_completing:
+		auto_complete_rejected = false
+		check_autocomplete()
+	if simulating:
+		skip_simulation = true
 
 
 #This is to prevent multiple inputs from being entered at once, likely resulting in crashes.
@@ -142,6 +148,7 @@ func new_game(replay_hand = false, seed_num = -1, custom_deal = null):
 	
 	if !replay_hand:
 		if custom_deal != null:
+			current_hand.clear()
 			current_hand = custom_deal
 			is_custom = true
 		else:
@@ -170,6 +177,8 @@ func clear_board():
 	redo_stack.clear()
 	won = false
 	auto_complete_rejected = false
+	simulating = false
+	skip_simulation = false
 	$AutocompleteButton.hide()
 	move_count = 0
 	time_elapsed = 0
@@ -222,6 +231,8 @@ func deal_cards(replay_hand, seed_num):
 		
 		card.value = (i % 13) + 1
 		card.card_name = str(card.value) + "_" + card.suit
+		#Adding the card to a group with it's own name makes it easier to find when simulating
+		card.add_to_group(card.card_name)
 		
 		card.get_node("Sprite2D").texture = load("res://Assets/Cards/" + card.card_name + ".png")
 		
@@ -298,12 +309,12 @@ func check_autocomplete():
 			confirmation_screen.queue_free()
 			if response:
 				auto_completing = true
-				get_tree().get_root().get_node("Main/GUI").block_ui_changes = true
+				get_tree().get_root().get_node("Main/GUI").block_ui(true)
 				for i in range(cards_remaining):
 					await get_tree().create_timer(0.06).timeout
 					auto_move()
 				auto_completing = false
-				get_tree().get_root().get_node("Main/GUI").block_ui_changes = false
+				get_tree().get_root().get_node("Main/GUI").block_ui(false)
 			else:
 				auto_complete_rejected = true
 
@@ -362,7 +373,7 @@ func undo():
 
 
 func redo():
-	if !movement_occuring and !auto_completing and redo_stack.size() > 0:
+	if simulating or (!movement_occuring and !auto_completing and redo_stack.size() > 0):
 		var next_move = redo_stack.pop_front()
 		move_history.push_back(next_move)
 		next_move.card.make_move(next_move.second_position, false)
@@ -372,6 +383,55 @@ func redo():
 func replay():
 	if !movement_occuring and !auto_completing and !get_tree().get_root().get_node("Main/GUI").block_ui_changes and !auto_completing:
 		new_game(true)
+
+
+func simulate(hand, move_set):
+	new_game(false, -1, hand)
+	auto_completing = true
+	get_tree().get_root().get_node("Main/GUI").block_ui(true)
+	$AutocompleteButton.show()
+	simulating = true
+	is_custom = true
+	$DealNumber.text = "Simulating"
+	for move_str in move_set:
+		var card_name = ""
+		var value = move_str[0]
+		var suit = move_str[1]
+		match value:
+			"T":
+				card_name += "10"
+			"J":
+				card_name += "11"
+			"Q":
+				card_name += "12"
+			"K":
+				card_name += "13"
+			"A":
+				card_name += "1"
+			_:
+				card_name += value
+		match suit:
+			"S":
+				card_name += "_spade"
+			"C":
+				card_name += "_club"
+			"D":
+				card_name += "_diamond"
+			"H":
+				card_name += "_heart"
+		
+		var move = Move.new()
+		var test = get_tree().get_nodes_in_group(card_name)
+		move.card = get_tree().get_nodes_in_group(card_name)[0]
+		move.second_position = get_node(move_str.substr(4))
+		redo_stack.push_back(move)
+	for i in range(redo_stack.size()):
+		if !skip_simulation:
+			await get_tree().create_timer(0.8).timeout
+		redo()
+	
+	auto_completing = false
+	get_tree().get_root().get_node("Main/GUI").block_ui(false)
 
 
 func end_game(quitting = false):

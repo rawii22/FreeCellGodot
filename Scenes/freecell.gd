@@ -9,7 +9,7 @@ func _ready():
 	table = get_tree().get_root().get_node("Main/Table")
 
 
-func add_card(card_list):
+func add_card(card_list, do_animation = false):
 	var card = card_list.front()
 	has_card = true
 	add_child(card)

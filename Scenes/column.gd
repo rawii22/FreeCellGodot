@@ -14,7 +14,7 @@ func _ready():
 #This is function makes it easier when you don't know if your card is a single card object or an array of cards.
 #When cards are being dealt to the columns, they are added as single cards. When cards are being moved
 #back and forth during gameplay, they are added as stacks.
-func add_card(data, do_animation = true):
+func add_card(data, do_animation = false):
 	if cards.size() == 0:
 		table.update_free_cells(-1, true)
 	match typeof(data):

@@ -24,9 +24,13 @@ func construct(complete_time, new_best_time, moves_made, new_best_moves, is_cust
 			_:
 				history_string += str(move.card.value)
 		history_string += move.card.suit.left(1).to_upper() + "->"
-		history_string += move.second_position.name + "\n"
+		history_string += move.second_position.name
+		if move != table.move_history.back():
+			history_string += "\n"
 	
 	$MoveHistory/HistoryText.text = history_string
+	$MoveHistory.enable_simulate_button(true)
+	$MoveHistory.set_hand(table.current_hand)
 	
 	$CompleteTime.text = "%d:%02d" % [floor(complete_time / 60), int(complete_time) % 60]
 	$Moves.text = str(moves_made)

@@ -4,7 +4,7 @@ var cards = []
 var is_full = false
 
 
-func add_card(card_list):
+func add_card(card_list, do_animation = false):
 	var card = card_list.front()
 	card.get_node("CardArea").set_deferred("disabled", true)
 	add_child(card)

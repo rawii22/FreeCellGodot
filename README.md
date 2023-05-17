@@ -35,7 +35,7 @@ The **objective** is to move all cards to the foundation in ascending order, fro
 	> **NOTE**: The numbered deals in this implementation of the game should match those of most other FreeCell games. It is based on the original Microsoft random number generator.
 - **Custom Games**: Click on the "2023" next to my name when you open the settings screen to open the custom game screen. You can also click on the "Custom Game" button on the information screen.
 	> **TRICK**: For keyboard oriented use, pressing "tab" after moving the selected card slot will move the focus to the card selection area. After hitting "enter" in the card selection area or clicking "tab" again, the focus will move back to the card slot area. For another fast trick, use the arrow keys to change which card slot is selected, and then click on the card you want in that slot from the card selection area on the left.
-- **Move History**: After completing a game, you have the option to view a list of the moves you made.
+- **Move History**: After completing a game, you have the option to view a list of the moves you made. You can also choose to watch a simulation of the game you just played. The simulation will play through all the moves you made one by one.
 - **Save Data**: Statistics on games played are persistent. Pressing `I` will open the information screen which will show you your statistics.
 - **Touch Screen Compatible**: This game should work on touch screen devices. When a card is tapped, it will do the same thing as a right-click. Dragging works the same as dragging with the mouse. Buttons are visible on the screen to make Undo, Redo, and Replay easy to access.
 

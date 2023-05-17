@@ -2,12 +2,14 @@ extends Control
 
 signal response_made
 
+var table
 var GUI
 var response = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hide()
+	table = get_tree().get_root().get_node("Main/Table")
 	GUI = get_tree().get_root().get_node("Main/GUI")
 
 
@@ -26,7 +28,7 @@ func confirm(prompt, focus_confirm = null, confirm_text = "yes", reject_text = "
 	
 	await self.response_made
 	hide()
-	if get_tree().get_nodes_in_group("confirmation").size() == 1:
+	if get_tree().get_nodes_in_group("confirmation").size() == 1 and !table.auto_completing:
 		GUI.block_ui(false)
 	return response
 
