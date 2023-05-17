@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3x2imw43msls"]
+[gd_scene load_steps=8 format=3 uid="uid://d3x2imw43msls"]
 
 [ext_resource type="Script" path="res://Scenes/UI/win_screen.gd" id="1_afsuq"]
 [ext_resource type="FontFile" uid="uid://csh6y5qo6krcu" path="res://Assets/Fonts/SymtextFix.ttf" id="1_rsptf"]
 [ext_resource type="Texture2D" uid="uid://bjxme0f4fpinx" path="res://Assets/UI/settings_button_background_light.png" id="3_bybtl"]
 [ext_resource type="Texture2D" uid="uid://r5kcnyvl57dw" path="res://Assets/UI/settings_button_background_dark.png" id="4_h0yqu"]
+[ext_resource type="Texture2D" uid="uid://bjnttqfqpdckx" path="res://Assets/UI/historyLight.png" id="5_ae7wb"]
+[ext_resource type="Texture2D" uid="uid://bxbyyy37hpad2" path="res://Assets/UI/history.png" id="6_twsv0"]
+[ext_resource type="PackedScene" uid="uid://c2xjo7ascxgms" path="res://Scenes/UI/move_history.tscn" id="7_f82ns"]
 
 [node name="WinScreen" type="Control"]
 layout_mode = 3
@@ -98,6 +101,7 @@ text = "###"
 
 [node name="BestTimeLabel" type="Label" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 1419.0
 offset_top = 1060.0
 offset_right = 1921.0
@@ -110,6 +114,7 @@ vertical_alignment = 1
 
 [node name="BestTime" type="Label" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 2020.0
 offset_top = 1060.0
 offset_right = 2519.0
@@ -121,6 +126,7 @@ vertical_alignment = 1
 
 [node name="BestMovesLabel" type="Label" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 1340.0
 offset_top = 1200.0
 offset_right = 1921.0
@@ -133,6 +139,7 @@ vertical_alignment = 1
 
 [node name="BestMoves" type="Label" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 2020.0
 offset_top = 1200.0
 offset_right = 2449.0
@@ -144,6 +151,7 @@ vertical_alignment = 1
 
 [node name="WinRateLabel" type="Label" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 1486.0
 offset_top = 1340.0
 offset_right = 1921.0
@@ -156,6 +164,7 @@ vertical_alignment = 1
 
 [node name="WinRate" type="Label" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 2020.0
 offset_top = 1340.0
 offset_right = 2513.0
@@ -167,6 +176,7 @@ vertical_alignment = 1
 
 [node name="StarIndicator" type="Label" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 670.0
 offset_top = 1496.0
 offset_right = 3170.0
@@ -216,6 +226,7 @@ vertical_alignment = 1
 clip_text = true
 
 [node name="NewNumberedGame" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 1570.0
 offset_top = 1750.0
 offset_right = 2270.0
@@ -262,6 +273,26 @@ text = "Replay"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HistoryButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 180.0
+offset_right = 1570.0
+offset_bottom = 1180.0
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("5_ae7wb")
+texture_pressed = ExtResource("5_ae7wb")
+texture_hover = ExtResource("6_twsv0")
+
+[node name="MoveHistory" parent="." instance=ExtResource("7_f82ns")]
+visible = false
+layout_mode = 1
+offset_left = 1120.0
+offset_top = 198.0
+offset_right = -1120.0
+offset_bottom = -462.0
+
 [connection signal="pressed" from="NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="NewNumberedGame" to="." method="_on_new_numbered_game_pressed"]
 [connection signal="pressed" from="Replay" to="." method="_on_replay_pressed"]
+[connection signal="pressed" from="HistoryButton" to="." method="_on_history_button_pressed"]

@@ -354,7 +354,7 @@ func calculate_max_stack_size():
 
 
 func undo():
-	if !movement_occuring and !won and move_history.size() > 0:
+	if !movement_occuring and !auto_completing and !won and move_history.size() > 0:
 		var previous_move = move_history.pop_back()
 		redo_stack.push_front(previous_move)
 		previous_move.card.make_move(previous_move.first_position, false)
@@ -362,7 +362,7 @@ func undo():
 
 
 func redo():
-	if !movement_occuring and redo_stack.size() > 0:
+	if !movement_occuring and !auto_completing and redo_stack.size() > 0:
 		var next_move = redo_stack.pop_front()
 		move_history.push_back(next_move)
 		next_move.card.make_move(next_move.second_position, false)
@@ -370,7 +370,7 @@ func redo():
 
 
 func replay():
-	if !movement_occuring and !get_tree().get_root().get_node("Main/GUI").block_ui_changes and !auto_completing:
+	if !movement_occuring and !auto_completing and !get_tree().get_root().get_node("Main/GUI").block_ui_changes and !auto_completing:
 		new_game(true)
 
 

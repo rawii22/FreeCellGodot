@@ -8,6 +8,26 @@ func _ready():
 
 
 func construct(complete_time, new_best_time, moves_made, new_best_moves, is_custom):
+	var history_string = ""
+	for move in table.move_history:
+		match move.card.value:
+			10:
+				history_string += "T"
+			11:
+				history_string += "J"
+			12:
+				history_string += "Q"
+			13:
+				history_string += "K"
+			1:
+				history_string += "A"
+			_:
+				history_string += str(move.card.value)
+		history_string += move.card.suit.left(1).to_upper() + "->"
+		history_string += move.second_position.name + "\n"
+	
+	$MoveHistory/HistoryText.text = history_string
+	
 	$CompleteTime.text = "%d:%02d" % [floor(complete_time / 60), int(complete_time) % 60]
 	$Moves.text = str(moves_made)
 	
@@ -44,3 +64,7 @@ func _on_new_numbered_game_pressed():
 
 func _on_replay_pressed():
 	get_tree().get_root().get_node("Main/Table").replay()
+
+
+func _on_history_button_pressed():
+	$MoveHistory.visible = !$MoveHistory.visible

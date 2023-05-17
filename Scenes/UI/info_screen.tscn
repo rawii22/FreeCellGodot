@@ -175,6 +175,7 @@ theme_override_fonts/font = ExtResource("4_lhjgh")
 theme_override_font_sizes/font_size = 50
 
 [node name="LongestTimeLabel" type="Label" parent="StatsBackground"]
+layout_mode = 0
 offset_left = 37.0
 offset_top = 484.0
 offset_right = 480.0
@@ -185,6 +186,7 @@ text = "Longest Time:"
 horizontal_alignment = 2
 
 [node name="LongestTime" type="Label" parent="StatsBackground"]
+layout_mode = 0
 offset_left = 530.0
 offset_top = 484.0
 offset_right = 618.0
@@ -212,6 +214,7 @@ theme_override_fonts/font = ExtResource("4_lhjgh")
 theme_override_font_sizes/font_size = 50
 
 [node name="MostMovesLabel" type="Label" parent="StatsBackground"]
+layout_mode = 0
 offset_left = 89.0
 offset_top = 638.0
 offset_right = 480.0
@@ -222,6 +225,7 @@ text = "Most Moves:"
 horizontal_alignment = 2
 
 [node name="MostMoves" type="Label" parent="StatsBackground"]
+layout_mode = 0
 offset_left = 530.0
 offset_top = 638.0
 offset_right = 618.0
