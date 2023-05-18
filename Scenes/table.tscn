@@ -95,9 +95,9 @@ theme_override_font_sizes/font_size = 67
 text = "Time: 0:00"
 
 [node name="DealNumber" type="Label" parent="."]
-offset_left = 1510.0
-offset_right = 2330.0
-offset_bottom = 100.0
+offset_left = 1470.0
+offset_right = 2370.0
+offset_bottom = 102.0
 theme_override_fonts/font = ExtResource("7_xqnd6")
 theme_override_font_sizes/font_size = 67
 text = "Deal: #######"

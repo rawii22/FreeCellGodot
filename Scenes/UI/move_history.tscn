@@ -13,6 +13,7 @@ anchors_preset = 0
 script = ExtResource("1_dow5g")
 
 [node name="Outline" type="ColorRect" parent="."]
+layout_mode = 0
 offset_left = -25.0
 offset_top = -25.0
 offset_right = 1625.0
@@ -20,6 +21,7 @@ offset_bottom = 1525.0
 color = Color(0.215686, 0.215686, 0.215686, 1)
 
 [node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
 offset_right = 1600.0
 offset_bottom = 1500.0
 color = Color(0.262745, 0.262745, 0.262745, 1)
@@ -37,6 +39,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ExitButton" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 1505.0
 offset_top = 20.0
 offset_right = 2005.0
@@ -58,8 +61,10 @@ editable = false
 context_menu_enabled = false
 middle_mouse_paste_enabled = false
 scroll_smooth = true
+caret_blink = true
 
 [node name="SimulateMoves" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 625.0
 offset_top = 1370.0
 offset_right = 1325.0
@@ -82,4 +87,5 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="text_changed" from="HistoryText" to="." method="_on_history_text_text_changed"]
 [connection signal="pressed" from="SimulateMoves" to="." method="_on_simulate_moves_pressed"]

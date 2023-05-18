@@ -144,7 +144,7 @@ func new_game(replay_hand = false, seed_num = -1, custom_deal = null):
 		if response:
 			end_game()
 		else:
-			return
+			return false
 	
 	if !replay_hand:
 		if custom_deal != null:
@@ -156,18 +156,26 @@ func new_game(replay_hand = false, seed_num = -1, custom_deal = null):
 	
 	clear_board()
 	deal_cards(replay_hand, seed_num)
+	return true
 
 
 func clear_board():
+	#Since the cards are not deleted quickly enough for the fine_card function, the old cards must
+	#be marked for deletion so we can tell between the cards that are to be deleted, and the cards
+	#that were just instantiated.
+	var cards = get_tree().get_nodes_in_group("card")
+	for card in cards:
+		card.add_to_group("deleted")
+	get_tree().call_group("card", "queue_free")
+	
 	for i in range(8):
 		get_node("Column" + str(i + 1)).cards.clear()
 		
 	for i in range(4):
+		get_node("FreeCell" + str(i + 1)).held_card = null
 		get_node("FreeCell" + str(i + 1)).has_card = false
 		get_node("Foundation" + str(i + 1)).cards.clear()
 		get_node("Foundation" + str(i + 1)).is_full = false
-
-	get_tree().call_group("card", "queue_free")
 	
 	if won:
 		remove_child(win_screen)
@@ -177,7 +185,6 @@ func clear_board():
 	redo_stack.clear()
 	won = false
 	auto_complete_rejected = false
-	simulating = false
 	skip_simulation = false
 	$AutocompleteButton.hide()
 	move_count = 0
@@ -186,10 +193,14 @@ func clear_board():
 	movement_occuring = false
 	$TimerText.text = "Time: " + "%d:%02d" % [floor(time_elapsed / 60), int(time_elapsed) % 60]
 	$MoveCounter.text = "Moves: " + str(move_count)
+	$DealNumber.text = ""
 
 
 func deal_cards(replay_hand, seed_num):
 	var cards = []
+	
+	if is_custom:
+		$DealNumber.text = "Custom Deal"
 	
 	if !replay_hand:
 		if !is_custom:
@@ -208,8 +219,6 @@ func deal_cards(replay_hand, seed_num):
 				current_hand.clear()
 				current_hand = special_hand.duplicate() # Duplicate here or else the original array will be cleared as well when a new game is started. This is because of pointers.
 				is_custom = true
-		else:
-			$DealNumber.text = "Custom Deal"
 		move_made_on_current_hand = false #This must be here and not in clear_board since only deal_cards can tell if the user is replaying
 	
 	for i in current_hand:
@@ -373,7 +382,7 @@ func undo():
 
 
 func redo():
-	if simulating or (!movement_occuring and !auto_completing and redo_stack.size() > 0):
+	if !movement_occuring and !auto_completing and redo_stack.size() > 0:
 		var next_move = redo_stack.pop_front()
 		move_history.push_back(next_move)
 		next_move.card.make_move(next_move.second_position, false)
@@ -385,18 +394,24 @@ func replay():
 		new_game(true)
 
 
+#This function translates the move_set string into an array of moves, and then attempts to perform them.
+#If there are any issues, the simulation will stop and the table will be left in a playable state.
 func simulate(hand, move_set):
-	new_game(false, -1, hand)
+	if !(await new_game(false, -1, hand)):
+		return
 	auto_completing = true
 	get_tree().get_root().get_node("Main/GUI").block_ui(true)
 	$AutocompleteButton.show()
 	simulating = true
 	is_custom = true
 	$DealNumber.text = "Simulating"
+	var moves = []
 	for move_str in move_set:
 		var card_name = ""
-		var value = move_str[0]
-		var suit = move_str[1]
+		var location = ""
+		var value = move_str[0].to_upper()
+		var suit = move_str[1].to_upper()
+		var location_raw = move_str.substr(4).to_upper()
 		match value:
 			"T":
 				card_name += "10"
@@ -419,19 +434,60 @@ func simulate(hand, move_set):
 				card_name += "_diamond"
 			"H":
 				card_name += "_heart"
+		if location_raw.contains("COLUMN"):
+			location = "Column" + location_raw.right(1)
+		elif location_raw.contains("FREECELL"):
+			location = "FreeCell" + location_raw.right(1)
+		elif location_raw.contains("FOUNDATION"):
+			location = "Foundation" + location_raw.right(1)
 		
 		var move = Move.new()
-		var test = get_tree().get_nodes_in_group(card_name)
-		move.card = get_tree().get_nodes_in_group(card_name)[0]
-		move.second_position = get_node(move_str.substr(4))
-		redo_stack.push_back(move)
-	for i in range(redo_stack.size()):
+		move.card = find_card(card_name)
+		move.second_position = get_node(location)
+		moves.push_back(move)
+	
+	#Check for invalid moves and stop the loop if a move is invalid!!
+	for move in moves:
+		if won:
+			break
 		if !skip_simulation:
-			await get_tree().create_timer(0.8).timeout
-		redo()
+			await get_tree().create_timer(0.85).timeout
+		movement_occuring = true
+		if !move.card.make_move(move.second_position, false, true):
+			$DealNumber.text = "Invalid Move"
+			break
+	$AutocompleteButton.hide()
+	moves.clear()
 	
 	auto_completing = false
+	simulating = false
 	get_tree().get_root().get_node("Main/GUI").block_ui(false)
+	
+	if !won and $DealNumber.text != "Invalid Move":
+		$DealNumber.text = "Insufficient Moves"
+
+
+#Takes a card name, returns the whole card object. If a new game was started immediately before this
+#function was called, it will return only the card that was most recently created, and not the old
+# "to be deleted" card.
+func find_card(card_name):
+	for i in range(8):
+		var children = get_node("Column" + str(i + 1)).get_children()
+		for child in children:
+			if "card_name" in child and child.card_name == card_name and !child.is_in_group("deleted"):
+				return child
+		
+	for i in range(4):
+		var children = get_node("FreeCell" + str(i + 1)).get_children()
+		for child in children:
+			if "card_name" in child and child.card_name == card_name and !child.is_in_group("deleted"):
+				return child
+	
+	for i in range(4):
+		var children = get_node("Foundation" + str(i + 1)).get_children()
+		for child in children:
+			if "card_name" in child and child.card_name == card_name and !child.is_in_group("deleted"):
+				return child
 
 
 func end_game(quitting = false):

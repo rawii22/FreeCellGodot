@@ -36,6 +36,7 @@ func _on_visibility_changed():
 			GUI.block_ui(true)
 			select_area($Table/CustomCardArea1)
 			$CardList.grab_focus()
+			$MoveHistory.hide()
 		else:
 			GUI.block_ui(false)
 
@@ -54,6 +55,24 @@ func _on_card_list_text_changed(new_text):
 		old_column_position -= space_count
 	$CardList.set_caret_column(old_column_position)
 	update_screen(new_text)
+
+
+func _on_move_history_escape_gui_input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and !event.pressed:
+		$MoveHistory.hide()
+
+
+func _on_add_move_set_pressed():
+	$MoveHistory.show()
+
+
+func _on_move_history_visibility_changed():
+	if $MoveHistory.visible:
+		$MoveHistoryEscape.show()
+		$MoveHistory/HistoryText.editable = true
+	else:
+		$MoveHistoryEscape.hide()
+		$MoveHistory/HistoryText.editable = false
 
 
 func select_area(area):
@@ -102,9 +121,14 @@ func enable_play_button(value):
 	if value:
 		$PlayHand/Label.add_theme_color_override("font_color", Color("009b00"))
 		$PlayHand.disabled = false
+		$AddMoveSet.show()
+		$MoveHistory.set_hand(hand)
 	else:
 		$PlayHand/Label.add_theme_color_override("font_color", Color("d83500"))
 		$PlayHand.disabled = true
+		$AddMoveSet.hide()
+		$MoveHistory/HistoryText.text = ""
+		$MoveHistory.enable_simulate_button(false)
 
 
 #This is where all the action is happening visually. If a string is not specified, this means that

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://crhdfa4pao3q0"]
+[gd_scene load_steps=15 format=3 uid="uid://crhdfa4pao3q0"]
 
 [ext_resource type="Script" path="res://Scenes/UI/custom_game_screen.gd" id="1_abq4v"]
 [ext_resource type="Texture2D" uid="uid://ctk1enchfx35h" path="res://Assets/UI/ExitLight.png" id="2_aab3q"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://6tybon8ioas4" path="res://Scenes/UI/custom_card_selector.tscn" id="10_vir8u"]
 [ext_resource type="Texture2D" uid="uid://bjxme0f4fpinx" path="res://Assets/UI/settings_button_background_light.png" id="11_skohf"]
 [ext_resource type="Texture2D" uid="uid://r5kcnyvl57dw" path="res://Assets/UI/settings_button_background_dark.png" id="12_dko1l"]
+[ext_resource type="PackedScene" uid="uid://c2xjo7ascxgms" path="res://Scenes/UI/move_history.tscn" id="14_nnc10"]
 
 [node name="CustomGameScreen" type="Control"]
 layout_mode = 3
@@ -1176,11 +1177,11 @@ clear_button_enabled = true
 
 [node name="PlayHand" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 1970.0
+offset_left = 2020.0
 offset_top = 1360.0
-offset_right = 2670.0
+offset_right = 2720.0
 offset_bottom = 1560.0
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.45, 0.45)
 texture_normal = ExtResource("11_skohf")
 texture_pressed = ExtResource("11_skohf")
 texture_hover = ExtResource("12_dko1l")
@@ -1197,7 +1198,45 @@ text = "Play Hand"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AddMoveSet" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1670.0
+offset_top = 1360.0
+offset_right = 2370.0
+offset_bottom = 1560.0
+scale = Vector2(0.45, 0.45)
+texture_normal = ExtResource("11_skohf")
+texture_pressed = ExtResource("11_skohf")
+texture_hover = ExtResource("12_dko1l")
+texture_focused = ExtResource("12_dko1l")
+
+[node name="Label" type="Label" parent="AddMoveSet"]
+layout_mode = 0
+offset_right = 700.0
+offset_bottom = 200.0
+theme_override_fonts/font = ExtResource("5_3acpe")
+theme_override_font_sizes/font_size = 70
+text = "Add Move Set"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveHistoryEscape" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 2500.0
+offset_bottom = 1600.0
+
+[node name="MoveHistory" parent="." instance=ExtResource("14_nnc10")]
+visible = false
+offset_left = 450.0
+offset_top = 50.0
+offset_right = 450.0
+offset_bottom = 50.0
+
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="text_changed" from="CardList" to="." method="_on_card_list_text_changed"]
 [connection signal="pressed" from="PlayHand" to="." method="_on_play_hand_pressed"]
+[connection signal="pressed" from="AddMoveSet" to="." method="_on_add_move_set_pressed"]
+[connection signal="gui_input" from="MoveHistoryEscape" to="." method="_on_move_history_escape_gui_input"]
+[connection signal="visibility_changed" from="MoveHistory" to="." method="_on_move_history_visibility_changed"]
