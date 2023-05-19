@@ -193,14 +193,10 @@ func clear_board():
 	movement_occuring = false
 	$TimerText.text = "Time: " + "%d:%02d" % [floor(time_elapsed / 60), int(time_elapsed) % 60]
 	$MoveCounter.text = "Moves: " + str(move_count)
-	$DealNumber.text = ""
 
 
 func deal_cards(replay_hand, seed_num):
 	var cards = []
-	
-	if is_custom:
-		$DealNumber.text = "Custom Deal"
 	
 	if !replay_hand:
 		if !is_custom:
@@ -219,6 +215,8 @@ func deal_cards(replay_hand, seed_num):
 				current_hand.clear()
 				current_hand = special_hand.duplicate() # Duplicate here or else the original array will be cleared as well when a new game is started. This is because of pointers.
 				is_custom = true
+		else:
+			$DealNumber.text = "Custom Deal"
 		move_made_on_current_hand = false #This must be here and not in clear_board since only deal_cards can tell if the user is replaying
 	
 	for i in current_hand:
