@@ -104,16 +104,19 @@ func auto_click():
 	for i in range(4):
 		if !move_occured:
 			detected_area = get_tree().get_root().get_node("Main/Table/FreeCell" + str(i + 1))
+			if parent_area.name.contains("FreeCell"):
+				detected_area = null
+				break
 			if detected_area.can_place_card(dragged_stack):
 				move_occured = true
 	
 	make_move(detected_area)
 	
-	if detected_area == parent_area:
+	if detected_area != parent_area and move_occured:
+		return true
+	else:
 		#parent_area = get_parent() #Add this line back in if you want animations to work. You still have to figure out how to make the cards show on top though.
 		return false
-	else:
-		return move_occured
 
 
 #This checks if a stack of cards can be dragged by the player.

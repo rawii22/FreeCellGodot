@@ -12,31 +12,31 @@ size = Vector2(1, 1)
 
 [sub_resource type="Animation" id="Animation_dfixt"]
 resource_name = "shake"
-length = 0.18
+length = 0.260001
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Sprite2D:offset")
-tracks/0/interp = 2
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.03, 0.06, 0.09, 0.12, 0.15, 0.18),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.02, 0.06, 0.1, 0.14, 0.18, 0.22, 0.26),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 2,
-"values": [Vector2(0, 0), Vector2(50, 0), Vector2(0, 0), Vector2(-50, 0), Vector2(0, 0), Vector2(50, 0), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(40, 0), Vector2(0, 0), Vector2(-40, 0), Vector2(0, 0), Vector2(40, 0), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("CardShadow:offset")
-tracks/1/interp = 2
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.03, 0.06, 0.09, 0.12, 0.15, 0.18),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.02, 0.06, 0.1, 0.14, 0.18, 0.22, 0.26),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 2,
-"values": [Vector2(0, 0), Vector2(50, 0), Vector2(0, 0), Vector2(-50, 0), Vector2(0, 0), Vector2(50, 0), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(40, 0), Vector2(0, 0), Vector2(-40, 0), Vector2(0, 0), Vector2(40, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q7iow"]

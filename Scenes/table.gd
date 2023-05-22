@@ -183,6 +183,8 @@ func clear_board():
 	
 	move_history.clear()
 	redo_stack.clear()
+	if won == true:
+		move_made_on_current_hand = false
 	won = false
 	auto_complete_rejected = false
 	skip_simulation = false
