@@ -68,6 +68,7 @@ func on_click(is_auto = false):
 					return true
 				else:
 					for card in dragged_stack:
+						card.get_node("ShakeAnimation").stop()
 						card.get_node("ShakeAnimation").play("shake")
 					return false
 			else:
@@ -76,6 +77,7 @@ func on_click(is_auto = false):
 			table.toggle_action_happening()
 			if !parent_area.name.contains("Foundation"):
 				for card in parent_area.get_card_stack(self):
+					card.get_node("ShakeAnimation").stop()
 					card.get_node("ShakeAnimation").play("shake")
 
 
